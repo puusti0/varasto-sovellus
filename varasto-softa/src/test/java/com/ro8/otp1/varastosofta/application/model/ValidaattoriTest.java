@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import application.model.Validaattori;
+import com.ro8.otp1.varastosofta.application.model.Validaattori;
 
 class ValidaattoriTest {
 
