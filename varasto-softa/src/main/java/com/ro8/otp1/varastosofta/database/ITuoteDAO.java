@@ -1,6 +1,6 @@
-package com.ro8.otp1.varasto_softa.database;
+package com.ro8.otp1.varastosofta.database;
 
-import application.model.Tuote;
+import com.ro8.otp1.varastosofta.application.model.Tuote;
 
 public interface ITuoteDAO {
 	public abstract boolean lisaaTuote(Tuote tuote);

@@ -1,4 +1,4 @@
-package com.ro8.otp1.varasto_softa.application.model;
+package com.ro8.otp1.varastosofta.application.model;
 
 
 /**
