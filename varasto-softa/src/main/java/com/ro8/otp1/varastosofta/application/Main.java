@@ -46,7 +46,7 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Lis�� LisaaUusiTuoteViewn keskelle näkymää.
+	 * LisaaUusiTuote keskelle näkymää.
 	 */
 	public void showLisaaUusiTuoteView() {
 		
@@ -68,35 +68,3 @@ public class Main extends Application {
 		launch(args);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
