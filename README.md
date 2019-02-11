@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Varasto-sovellus
 
 Maven-projektina toteutettuna.
@@ -64,6 +63,3 @@ __FLUSH PRIVILEGES;__
 # Lahteet
 
 MariaDB - https://support.rackspace.com/how-to/installing-mariadb-server-on-centos/
-
-MARKDOWN - https://guides.github.com/features/mastering-markdown/
->>>>>>> branch 'develop' of https://gitlab.com/ro8/varasto-sovellus.git
