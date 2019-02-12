@@ -1,4 +1,4 @@
-package com.ro8.otp1.varastosofta.application.model;
+package com.ro8.varastosofta.application.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

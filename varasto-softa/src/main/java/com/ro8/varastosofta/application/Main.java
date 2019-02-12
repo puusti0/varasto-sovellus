@@ -1,4 +1,4 @@
-package com.ro8.otp1.varastosofta.application;
+package com.ro8.varastosofta.application;
 	
 
 import javafx.application.Application;

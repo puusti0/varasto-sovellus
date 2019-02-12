@@ -1,8 +1,8 @@
-package com.ro8.otp1.varastosofta.application.view;
+package com.ro8.varastosofta.application.view;
 
-import com.ro8.otp1.varastosofta.database.TuoteAccessObjectHibernate;
-import com.ro8.otp1.varastosofta.application.model.Tuote;
-import com.ro8.otp1.varastosofta.application.model.Validaattori;
+import com.ro8.varastosofta.application.model.Tuote;
+import com.ro8.varastosofta.application.model.Validaattori;
+import com.ro8.varastosofta.database.TuoteAccessObjectHibernate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

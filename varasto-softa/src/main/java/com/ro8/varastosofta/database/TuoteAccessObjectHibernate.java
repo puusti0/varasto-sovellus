@@ -1,11 +1,11 @@
-package com.ro8.otp1.varastosofta.database;
+package com.ro8.varastosofta.database;
 
 import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.ro8.otp1.varastosofta.application.model.Tuote;
+import com.ro8.varastosofta.application.model.Tuote;
 
 public class TuoteAccessObjectHibernate implements ITuoteDAO{
 	private SessionFactory istuntotehdas;
