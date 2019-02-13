@@ -1,6 +1,8 @@
 package com.ro8.varastosofta.application;
 	
 
+import com.ro8.varastosofta.application.view.MainViewController;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -13,13 +15,14 @@ public class Main extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane root;
+	private MainViewController mainViewController;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("VarastoSofta");
-		
+						
 		initRoot();
 		
 		showLisaaUusiTuoteView();
@@ -34,7 +37,14 @@ public class Main extends Application {
 	public void initRoot() {
 		
 		try {
-			this.root = (BorderPane)FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/MainView.fxml"));
+			this.root = (BorderPane)loader.load();
+			
+			this.mainViewController = loader.getController();
+			this.mainViewController.setMain(this);
+			
+			
 			Scene scene = new Scene(this.root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -44,6 +54,7 @@ public class Main extends Application {
 		}
 		
 	}
+	
 	
 	/**
 	 * LisaaUusiTuote keskelle näkymää.
@@ -60,7 +71,17 @@ public class Main extends Application {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		}	
+	}
+	
+	/**
+	 * Palauttaa viittauksen rootiin.
+	 * 
+	 * @return
+	 */
+	public BorderPane getRoot() {
+		
+		return this.root;
 		
 	}
 	
@@ -68,3 +89,28 @@ public class Main extends Application {
 		launch(args);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
