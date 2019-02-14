@@ -1,3 +1,15 @@
+#Kirjastot
+
+* junit-jupiter-engine 5.3.1
+			
+* junit-jupiter-params 5.4.0
+
+* hibernate-core 5.4.1.Final
+
+* mysql-connector-java 8.0.15
+
+
+
 # Palvelin
 
 * __IP__: 10.114.34.75
