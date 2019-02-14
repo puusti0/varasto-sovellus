@@ -26,7 +26,7 @@
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>3.0.0-M3</version>
 				<configuration>
-					<outputDirectory>${basedir}/target/raportit</outputDirectory>
+					<outputName>testiraportti</outputName>
 				</configuration>
 			</plugin>
 		</plugins>
