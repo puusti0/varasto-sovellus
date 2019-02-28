@@ -1,5 +1,7 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.sql.SQLException;
+
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.TuoteDao;
@@ -36,7 +38,11 @@ public class TuoteController {
 				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())) {
 			
 			Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()));
-			this.dao.lisaaTuote(uusi);
+			try {
+				this.dao.lisaa(uusi);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -65,7 +71,13 @@ public class TuoteController {
 				&& Validaattori.onkoNumero(this.idTextField.getText().toString())) {
 			
 			
-			this.dao.poistaTuote(Integer.parseInt(this.idTextField.getText().toString()));
+			try {
+				this.dao.poista(Integer.parseInt(this.idTextField.getText().toString()));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 		} else {
 			
