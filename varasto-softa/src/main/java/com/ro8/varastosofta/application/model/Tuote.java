@@ -10,27 +10,45 @@ import javax.persistence.Table;
 public class Tuote {
 		
 		@Id
-		@Column(name ="TuoteId")
+		@Column(name ="id")
 		private int id;
 		
-		@Column(name ="Nimi")
+		@Column(name ="tuoteryhma_id")
+		private Tuoteryhma tuoteryhma;
+		
+		@Column(name ="nimi")
 		private String nimi;
 		
-		@Column(name ="Lukumaara")
+		@Column(name ="lukumaara")
 		private int lkm;
+		
+		@Column(name ="hinta")
+		private double hinta;
+		
+		public Tuote() {
+			
+		}
 		
 		public Tuote(int tuoteid, String nimi, int lukumaara) {
 			this.id = tuoteid;
 			this.nimi = nimi;
 			this.lkm = lukumaara;
 		}
-		
+
 		public int getId() {
 			return id;
 		}
 
 		public void setId(int id) {
 			this.id = id;
+		}
+
+		public Tuoteryhma getTuoteryhma() {
+			return tuoteryhma;
+		}
+
+		public void setTuoteryhma(Tuoteryhma tuoteryhma) {
+			this.tuoteryhma = tuoteryhma;
 		}
 
 		public String getNimi() {
@@ -49,8 +67,12 @@ public class Tuote {
 			this.lkm = lkm;
 		}
 
-		public Tuote() {
-			
+		public double getHinta() {
+			return hinta;
+		}
+
+		public void setHinta(double hinta) {
+			this.hinta = hinta;
 		}
 
 }
