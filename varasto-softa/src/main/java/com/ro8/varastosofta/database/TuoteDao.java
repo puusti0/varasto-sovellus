@@ -1,5 +1,8 @@
 package com.ro8.varastosofta.database;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -7,7 +10,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.ro8.varastosofta.application.model.Tuote;
 
-public class TuoteDao implements DAO {
+public class TuoteDao implements Dao<Tuote, Integer> {
 	private SessionFactory istuntotehdas;
 	private final StandardServiceRegistry rekisteri;
 
@@ -23,7 +26,7 @@ public class TuoteDao implements DAO {
 		}
 	}
 
-	@Override
+	
 	public boolean lisaaTuote(Tuote tuote) {
 		Tuote tuoteHibernate = new Tuote(tuote.getId(), tuote.getNimi(), tuote.getLkm());
 		Session istunto = istuntotehdas.openSession();
@@ -45,7 +48,7 @@ public class TuoteDao implements DAO {
 		return false;
 	}
 	
-	@Override
+
 	public boolean poistaTuote(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -73,11 +76,41 @@ public class TuoteDao implements DAO {
 		return false;
 	}
 	
-	@Override
+
 	public Tuote haeTuote(String nimi) {
 		//TODO: Toteuta tuotteen haku Hibernatella.
 		Tuote tuote = new Tuote(123, "Testi", 27);
 		return tuote;
+	}
+
+	@Override
+	public void lisaa(Tuote objekti) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Tuote hae(Integer avain) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tuote paivita(Tuote objekti) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void poista(Integer avain) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Tuote> listaa() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
