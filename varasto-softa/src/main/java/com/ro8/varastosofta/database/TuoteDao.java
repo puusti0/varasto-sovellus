@@ -7,11 +7,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.ro8.varastosofta.application.model.Tuote;
 
-public class TuoteAccessObjectHibernate implements ITuoteDAO{
+public class TuoteDao implements DAO {
 	private SessionFactory istuntotehdas;
 	private final StandardServiceRegistry rekisteri;
 
-	public TuoteAccessObjectHibernate() {
+	public TuoteDao() {
 		rekisteri = new StandardServiceRegistryBuilder().configure().build();
 		try {
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();

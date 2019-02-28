@@ -23,8 +23,7 @@ public class Main extends Application {
 		initRoot();
 		
 		showLisaaUusiTuoteView();
-		
-		
+
 	}
 	
 	
@@ -34,7 +33,7 @@ public class Main extends Application {
 	public void initRoot() {
 		
 		try {
-			this.root = (BorderPane)FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
+			this.root = (BorderPane)FXMLLoader.load(getClass().getResource("./view/MainView.fxml"));
 			Scene scene = new Scene(this.root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -52,7 +51,7 @@ public class Main extends Application {
 		
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/LisaaUusiTuoteView.fxml"));
+			loader.setLocation(Main.class.getResource("./view/TuoteView.fxml"));
 			AnchorPane view = (AnchorPane)loader.load();
 			
 			this.root.setCenter(view);

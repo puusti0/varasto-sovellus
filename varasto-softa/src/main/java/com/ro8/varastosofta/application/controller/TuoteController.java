@@ -1,15 +1,15 @@
-package com.ro8.varastosofta.application.view;
+package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Validaattori;
-import com.ro8.varastosofta.database.TuoteAccessObjectHibernate;
+import com.ro8.varastosofta.database.TuoteDao;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
-public class LisaaUusiTuoteController {
+public class TuoteController {
 	
 	@FXML
 	private TextField idTextField;
@@ -18,10 +18,10 @@ public class LisaaUusiTuoteController {
 	@FXML
 	private TextField lkmTextField;
 		
-	private TuoteAccessObjectHibernate dao;
+	private TuoteDao dao;
 	
-	public LisaaUusiTuoteController() {
-		dao = new TuoteAccessObjectHibernate();
+	public TuoteController() {
+		dao = new TuoteDao();
 	}
 	
 	/**
