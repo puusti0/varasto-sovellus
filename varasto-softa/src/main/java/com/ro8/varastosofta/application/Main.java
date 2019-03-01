@@ -36,7 +36,6 @@ public class Main extends Application {
 	public void initRoot() {
 		
 		try {
-<<<<<<< varasto-softa/src/main/java/com/ro8/varastosofta/application/Main.java
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/MainView.fxml"));
 			this.root = (BorderPane)loader.load();
@@ -44,10 +43,6 @@ public class Main extends Application {
 			this.mainViewController = loader.getController();
 			this.mainViewController.setMain(this);
 			
-			
-=======
-			this.root = (BorderPane)FXMLLoader.load(getClass().getResource("./view/MainView.fxml"));
->>>>>>> varasto-softa/src/main/java/com/ro8/varastosofta/application/Main.java
 			Scene scene = new Scene(this.root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
