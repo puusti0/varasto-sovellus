@@ -1,6 +1,0 @@
-com\ro8\varastosofta\database\TuoteAccessObjectHibernate.class
-com\ro8\varastosofta\database\ITuoteDAO.class
-com\ro8\varastosofta\application\model\Tuote.class
-com\ro8\varastosofta\application\view\LisaaUusiTuoteController.class
-com\ro8\varastosofta\application\Main.class
-com\ro8\varastosofta\application\model\Validaattori.class

@@ -1,7 +1,6 @@
 package com.ro8.varastosofta.application;
 	
-
-import com.ro8.varastosofta.application.view.MainViewController;
+import com.ro8.varastosofta.application.controller.MainViewController;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-
 public class Main extends Application {
 	
 	private Stage primaryStage;
@@ -18,15 +16,11 @@ public class Main extends Application {
 	private MainViewController mainViewController;
 	
 	@Override
-	public void start(Stage primaryStage) {
-		
+	public void start(Stage primaryStage) {	
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("VarastoSofta");
-						
+		this.primaryStage.setTitle("VarastoSofta");		
 		initRoot();
-		
-		showLisaaUusiTuoteView();
-
+		//showLisaaUusiTuoteView();
 	}
 	
 	
@@ -39,10 +33,8 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/MainView.fxml"));
 			this.root = (BorderPane)loader.load();
-			
 			this.mainViewController = loader.getController();
 			this.mainViewController.setMain(this);
-			
 			Scene scene = new Scene(this.root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -58,15 +50,11 @@ public class Main extends Application {
 	 * LisaaUusiTuote keskelle näkymää.
 	 */
 	public void showLisaaUusiTuoteView() {
-		
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("./view/TuoteView.fxml"));
 			AnchorPane view = (AnchorPane)loader.load();
-			
-			this.root.setCenter(view);
-			
-			
+			this.root.setCenter(view);	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}	
@@ -74,15 +62,16 @@ public class Main extends Application {
 	
 	/**
 	 * Palauttaa viittauksen rootiin.
-	 * 
 	 * @return
 	 */
-	public BorderPane getRoot() {
-		
-		return this.root;
-		
+	public BorderPane getRoot() {		
+		return this.root;		
 	}
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

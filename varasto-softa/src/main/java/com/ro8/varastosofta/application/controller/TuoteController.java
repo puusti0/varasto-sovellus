@@ -4,7 +4,9 @@ import java.sql.SQLException;
 
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Validaattori;
+import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
+import com.ro8.varastosofta.database.TuoteryhmaDao;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,10 +22,12 @@ public class TuoteController {
 	@FXML
 	private TextField lkmTextField;
 		
-	private TuoteDao dao;
+	private Dao tuotedao;
+	private Dao tuoteryhmadao;
 	
 	public TuoteController() {
-		dao = new TuoteDao();
+		tuotedao = new TuoteDao();
+		tuoteryhmadao = new TuoteryhmaDao();
 	}
 	
 	/**
@@ -32,18 +36,15 @@ public class TuoteController {
 	 */
 	@FXML
 	private void lisaaButtonPainettu() {
-		
-		
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
 				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())) {
 			
 			Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()));
 			try {
-				this.dao.lisaa(uusi);
+				this.tuotedao.lisaa(uusi);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erhe Ilmoitus");
@@ -53,10 +54,7 @@ public class TuoteController {
 					+ "\nNimi-kentän teksti on korkeintaan 20 merkkiä pitkä");
 
 			alert.showAndWait();
-		}
-		
-		
-		
+		}	
 	}
 	
 	/**
@@ -72,7 +70,7 @@ public class TuoteController {
 			
 			
 			try {
-				this.dao.poista(Integer.parseInt(this.idTextField.getText().toString()));
+				this.tuotedao.poista(Integer.parseInt(this.idTextField.getText().toString()));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {

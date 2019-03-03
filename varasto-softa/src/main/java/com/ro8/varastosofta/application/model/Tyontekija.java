@@ -19,6 +19,10 @@ public class Tyontekija {
 	@Column(name ="nimi")
 	private String nimi;
 
+	public Tyontekija() {
+		
+	}
+
 	public int getId() {
 		return id;
 	}

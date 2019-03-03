@@ -16,6 +16,10 @@ public class Varastotyontekija {
 	@Column(name ="tyontekija_id")
 	private Tyontekija tyontekija;
 
+	public Varastotyontekija() {
+		
+	}
+
 	public int getId() {
 		return id;
 	}

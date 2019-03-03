@@ -16,6 +16,10 @@ public class Yritys {
 	@Column(name ="nimi")
 	private String nimi;
 
+	public Yritys() {
+		
+	}
+
 	public int getId() {
 		return id;
 	}

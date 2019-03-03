@@ -1,4 +1,4 @@
-package com.ro8.varastosofta.application.view;
+package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.Main;
 

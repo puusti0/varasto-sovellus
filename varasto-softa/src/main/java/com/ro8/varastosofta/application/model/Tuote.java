@@ -2,18 +2,23 @@ package com.ro8.varastosofta.application.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Tuote")
 public class Tuote {
 		
-		@Id
+		@Id @GeneratedValue
 		@Column(name ="id")
 		private int id;
 		
-		@Column(name ="tuoteryhma_id")
+		@ManyToOne
+		@JoinColumn(name="tuoteryhma_Id")
 		private Tuoteryhma tuoteryhma;
 		
 		@Column(name ="nimi")
