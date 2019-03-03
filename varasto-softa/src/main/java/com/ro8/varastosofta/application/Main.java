@@ -20,7 +20,7 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("VarastoSofta");		
 		initRoot();
-		//showLisaaUusiTuoteView();
+		showLisaaUusiTuoteView();
 	}
 	
 	
@@ -52,7 +52,7 @@ public class Main extends Application {
 	public void showLisaaUusiTuoteView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("./view/TuoteView.fxml"));
+			loader.setLocation(Main.class.getResource("./view/LisaaTuoteView.fxml"));
 			AnchorPane view = (AnchorPane)loader.load();
 			this.root.setCenter(view);	
 		} catch(Exception e) {

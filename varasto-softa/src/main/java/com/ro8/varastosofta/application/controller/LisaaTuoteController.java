@@ -13,7 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
-public class TuoteController {
+public class LisaaTuoteController {
 	
 	@FXML
 	private TextField idTextField;
@@ -25,7 +25,7 @@ public class TuoteController {
 	private Dao tuotedao;
 	private Dao tuoteryhmadao;
 	
-	public TuoteController() {
+	public LisaaTuoteController() {
 		tuotedao = new TuoteDao();
 		tuoteryhmadao = new TuoteryhmaDao();
 	}
