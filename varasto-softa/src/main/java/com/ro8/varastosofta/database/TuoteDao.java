@@ -1,6 +1,7 @@
 package com.ro8.varastosofta.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
@@ -25,6 +26,9 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void lisaa(Tuote tuote) throws SQLException {
 		Session istunto = istuntotehdas.openSession();
@@ -36,7 +40,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("createTuote:");
+			System.err.println("lisaa(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -44,18 +48,65 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Tuote hae(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Tuote tuote = new Tuote();
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			istunto.load(tuote, avain);
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("hae(Tuote):");
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return new Tuote(tuote.getId(), tuote.getNimi(), tuote.getLkm());
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Tuote paivita(Tuote objekti) throws SQLException {
-		// TODO Auto-generated method stub
+	public Tuote paivita(Tuote tuote) throws SQLException {
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try{
+			transaktio = istunto.beginTransaction();
+			Tuote tietokanta = (Tuote)istunto.get(Tuote.class, tuote.getId());
+			if (tietokanta!= null){
+				tietokanta.setTuoteryhma(tuote.getTuoteryhma());
+				tietokanta.setNimi(tuote.getNimi());
+				tietokanta.setLkm(tuote.getLkm());
+				tietokanta.setHinta(tuote.getHinta());
+			}
+			else{
+				System.out.println("Ei löytynyt päivitettävää!");
+				return null;
+			}
+			transaktio.commit();
+			return tietokanta;
+		}
+		catch(Exception e){
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("paivita(Tuote):");
+			e.printStackTrace();
+		}
+		finally{
+			istunto.close();
+		}
 		return null;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void poista(Integer id) throws SQLException {
 		Session istunto = istuntotehdas.openSession();
@@ -82,10 +133,26 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public List<Tuote> listaa() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tuote> lista = new ArrayList<Tuote>();
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			lista = (ArrayList<com.ro8.varastosofta.application.model.Tuote>)istunto.createQuery( "FROM Tuote" ).list();
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("listaa(Tuote):");
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return lista;
 	}
 
 }
