@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * GRUD-rajapinta
+ * CRUD-rajapinta
  * 
  * DAO Data Access Object
  * T olion tyyppi
