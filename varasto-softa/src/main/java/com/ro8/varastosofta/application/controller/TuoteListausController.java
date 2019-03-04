@@ -29,6 +29,8 @@ public class TuoteListausController {
 	private TextField nimiTextField;
 	@FXML
 	private TextField lkmTextField;
+	@FXML
+	private TextField tuoteryhmaTextField;
 	
 	private Dao<Tuote, Integer> tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -92,7 +94,8 @@ public class TuoteListausController {
 	private void muokkaaNappiaPainettu() {
 		
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
-				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())) {
+				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
+				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaTextField.toString())) {
 			
 			int id = Integer.parseInt(this.idTextField.getText());
 			String nimi = this.nimiTextField.getText().toString();

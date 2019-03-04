@@ -21,6 +21,8 @@ public class LisaaTuoteController {
 	private TextField nimiTextField;
 	@FXML
 	private TextField lkmTextField;
+	@FXML
+	private TextField tuoteryhmaTextField;
 		
 	private Dao tuotedao;
 	private Dao tuoteryhmadao;
@@ -37,7 +39,8 @@ public class LisaaTuoteController {
 	@FXML
 	private void lisaaButtonPainettu() {
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
-				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())) {
+				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
+				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaTextField.toString())) {
 			
 			Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()));
 			try {
@@ -100,6 +103,7 @@ public class LisaaTuoteController {
 		this.idTextField.setText("");
 		this.nimiTextField.setText("");
 		this.lkmTextField.setText("");
+		this.tuoteryhmaTextField.setText("");
 		
 	}
 	
