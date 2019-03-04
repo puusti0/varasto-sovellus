@@ -116,7 +116,8 @@ public class TuoteListausController {
 			alert.setHeaderText("Annetuissa tiedoissa virheitä");
 			alert.setContentText("Tarkista, että yksikään kenttä ei ole tyhjä."
 					+ "\nId-kentässä ja Lkm-kentässä on vain numeroita."
-					+ "\nNimi-kentän teksti on korkeintaan 20 merkkiä pitkä");
+					+ "\nNimi-kentän teksti on korkeintaan 20 merkkiä pitkä"
+					+ "\nTuoteryhmä-kentän teksti on korkeintaan 20 merkkiä pitkä");
 
 			alert.showAndWait();
 		}
