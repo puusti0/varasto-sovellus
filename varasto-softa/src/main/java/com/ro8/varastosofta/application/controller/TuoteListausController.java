@@ -48,6 +48,8 @@ public class TuoteListausController {
 	private TableColumn<TuoteProp, String> tuoteNimi;
 	@FXML 
 	private TableColumn<TuoteProp, Integer> tuoteId;
+	@FXML 
+	private TableColumn<TuoteProp, Integer> tuoteLkm;
 	
 	private ObservableList<TuoteProp> tuotteet =  FXCollections.observableArrayList();
 	
@@ -56,6 +58,7 @@ public class TuoteListausController {
 		// Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
 		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("Nimi"));
 		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+		this.tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("Lkm"));
 		
 		List<Tuote> tietokantatuotteet;
 		try {

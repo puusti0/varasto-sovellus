@@ -22,6 +22,7 @@
                     <columns>
                       <TableColumn fx:id="tuoteNimi" prefWidth="75.0" text="Nimi" />
                       <TableColumn fx:id="tuoteId" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="tuoteLkm" prefWidth="75.0" text="Lukumaara" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
