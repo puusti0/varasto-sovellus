@@ -35,7 +35,7 @@ class ValidaattoriTest {
 		
 		assertTrue(Validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
 		assertFalse(Validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
-		assertFalse(Validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeq"), "Liian pitkä");
+		assertFalse(Validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeqiyfyfkuf"), "Liian pitkä");
 		
 	}
 
