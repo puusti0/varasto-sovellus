@@ -16,14 +16,14 @@ class ValidaattoriTest {
 				"10, testi, '', false",
 				"14, testiNimi, 54, true",
 				"19, liianpitkanimitestataanjaakokiinnivaimeneeklapiheittamalla, 98, false"})
-	private void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
+	void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
 		
 		assertEquals(Validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
 		
 	}
 
 	@Test
-	private void testOnkoNumero() {
+	void testOnkoNumero() {
 		
 		assertFalse(Validaattori.onkoNumero("ei numero"), "Ei ole numero");
 		assertTrue(Validaattori.onkoNumero("12"), "On numero");
@@ -31,7 +31,7 @@ class ValidaattoriTest {
 	}
 	
 	@Test
-	private void testOnkoTuoterymavValidi() {
+	void testOnkoTuoterymavValidi() {
 		
 		assertTrue(Validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
 		assertFalse(Validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
