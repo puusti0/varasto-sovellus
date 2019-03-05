@@ -16,17 +16,26 @@ class ValidaattoriTest {
 				"10, testi, '', false",
 				"14, testiNimi, 54, true",
 				"19, liianpitkanimitestataanjaakokiinnivaimeneeklapiheittamalla, 98, false"})
-	void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
+	private void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
 		
 		assertEquals(Validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
 		
 	}
 
 	@Test
-	void testOnkoNumero() {
+	private void testOnkoNumero() {
 		
 		assertFalse(Validaattori.onkoNumero("ei numero"), "Ei ole numero");
 		assertTrue(Validaattori.onkoNumero("12"), "On numero");
+		
+	}
+	
+	@Test
+	private void testOnkoTuoterymavValidi() {
+		
+		assertTrue(Validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
+		assertFalse(Validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
+		assertFalse(Validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeq"), "Liian pitkä");
 		
 	}
 
