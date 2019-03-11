@@ -12,6 +12,7 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,12 +39,12 @@ public class TuoteListausController {
 	@FXML
 	private Label tuoteryhmaLabel;
 	
-	private Dao<Tuote, Integer> tuotedao;
+	private TuoteDao tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	
 	public  TuoteListausController() {
-		tuotedao = new TuoteDao();
-		tuoteryhmadao = new TuoteryhmaDao();
+		this.tuotedao = new TuoteDao();
+		this.tuoteryhmadao = new TuoteryhmaDao();
 	}
 	
 	//--------------------------------
@@ -121,6 +122,30 @@ public class TuoteListausController {
 					+ "\nTuoteryhmä-kentän teksti on korkeintaan 20 merkkiä pitkä");
 
 			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void vahenna() {
+		try {
+			int id = Integer.parseInt(this.idLabel.getText());
+			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
+			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
+			this.lkmLabel.setText(uusi+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void lisaa() {
+		try {
+			int id = Integer.parseInt(this.idLabel.getText());
+			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
+			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
+			this.lkmLabel.setText(uusi+"");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

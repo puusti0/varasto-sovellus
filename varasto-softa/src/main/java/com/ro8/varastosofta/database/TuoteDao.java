@@ -103,6 +103,40 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		return null;
 	}
+	
+	/**
+	 * Tuotteen lukumäärän päivittäminen tietokantaan.
+	 * @param id tuotteen id
+	 * @param lkm tuotteen uusi lukumäärä
+	 * @return tuotteen lukumäärä
+	 * @throws SQLException
+	 */
+	public int paivitaLukumaara(int id, int lkm) throws SQLException {
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try{
+			transaktio = istunto.beginTransaction();
+			Tuote tietokanta = (Tuote)istunto.get(Tuote.class, id);
+			if (tietokanta!= null){
+				tietokanta.setLkm(lkm);
+			}
+			else{
+				System.out.println("Ei löytynyt päivitettävää!");
+				return -1;
+			}
+			transaktio.commit();
+			return lkm;
+		}
+		catch(Exception e){
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("paivitaLukumaara(Tuote):");
+			e.printStackTrace();
+		}
+		finally{
+			istunto.close();
+		}
+		return -1;
+	}
 
 	/**
 	 * 

@@ -32,8 +32,8 @@ public class MuokkausController implements IController {
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	
 	public MuokkausController() {
-		tuotedao = new TuoteDao();
-		tuoteryhmadao = new TuoteryhmaDao();
+		this.tuotedao = new TuoteDao();
+		this.tuoteryhmadao = new TuoteryhmaDao();
 	}
 	
 	
@@ -42,12 +42,12 @@ public class MuokkausController implements IController {
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
 				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())) {
 			
-			int id = Integer.parseInt(this.idTextField.getText());
-			String nimi = this.nimiTextField.getText().toString();
-			int lkm = Integer.parseInt(this.lkmTextField.getText());
-			Tuote tuote = new Tuote(id, nimi, lkm);
 			try {
-				tuotedao.paivita(tuote);
+				int id = Integer.parseInt(this.idTextField.getText());
+				String nimi = this.nimiTextField.getText().toString();
+				int lkm = Integer.parseInt(this.lkmTextField.getText());
+				Tuote tuote = new Tuote(id, nimi, lkm);
+				this.tuotedao.paivita(tuote);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
