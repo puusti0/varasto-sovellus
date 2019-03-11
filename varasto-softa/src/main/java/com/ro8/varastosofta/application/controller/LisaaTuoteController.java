@@ -3,14 +3,17 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 
 import com.ro8.varastosofta.application.model.Tuote;
+import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class LisaaTuoteController {
@@ -22,14 +25,21 @@ public class LisaaTuoteController {
 	@FXML
 	private TextField lkmTextField;
 	@FXML
-	private TextField tuoteryhmaTextField;
+	private ComboBox<String> tuoteryhmaComboBox;
 		
-	private Dao tuotedao;
-	private Dao tuoteryhmadao;
+	private Dao<Tuote, Integer> tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	
 	public LisaaTuoteController() {
 		tuotedao = new TuoteDao();
 		tuoteryhmadao = new TuoteryhmaDao();
+	}
+	
+	@FXML
+	public void initialize() {
+		tuoteryhmaComboBox.getItems().removeAll(tuoteryhmaComboBox.getItems());
+		tuoteryhmaComboBox.getItems().addAll("Valitse", "Option B", "Option C");
+		tuoteryhmaComboBox.getSelectionModel().select("Valitse");
 	}
 	
 	/**
@@ -38,9 +48,8 @@ public class LisaaTuoteController {
 	 */
 	@FXML
 	private void lisaaButtonPainettu() {
-		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
-				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
-				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaTextField.toString())) {
+		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(), this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
+				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaComboBox.getValue())) {
 			
 			Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()));
 			try {
@@ -103,7 +112,6 @@ public class LisaaTuoteController {
 		this.idTextField.setText("");
 		this.nimiTextField.setText("");
 		this.lkmTextField.setText("");
-		this.tuoteryhmaTextField.setText("");
 		
 	}
 	

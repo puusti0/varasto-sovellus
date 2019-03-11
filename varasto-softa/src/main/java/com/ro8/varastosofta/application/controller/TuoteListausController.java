@@ -3,6 +3,7 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.TuoteProp;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
@@ -14,23 +15,28 @@ import com.ro8.varastosofta.database.TuoteryhmaDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class TuoteListausController {
 	
 	@FXML
-	private TextField idTextField;
+	private Label idLabel;
 	@FXML
-	private TextField nimiTextField;
+	private Label nimiLabel;
 	@FXML
-	private TextField lkmTextField;
+	private Label lkmLabel;
 	@FXML
-	private TextField tuoteryhmaTextField;
+	private Label tuoteryhmaLabel;
 	
 	private Dao<Tuote, Integer> tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -58,9 +64,9 @@ public class TuoteListausController {
 	@FXML
 	private void initialize() {
 		// Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
-		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("Nimi"));
-		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-		this.tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("Lkm"));
+		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		this.tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));
 		
 		List<Tuote> tietokantatuotteet;
 		try {
@@ -91,25 +97,20 @@ public class TuoteListausController {
 	
 	
 	@FXML
-	private void muokkaaNappiaPainettu() {
+	private void muokkaa() {		
 		
-		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
-				this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
-				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaTextField.toString())) {
+		
+		if(Validaattori.onkoLisattavaTuoteValidi(this.idLabel.getText().toString(),
+				this.nimiLabel.getText().toString(), this.lkmLabel.getText().toString())) {
 			
-			int id = Integer.parseInt(this.idTextField.getText());
-			String nimi = this.nimiTextField.getText().toString();
-			int lkm = Integer.parseInt(this.lkmTextField.getText());
+			int id = Integer.parseInt(this.idLabel.getText());
+			String nimi = this.nimiLabel.getText().toString();
+			int lkm = Integer.parseInt(this.lkmLabel.getText());
 			Tuote tuote = new Tuote(id, nimi, lkm);
-			try {
-				tuotedao.paivita(tuote);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 			
-			// Tähän tuotteen muokkaustoiminnallisuus
-			//System.out.println("Nappia painettu");     <- testausta varten voi poistaa
-			
+			Popup muokkausPopup = new Popup("Muokkaa");
+			muokkausPopup.open("MuokkausView.fxml", 300, 250, tuote);
+		
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Erhe Ilmoitus");
@@ -121,14 +122,12 @@ public class TuoteListausController {
 
 			alert.showAndWait();
 		}
-		
 	}
 	
-	private void naytaTuotteenTiedot(TuoteProp tuote) {
-		
-		this.idTextField.setText(tuote.getId() + "");
-		this.nimiTextField.setText(tuote.getNimi() + "");
-		this.lkmTextField.setText(tuote.getLkm() + "");
+	private void naytaTuotteenTiedot(TuoteProp tuote) {	
+		this.idLabel.setText(tuote.getId() + "");
+		this.nimiLabel.setText(tuote.getNimi() + "");
+		this.lkmLabel.setText(tuote.getLkm() + "");
 	}
 	
 }
