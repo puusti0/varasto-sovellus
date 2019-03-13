@@ -24,9 +24,14 @@ public class Tuoteryhma {
 	
 	@OneToMany(mappedBy= "tuoteryhma")
 	private List<Tuote> tuotteet;
-
+	
 	public Tuoteryhma() {
 		
+	}
+
+	public Tuoteryhma(int id, String nimi){
+		this.id = id;
+		this.nimi = nimi;
 	}
 
 	public List<Tuote> getTuotteet() {

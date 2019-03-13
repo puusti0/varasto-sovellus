@@ -50,7 +50,7 @@ public class MuokkausController implements IController {
 				this.tuotedao.paivita(tuote);
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			} 
 			
 			// Tähän tuotteen muokkaustoiminnallisuus
 			//System.out.println("Nappia painettu");     <- testausta varten voi poistaa

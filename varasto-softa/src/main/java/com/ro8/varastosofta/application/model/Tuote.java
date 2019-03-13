@@ -37,6 +37,13 @@ public class Tuote {
 			this.nimi = nimi;
 			this.lkm = lukumaara;
 		}
+		
+		public Tuote(int tuoteid, String nimi, int lukumaara, Tuoteryhma tr) {
+			this.id = tuoteid;
+			this.nimi = nimi;
+			this.lkm = lukumaara;
+			this.tuoteryhma = tr;
+		}
 
 		public int getId() {
 			return id;
