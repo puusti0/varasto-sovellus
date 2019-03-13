@@ -96,14 +96,12 @@ public class TuoteListausController {
 	
 	//--------------------------------
 	
-	
+	/**
+	 * 
+	 */
 	@FXML
 	private void muokkaa() {		
-		
-		
-		if(Validaattori.onkoLisattavaTuoteValidi(this.idLabel.getText().toString(),
-				this.nimiLabel.getText().toString(), this.lkmLabel.getText().toString())) {
-			
+		try {
 			int id = Integer.parseInt(this.idLabel.getText());
 			String nimi = this.nimiLabel.getText().toString();
 			int lkm = Integer.parseInt(this.lkmLabel.getText());
@@ -111,18 +109,10 @@ public class TuoteListausController {
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
 			muokkausPopup.open("MuokkausView.fxml", 300, 250, tuote);
-		
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Erhe Ilmoitus");
-			alert.setHeaderText("Annetuissa tiedoissa virheitä");
-			alert.setContentText("Tarkista, että yksikään kenttä ei ole tyhjä."
-					+ "\nId-kentässä ja Lkm-kentässä on vain numeroita."
-					+ "\nNimi-kentän teksti on korkeintaan 20 merkkiä pitkä"
-					+ "\nTuoteryhmä-kentän teksti on korkeintaan 20 merkkiä pitkä");
-
-			alert.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	@FXML
