@@ -8,13 +8,23 @@ public class TuoteProp {
 	private SimpleIntegerProperty id;
 	private SimpleStringProperty nimi;
 	private SimpleIntegerProperty lkm;
+	private SimpleStringProperty tuoteryhma;
 	
-	public TuoteProp(int id, String nimi, int lkm) {
+	public TuoteProp(int id, String nimi, int lkm, String tuoteryhma) {
 		this.id = new SimpleIntegerProperty(id);
 		this.nimi = new SimpleStringProperty(nimi);
 		this.lkm = new SimpleIntegerProperty(lkm);
+		this.tuoteryhma = new SimpleStringProperty(tuoteryhma);
 	}
 	
+	public String getTuoteryhma() {
+		return this.tuoteryhma.get();
+	}
+
+	public void setTuoteryhma(String tuoteryhma) {
+		this.tuoteryhma = new SimpleStringProperty(tuoteryhma);
+	}
+
 	public void setId(int id) {
 		this.id = new SimpleIntegerProperty(id);
 	}

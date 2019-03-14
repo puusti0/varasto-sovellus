@@ -1,6 +1,7 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import com.ro8.varastosofta.application.Popup;
@@ -42,9 +43,22 @@ public class TuoteListausController {
 	private TuoteDao tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Integer> tuoteryhmat;
+	
 	public  TuoteListausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
+		this.tuoteryhmat = new HashMap<String, Integer>();
+		try {
+			this.ryhmat = this.tuoteryhmadao.listaa();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(Tuoteryhma tuoteryhma : this.ryhmat) {
+			this.tuoteryhmat.put(tuoteryhma.getNimi(), tuoteryhma.getId());
+		}
 	}
 	
 	//--------------------------------
@@ -74,7 +88,7 @@ public class TuoteListausController {
 			tietokantatuotteet = tuotedao.listaa();
 			for (Tuote tuote : tietokantatuotteet) 
 			{ 
-				this.tuotteet.add(new TuoteProp( tuote.getId(), tuote.getNimi(), tuote.getLkm()));
+				this.tuotteet.add(new TuoteProp( tuote.getId(), tuote.getNimi(), tuote.getLkm(), tuote.getTuoteryhma().getNimi()));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,6 +106,8 @@ public class TuoteListausController {
 		// Lisätää kuuntelija ja metodi tuotteiden tietojen näyttämistä varten listaan.
 		this.tpData.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
+		
+		naytaTuotteenTiedot(this.tuotteet.get(0));
 	}
 	
 	//--------------------------------
@@ -122,6 +138,7 @@ public class TuoteListausController {
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
+			this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -143,6 +160,7 @@ public class TuoteListausController {
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
+		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
 	}
 	
 }
