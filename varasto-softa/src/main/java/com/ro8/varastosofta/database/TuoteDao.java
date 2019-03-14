@@ -27,7 +27,9 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	}
 
 	/**
-	 * 
+	 * Lisää tuotteen tietokantaan
+	 * @param tuote Tietokantaan lisättävä tuote
+	 * @throws SQLException
 	 */
 	@Override
 	public void lisaa(Tuote tuote) throws SQLException {
@@ -49,7 +51,9 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	}
 
 	/**
-	 * 
+	 * Hae tuote tietyllä id:llä
+	 * @param id haettavan tuotteen id
+	 * @throws SQLException
 	 */
 	@Override
 	public Tuote hae(Integer avain) throws SQLException {
@@ -71,7 +75,9 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	}
 
 	/**
-	 * 
+	 * Halutun tuotteen tietojen päivittäminen.
+	 * @param id päivitettävän tuotteen id
+	 * @throws SQLException
 	 */
 	@Override
 	public Tuote paivita(Tuote tuote) throws SQLException {
@@ -139,7 +145,9 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	}
 
 	/**
-	 * 
+	 * Tuotteen poistaminen tietokannasta.
+	 * @param id poistettavan tuotteen id
+	 * @throws SQLException
 	 */
 	@Override
 	public void poista(Integer id) throws SQLException {
@@ -168,7 +176,8 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	}
 
 	/**
-	 * 
+	 * Tuotteiden listaaminen tietokannasta.
+	 * @throws SQLException
 	 */
 	@Override
 	public List<Tuote> listaa() throws SQLException {

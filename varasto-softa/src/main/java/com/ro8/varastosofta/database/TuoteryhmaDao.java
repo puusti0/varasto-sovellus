@@ -31,6 +31,11 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 		}
 	}
 
+	/**
+	 * Lisää tuoteryhmän tietokantaan
+	 * @param tuoteryhma Tietokantaan lisättävä tuoteryhma
+	 * @throws SQLException
+	 */
 	@Override
 	public void lisaa(Tuoteryhma tuoteryhma) throws SQLException {
 		Session istunto = istuntotehdas.openSession();
@@ -50,6 +55,11 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 		}
 	}
 
+	/**
+	 * Hae tuoteryhmä tietokannasta
+	 * @param avain Tietokannasta haettavan tuoteryhmän id
+	 * @throws SQLException
+	 */
 	@Override
 	public Tuoteryhma hae(Integer avain) throws SQLException {
 		Tuoteryhma tuoteryhma = new Tuoteryhma();
@@ -68,13 +78,23 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 		}
 		return new Tuoteryhma(tuoteryhma.getId(), tuoteryhma.getNimi());
 	}
-
+	
+	/**
+	 * Päivitä tuoteryhmän tiedot
+	 * @param tuoteryhmä Päivitettävä tuoteryhmä
+	 * @throws SQLException
+	 */
 	@Override
-	public Tuoteryhma paivita(Tuoteryhma objekti) throws SQLException {
+	public Tuoteryhma paivita(Tuoteryhma tuoteryhmä) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Poista tuoterymä tietokannasta
+	 * @param avain Päivitettävä tuoteryhmä
+	 * @throws SQLException
+	 */
 	@Override
 	public void poista(Integer avain) throws SQLException {
 		// TODO Auto-generated method stub
@@ -83,6 +103,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 
 	/**
 	 * Listaa tuoteryhmät tietokannasta
+	 * @throws SQLException
 	 */
 	@Override
 	public List<Tuoteryhma> listaa() throws SQLException {
