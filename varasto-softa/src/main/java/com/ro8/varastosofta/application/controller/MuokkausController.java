@@ -15,6 +15,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
+/**
+ * Tuotteen muokkaukseen käytettävä kontrolleri
+ */
 public class MuokkausController implements IController {
 	
 	@FXML
@@ -31,12 +34,17 @@ public class MuokkausController implements IController {
 	private Dao<Tuote, Integer> tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	
+	/**
+	 * Tuotteen muokkaus kontrolleri
+	 */
 	public MuokkausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
 	}
 	
-	
+	/**
+	 * Tallenna napin toiminnallisuus
+	 */
 	@FXML
 	private void tallenna() {
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),
@@ -68,7 +76,9 @@ public class MuokkausController implements IController {
 		}
 	}
 
-
+	/**
+	 * Asetaan muokattavan tuotteen tiedot käyttöliittymään.
+	 */
 	@Override
 	public void setObject(Object tuote) {
 		this.tuote = (Tuote)tuote;

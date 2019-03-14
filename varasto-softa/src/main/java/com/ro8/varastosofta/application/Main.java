@@ -9,6 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * Sovelluksen käynnistäminen
+ */
 public class Main extends Application {
 	
 	private Stage primaryStage;
@@ -62,14 +65,14 @@ public class Main extends Application {
 	
 	/**
 	 * Palauttaa viittauksen rootiin.
-	 * @return
+	 * @return BorderPane pohja
 	 */
 	public BorderPane getRoot() {		
 		return this.root;		
 	}
 	
 	/**
-	 * 
+	 * Käynnistetään ohjelma
 	 * @param args
 	 */
 	public static void main(String[] args) {

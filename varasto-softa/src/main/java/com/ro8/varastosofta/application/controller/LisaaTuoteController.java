@@ -18,6 +18,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+/**
+ * Kontrolleri tuotteen lisäämiseen.
+ */
 public class LisaaTuoteController {
 	
 	@FXML
@@ -35,6 +38,9 @@ public class LisaaTuoteController {
 	private List<Tuoteryhma> ryhmat;
 	private HashMap<String, Integer> tuoteryhmat;
 	
+	/**
+	 * Tuotteen lisäys kontrolleri
+	 */
 	public LisaaTuoteController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
@@ -51,6 +57,9 @@ public class LisaaTuoteController {
 		
 	}
 	
+	/**
+	 * Alustetaan JavaFX komponentit
+	 */
 	@FXML
 	public void initialize() {
 		this.tuoteryhmaComboBox.getItems().removeAll(tuoteryhmaComboBox.getItems());

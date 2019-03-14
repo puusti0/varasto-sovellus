@@ -29,6 +29,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+/**
+ * 
+ * Käyttöliittymän tuotelistaus
+ */
 public class TuoteListausController {
 	
 	@FXML
@@ -46,6 +50,9 @@ public class TuoteListausController {
 	private List<Tuoteryhma> ryhmat;
 	private HashMap<String, Integer> tuoteryhmat;
 	
+	/**
+	 * Tuotelistauksen kontrolleri
+	 */
 	public  TuoteListausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
@@ -76,6 +83,9 @@ public class TuoteListausController {
 	
 	private ObservableList<TuoteProp> tuotteet =  FXCollections.observableArrayList();
 	
+	/**
+	 * Alustetaan tuotteen tiedot JavaFX komponentteihin
+	 */
 	@FXML
 	private void initialize() {
 		// Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
@@ -113,7 +123,7 @@ public class TuoteListausController {
 	//--------------------------------
 	
 	/**
-	 * 
+	 * Muokkaus napin toiminnallisuus, jolla avataan muokkaus popup
 	 */
 	@FXML
 	private void muokkaa() {		
@@ -131,6 +141,9 @@ public class TuoteListausController {
 		
 	}
 	
+	/**
+	 * Tuotelistauksen vähennä-napin toiminnalisuus
+	 */
 	@FXML
 	private void vahenna() {
 		try {
@@ -144,6 +157,9 @@ public class TuoteListausController {
 		}
 	}
 	
+	/**
+	 * Tuotelistauksen lisää-napin toiminnalisuus.
+	 */
 	@FXML
 	private void lisaa() {
 		try {
@@ -156,6 +172,10 @@ public class TuoteListausController {
 		}
 	}
 	
+	/**
+	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.
+	 * @param tuote
+	 */
 	private void naytaTuotteenTiedot(TuoteProp tuote) {	
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");

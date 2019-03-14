@@ -9,11 +9,17 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import com.ro8.varastosofta.application.model.Tuote;
 
+/**
+ * Tietokanta yhteys Tuote tauluun.
+ */
 public class TuoteDao implements Dao<Tuote, Integer> {
 	
 	private SessionFactory istuntotehdas;
 	private final StandardServiceRegistry rekisteri;
 
+	/**
+	 * Alustukset tietokanta yhteyttä varten.
+	 */
 	public TuoteDao() {
 		rekisteri = new StandardServiceRegistryBuilder().configure().build();
 		try {

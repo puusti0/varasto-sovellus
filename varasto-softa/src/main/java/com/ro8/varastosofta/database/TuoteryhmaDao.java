@@ -14,11 +14,17 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 
+/**
+ * Tietokanta yhteys Tuoteryhmän
+ */
 public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	
 	private SessionFactory istuntotehdas;
 	private final StandardServiceRegistry rekisteri;
 	
+	/**
+	 * Alustukset tietokanta yhteyttä varten.
+	 */
 	public TuoteryhmaDao() {
 		rekisteri = new StandardServiceRegistryBuilder().configure().build();
 		try {
@@ -80,7 +86,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	}
 	
 	/**
-	 * Päivitä tuoteryhmän tiedot
+	 * TODO: Päivitä tuoteryhmän tiedot
 	 * @param tuoteryhmä Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */
@@ -91,7 +97,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	}
 
 	/**
-	 * Poista tuoterymä tietokannasta
+	 * TODO: Poista tuoterymä tietokannasta
 	 * @param avain Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */

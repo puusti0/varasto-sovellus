@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Pääkäyttöliittymän kontrolleri
+ */
 public class MainViewController {
 	
 	private Main main;
@@ -30,6 +33,9 @@ public class MainViewController {
 		this.main.showLisaaUusiTuoteView();
 	}
 	
+	/**
+	 * Asetetaan tuotelistaus borderpanelin keskelle
+	 */
 	public void setTuoteListausViewKeskelle() {
 		
 		try {

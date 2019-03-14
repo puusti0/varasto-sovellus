@@ -10,21 +10,47 @@ import java.util.List;
  * T olion tyyppi
  * K pääavaimen tyyppi
  * 
- * @author Riina Antikainen
  */
 public interface Dao<T, K> {
 	
-	// CREATE
+	/**
+	 * CREATE
+	 * Luodaan uusi olio tietokantaan.
+	 * @param objekti
+	 * @throws SQLException
+	 */
     void lisaa(T objekti) throws SQLException;
 
-    // READ
+    /**
+     * Haetaan olion tiedot tietokannasta avaimen perusteella
+     * @param avain
+     * @return
+     * @throws SQLException
+     */
     T hae(K avain) throws SQLException;
 
-    // UPDATE
+    /**
+     * UPDATE
+     * Päivitetään olion tiedot tietokantaan
+     * @param objekti
+     * @return
+     * @throws SQLException
+     */
     T paivita(T objekti) throws SQLException;
     
-    // DELETE
+    /**
+     * DELETE
+     * Poistetaan olio tietokannasta
+     * @param avain
+     * @throws SQLException
+     */
     void poista(K avain) throws SQLException;
 
+    /**
+     * LIST
+     * Haetaan kaikkien olioiden tiedot listaan tietokannasta
+     * @return lista objekteista
+     * @throws SQLException
+     */
     List<T> listaa() throws SQLException;
 }
