@@ -20,18 +20,32 @@ public class Varastotyontekija {
 		
 	}
 
+	/**
+	 * get-metodi varastotyöntekijän id:lle
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * set-metodi varastotyöntekijän id:lle
+	 * @param id varastotyöntekijän id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * get-metodi työntekijälle
+	 */
 	public Tyontekija getTyontekija() {
 		return tyontekija;
 	}
 
+	/**
+	 * set-metodi työntekijälle
+	 * @param tyontekija tyontekija
+	 */
 	public void setTyontekija(Tyontekija tyontekija) {
 		this.tyontekija = tyontekija;
 	}

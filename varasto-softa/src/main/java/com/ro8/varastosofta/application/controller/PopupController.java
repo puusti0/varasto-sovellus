@@ -49,7 +49,9 @@ public class PopupController {
 		}	
 	}
 	
-	
+	/**
+	 * 
+	 */
 	public void open(String view, int leveys, int korkeus, Object objekti) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
