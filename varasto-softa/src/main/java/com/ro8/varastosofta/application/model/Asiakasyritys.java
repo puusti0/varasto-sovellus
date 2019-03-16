@@ -1,7 +1,5 @@
 package com.ro8.varastosofta.application.model;
 
-import java.sql.SQLException;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -2,9 +2,6 @@ package com.ro8.varastosofta.application.controller;
 
 import java.io.IOException;
 
-import com.ro8.varastosofta.application.Main;
-import com.ro8.varastosofta.application.controller.MainViewController;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

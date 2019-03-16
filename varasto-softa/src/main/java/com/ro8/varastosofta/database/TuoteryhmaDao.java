@@ -11,7 +11,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 
 /**
@@ -118,7 +117,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 		Transaction transaktio = null;
 		try {
 			transaktio = istunto.beginTransaction();
-			lista = (ArrayList<com.ro8.varastosofta.application.model.Tuoteryhma>)istunto.createQuery( "FROM Tuoteryhma" ).list();
+			lista = istunto.createQuery( "FROM Tuoteryhma" ).list();
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();

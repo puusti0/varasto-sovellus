@@ -91,7 +91,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		Transaction transaktio = null;
 		try{
 			transaktio = istunto.beginTransaction();
-			Tuote tietokanta = (Tuote)istunto.get(Tuote.class, tuote.getId());
+			Tuote tietokanta = istunto.get(Tuote.class, tuote.getId());
 			if (tietokanta!= null){
 				tietokanta.setTuoteryhma(tuote.getTuoteryhma());
 				tietokanta.setNimi(tuote.getNimi());
@@ -128,7 +128,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		Transaction transaktio = null;
 		try{
 			transaktio = istunto.beginTransaction();
-			Tuote tietokanta = (Tuote)istunto.get(Tuote.class, id);
+			Tuote tietokanta = istunto.get(Tuote.class, id);
 			if (tietokanta!= null){
 				tietokanta.setLkm(lkm);
 			}
@@ -161,7 +161,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		Transaction transaktio = null;
 		try{
 			transaktio = istunto.beginTransaction();
-			Tuote tuote = (Tuote)istunto.get(Tuote.class, id);
+			Tuote tuote = istunto.get(Tuote.class, id);
 			if (tuote!= null){
 				istunto.delete(tuote);
 				System.out.println("Tuote id:llä " + id + " poistettu!");
@@ -192,7 +192,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		Transaction transaktio = null;
 		try {
 			transaktio = istunto.beginTransaction();
-			lista = (ArrayList<com.ro8.varastosofta.application.model.Tuote>)istunto.createQuery( "FROM Tuote" ).list();
+			lista = istunto.createQuery( "FROM Tuote" ).list();
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();

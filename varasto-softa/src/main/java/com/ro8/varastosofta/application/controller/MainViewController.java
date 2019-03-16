@@ -1,64 +1,67 @@
 package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.Main;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Parent;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 
 /**
- * Pääkäyttöliittymän kontrolleri
+ * Käyttöliittymän päänäkymä.
+ * Käsitellään valikon valinnat.
  */
-public class MainViewController {
+public class MainViewController{
 	
-	private Main main;
+	@FXML
+	private BorderPane rootPane;
+	@FXML
+	private MenuItem lisaaTuoteMenuItem;
 	
 	/**
-	 * Asettaa viittauksen Main luokkaa.
-	 * 
-	 * @param main
+	 * Päänäkymän kontrolleri.
 	 */
-	public void setMain(Main main) {
-		
-		this.main = main;
-		
+	public MainViewController() {
+
 	}
 	
 	/**
-	 * Asettaa LisääUusiTuoteView:n näytön keskelle.
+	 * Käsitellään valikon "Lisää Tuote"-valinta.
 	 */
 	@FXML
-	private void setLisaaUusiTuoteViewKeskelle() {
-		this.main.showLisaaUusiTuoteView();
+    protected void handleLisaaTuoteMenuItem() {
+		aktivoiNakyma("MuokkausView.fxml");
+    }
+	
+	/**
+	 * Käsitellään valikon "Tuotelistaus"-valinta.
+	 */
+	@FXML
+	protected void handleTuotelistausMenuItem() {
+		aktivoiNakyma("TuoteListausView.fxml");
 	}
 	
 	/**
-	 * Asetetaan tuotelistaus borderpanelin keskelle
+	 * Asetetaan näkymä päänäkymän keskelle.
+	 * @param view asetettavan näkymän nimi
 	 */
-	public void setTuoteListausViewKeskelle() {
-		
+	public void aktivoiNakyma(String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/TuoteListaus.fxml"));
-			AnchorPane view = (AnchorPane)loader.load();
-			
-			this.main.getRoot().setCenter(view);
-			
-			
+			loader.setLocation(Main.class.getResource("view/" + view));
+			Parent nakyma = (Parent)loader.load();
+			this.rootPane.setCenter(nakyma);		
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-				
+		}			
 	}
-	
+
 	/**
-	 * Sulkee ohjelman.
+	 * Suljetaan sovellus.
 	 */
-	public void suljeOhjelma() {
-		
+	public void close() {
 		Platform.exit();
-		
 	}
 
 }

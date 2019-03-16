@@ -1,18 +1,12 @@
 package com.ro8.varastosofta.application.controller;
 
-import java.sql.SQLException;
-
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
-import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 /**
@@ -44,7 +38,7 @@ public class MuokkausController implements IController {
 	
 	/**
 	 * Tallenna napin toiminnallisuus
-	 */
+	 *
 	@FXML
 	private void tallenna() {
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(),

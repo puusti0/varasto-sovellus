@@ -11,7 +11,6 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

@@ -5,19 +5,19 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.MainViewController">
+<BorderPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.MainViewController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Tiedosto">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#suljeOhjelma" text="Lopeta" />
+              <MenuItem mnemonicParsing="false" onAction="#close" text="Lopeta" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Näkymä">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#setLisaaUusiTuoteViewKeskelle" text="Lisää Tuote" />
-              <MenuItem mnemonicParsing="false" onAction="#setTuoteListausViewKeskelle" text="Tuotelistaus" />
+              <MenuItem fx:id="lisaaTuoteMenuItem" mnemonicParsing="false" onAction="#handleLisaaTuoteMenuItem" text="Lisää Tuote" />
+              <MenuItem fx:id="tuotelistausMenuItem" mnemonicParsing="false" onAction="#handleTuotelistausMenuItem" text="Tuotelistaus" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Opastus">
