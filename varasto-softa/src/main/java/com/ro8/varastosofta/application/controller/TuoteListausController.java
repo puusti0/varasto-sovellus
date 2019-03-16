@@ -1,36 +1,29 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.TuoteProp;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
-import com.ro8.varastosofta.application.controller.component.TuoteryhmaComponentController;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 
 /**
  * Käyttöliittymä tuotelistaukselle.
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
+ * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
  */
 public class TuoteListausController {
 	
@@ -88,33 +81,33 @@ public class TuoteListausController {
 	 */
 	@FXML
 	private void initialize() {
+		List<TitledPane> listaus = new ArrayList<TitledPane>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
-			TitledPane tuoteryhmalistaus = new TitledPane(tuoteryhma.getNimi(), new Button("Button"));
+			TitledPane tuoteryhmalista = new TitledPane();
+			tuoteryhmalista.setText(tuoteryhma.getNimi());
 			
-			//TuoteryhmaComponentController tuoteryhma = new TuoteryhmaComponentController();
-			//this.tuoteryhmaComboBox.getItems().add(tuoteryhma.getNimi());
+			
+			ListView<String> tuotelistaus = new ListView<String>();
+			ObservableList<String> items =FXCollections.observableArrayList();
+			try {
+				List<Tuote> tuoteryhmanTuotteet = this.tuotedao.hae(tuoteryhma);
+				for (Tuote tuote : tuoteryhmanTuotteet) {
+					items.add(tuote.getId() + " " + tuote.getNimi() + " " + tuote.getLkm() + "kpl");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			tuotelistaus.setItems(items);
+			tuoteryhmalista.setContent(tuotelistaus);
+			listaus.add(tuoteryhmalista);
 		}
+		this.tuotelistausAccordion.getPanes().addAll(listaus);
 		
 		/** Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
 		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
 		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		this.tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));*/
-		
-		//this.tuoteryhmaComboBox.getItems().removeAll(tuoteryhmaComboBox.getItems());
-		//this.tuoteryhmaComboBox.getItems().add("Valitse");
-		
-		//this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
-		/**
-		List<Tuote> tietokantatuotteet;
-		try {
-			tietokantatuotteet = tuotedao.listaa();
-			for (Tuote tuote : tietokantatuotteet) 
-			{ 
-				this.tuotteet.add(new TuoteProp( tuote.getId(), tuote.getNimi(), tuote.getLkm(), tuote.getTuoteryhma().getNimi()));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
 	}
 		/**
 		 // Lisätään pari tuotetta testausta varten.
@@ -138,7 +131,7 @@ public class TuoteListausController {
 	 * Muokkaus napin toiminnallisuus, jolla avataan muokkaus popup
 	 */
 	@FXML
-	private void muokkaa() {		
+	private void handleMuokkaa() {		
 		try {
 			int id = Integer.parseInt(this.idLabel.getText());
 			String nimi = this.nimiLabel.getText().toString();
@@ -154,10 +147,10 @@ public class TuoteListausController {
 	}
 	
 	/**
-	 * Tuotelistauksen vähennä-napin toiminnalisuus
+	 * Tuotelistauksen vähennä-napin toiminnalisuus.
 	 */
 	@FXML
-	private void vahenna() {
+	private void handleVahenna() {
 		try {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
@@ -173,7 +166,7 @@ public class TuoteListausController {
 	 * Tuotelistauksen lisää-napin toiminnalisuus.
 	 */
 	@FXML
-	private void lisaa() {
+	private void handleLisaa() {
 		try {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
@@ -193,20 +186,6 @@ public class TuoteListausController {
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
 		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
-	}
-	
-	/**
-	 * Asetetaan uusi TuoteryhmaComponent tuoteryhmaa varten.
-	 * @param tuoteryhma tuoteryhman nimi
-	 */
-	public void lisaaTuoteryhmaListaukseen(String tuoteryhma) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/component/TuoteryhmaComponent.fxml"));
-			TitledPane listaus  = (TitledPane)loader.load();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}			
 	}
 	
 }

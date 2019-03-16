@@ -8,6 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import com.ro8.varastosofta.application.model.Tuote;
+import com.ro8.varastosofta.application.model.Tuoteryhma;
 
 /**
  * Tietokanta yhteys Tuote tauluun.
@@ -200,6 +201,24 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			e.printStackTrace();
 		} finally {
 			istunto.close();
+		}
+		return lista;
+	}
+
+	/**
+	 * Hae kaikki tuotteet, jotka kuuluvat tiettyyn tuoteryhmään.
+	 * @param tuoteryhma tuotteen tuoteryhma
+	 * @throws SQLException
+	 */
+	public List<Tuote> hae(Tuoteryhma tuoteryhma) throws SQLException {
+		List<Tuote> lista = new ArrayList<Tuote>();
+		try (Session istunto = istuntotehdas.openSession()) {
+			Transaction transaktio = istunto.beginTransaction();
+			String sql = "FROM Tuote WHERE tuoteryhma_id = " + tuoteryhma.getId();
+			lista = istunto.createQuery(sql).list();
+			transaktio.commit();
+		} catch (Exception e) {
+			
 		}
 		return lista;
 	}

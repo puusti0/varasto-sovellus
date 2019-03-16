@@ -36,13 +36,13 @@
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#vahenna" text="-">
+                        <Button mnemonicParsing="false" onAction="#handleVahenna" text="-">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
                         <Label fx:id="lkmLabel" text="0" />
-                        <Button mnemonicParsing="false" onAction="#lisaa" text="+">
+                        <Button mnemonicParsing="false" onAction="#handleLisaa" text="+">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -63,6 +63,13 @@
                </padding>
             </Label>
          </top>
+         <bottom>
+            <Button mnemonicParsing="false" onAction="#handleMuokkaa" text="Muokkaa" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
       </BorderPane>
    </items>
 </SplitPane>
