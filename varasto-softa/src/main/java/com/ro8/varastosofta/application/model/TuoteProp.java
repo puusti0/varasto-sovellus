@@ -77,7 +77,10 @@ public class TuoteProp {
 		return this.lkm.get();
 	}
 	
-
+	@Override
+	public String toString() {
+		return this.getId() + " " + this.getNimi() + " " + this.getLkm() + " kpl";
+	}
 }
 
 

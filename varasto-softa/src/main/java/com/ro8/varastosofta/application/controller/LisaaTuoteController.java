@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
@@ -20,7 +21,7 @@ import javafx.scene.control.TextField;
 /**
  * Kontrolleri tuotteen lisäämiseen.
  */
-public class LisaaTuoteController {
+public class LisaaTuoteController implements IPopupController {
 	
 	@FXML
 	private TextField idTextField;
@@ -142,6 +143,15 @@ public class LisaaTuoteController {
 		this.idTextField.setText("");
 		this.nimiTextField.setText("");
 		this.lkmTextField.setText("");
+		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+	}
+
+	@Override
+	public void setObject(Object tuote) {
+		Tuote tuoteX = (Tuote)tuote;
+		this.idTextField.setText(tuoteX.getId() + "");
+		this.nimiTextField.setText(tuoteX.getNimi());
+		this.lkmTextField.setText(tuoteX.getLkm() + "");
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
 	}
 	

@@ -18,12 +18,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Käyttöliittymä tuotelistaukselle.
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
  * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
+ * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
  */
 public class TuoteListausController {
 	
@@ -83,20 +87,36 @@ public class TuoteListausController {
 	private void initialize() {
 		List<TitledPane> listaus = new ArrayList<TitledPane>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
+			
 			TitledPane tuoteryhmalista = new TitledPane();
 			tuoteryhmalista.setText(tuoteryhma.getNimi());
 			
+			//ListView<TuoteProp> tuotelistaus = new ListView<TuoteProp>();
+			TableView<TuoteProp> tuotelistaus = new TableView<TuoteProp>();
+			TableColumn<TuoteProp, String> tuoteNimi = new TableColumn<TuoteProp, String>("Nimi");
+			TableColumn<TuoteProp, Integer> tuoteId = new TableColumn<TuoteProp, Integer>("Id");
+			TableColumn<TuoteProp, Integer> tuoteLkm = new TableColumn<TuoteProp, Integer>("Lukumäärä");
+			tuotelistaus.getColumns().addAll(tuoteId, tuoteNimi, tuoteLkm);
 			
-			ListView<String> tuotelistaus = new ListView<String>();
-			ObservableList<String> items =FXCollections.observableArrayList();
+			//Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
+			tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+			tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
+			tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));
+			
+			ObservableList<TuoteProp> items = FXCollections.observableArrayList();
+			
+			// Haetaan tuoteryhmän tuotteet tietokannasta
 			try {
 				List<Tuote> tuoteryhmanTuotteet = this.tuotedao.hae(tuoteryhma);
 				for (Tuote tuote : tuoteryhmanTuotteet) {
-					items.add(tuote.getId() + " " + tuote.getNimi() + " " + tuote.getLkm() + "kpl");
+					items.add(new TuoteProp( tuote.getId(), tuote.getNimi(), tuote.getLkm(), tuote.getTuoteryhma().getNimi()));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			tuotelistaus.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
 			
 			tuotelistaus.setItems(items);
 			tuoteryhmalista.setContent(tuotelistaus);
@@ -139,11 +159,10 @@ public class TuoteListausController {
 			Tuote tuote = new Tuote(id, nimi, lkm);
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
-			muokkausPopup.open("MuokkausView.fxml", 300, 250, tuote);
+			muokkausPopup.open("LisaaTuoteView.fxml", 300, 250, tuote);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	/**

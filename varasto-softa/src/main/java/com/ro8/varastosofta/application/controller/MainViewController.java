@@ -31,7 +31,7 @@ public class MainViewController{
 	 */
 	@FXML
     protected void handleLisaaTuoteMenuItem() {
-		aktivoiNakyma("MuokkausView.fxml");
+		aktivoiNakyma("LisaaTuoteView.fxml");
     }
 	
 	/**
