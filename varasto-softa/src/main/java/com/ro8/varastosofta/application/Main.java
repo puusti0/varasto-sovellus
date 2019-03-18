@@ -16,6 +16,26 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) {
+		Stage stage = primaryStage;
+		/*try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainView.fxml"));
+			final Pane root = (Pane)loader.load();
+			// final MainViewController kontrolleri = (MainViewController)loader.getController();	
+			final Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("css/application.css").toExternalForm());
+	        primaryStage.setScene(scene);
+	        primaryStage.setTitle("VarastoSofta");
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		
+		initLoginScreen(stage);
+		// initVarastoScreen(stage);
+	}
+	
+	public void initVarastoScreen(Stage primaryStage) {
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainView.fxml"));
 			final Pane root = (Pane)loader.load();
@@ -28,6 +48,24 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void initLoginScreen(Stage primaryStage) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LogInScreen.fxml"));
+			final Pane root = (Pane)loader.load();
+			// final MainViewController kontrolleri = (MainViewController)loader.getController();	
+			final Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("css/application.css").toExternalForm());
+	        primaryStage.setScene(scene);
+	        primaryStage.setTitle("VarastoSofta");
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
