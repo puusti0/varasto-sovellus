@@ -29,5 +29,14 @@ class ValidaattoriTest {
 		assertTrue(Validaattori.onkoNumero("12"), "On numero");
 		
 	}
+	
+	@Test
+	void testOnkoTuoterymavValidi() {
+		
+		assertTrue(Validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
+		assertFalse(Validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
+		assertFalse(Validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeqiyfyfkuf"), "Liian pitkä");
+		
+	}
 
 }

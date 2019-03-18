@@ -37,8 +37,9 @@ public class Validaattori {
 		return result;
 	}
 	
+	
 	/**
-	 * Testaa onko poistettavan tuottenn id validi.
+	 * Testaa onko poistettavan tuotteen id validi.
 	 * @param id
 	 * @return
 	 */
@@ -77,5 +78,44 @@ public class Validaattori {
 		
 	    return result;
 	}
+	
+	/**
+	 * Testaa onko annettu tuoteryhmä validi.
+	 * 
+	 * @param tuoteryhma, annettu tuoteryhmä String muodossa.
+	 * @return, false jos tuoteryhmä ei validi, true muuten.
+	 */
+	public static boolean onkoTuoteryhmaValidi(String tuoteryhma) {
+		
+		boolean result = true;
+		
+		if(tuoteryhma.length() == 0 || tuoteryhma.length() > 20) {
+			return result = false;
+		}
+		
+		return result;
+		
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

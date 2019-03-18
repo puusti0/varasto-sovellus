@@ -1,6 +1,17 @@
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\ITuoteDAO.java
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\TuoteAccessObjectHibernate.java
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuote.java
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Validaattori.java
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\Main.java
-C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\view\LisaaUusiTuoteController.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\view\TuoteListausController.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Asiakasyritys.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Validaattori.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilaus.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Varastotyontekija.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tyontekija.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Myyntiedustaja.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\TuoteDao.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilausrivi.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Yritys.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\Main.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\TuoteController.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\Dao.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\view\MainViewController.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuote.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\TuoteProp.java
+D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuoteryhma.java
