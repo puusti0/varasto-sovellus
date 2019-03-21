@@ -1,6 +1,9 @@
 package com.ro8.varastosofta.application.controller;
 
+import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.Main;
+import com.ro8.varastosofta.application.SessionManager;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +15,7 @@ import javafx.scene.layout.BorderPane;
  * Käyttöliittymän päänäkymä.
  * Käsitellään valikon valinnat.
  */
-public class MainViewController{
+public class MainViewController implements IController{
 	
 	@FXML
 	private BorderPane rootPane;
@@ -62,6 +65,12 @@ public class MainViewController{
 	 */
 	public void close() {
 		Platform.exit();
+	}
+
+	@Override
+	public void initSession(SessionManager sessionManager, String sessionID) {
+
+		
 	}
 
 }

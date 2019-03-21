@@ -9,12 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- * Kayttaja tietokantataulu.
- * @author Riina Antikainen
- * @author Tuukka Mytty
- * @author Janne Valle
- */
 @Entity
 @Table(name="Kayttaja")
 public class Kayttaja {
@@ -24,9 +18,9 @@ public class Kayttaja {
 	@Column(name ="id")
 	private int id;
 	
-	@ManyToOne
+	/**@ManyToOne
 	@JoinColumn(name="rooli_Id")
-	private Rooli rooli;
+	private Rooli rooli;*/
 	
 	@Column(name ="kayttajatunnus")
 	private String kayttajatunnus;

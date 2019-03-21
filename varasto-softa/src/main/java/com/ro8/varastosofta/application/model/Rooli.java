@@ -10,12 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- * Rooli tietokantataulu.
- * @author Riina Antikainen
- * @author Tuukka Mytty
- * @author Janne Valle
- */
 @Entity
 @Table(name="Rooli")
 public class Rooli {
@@ -28,6 +22,6 @@ public class Rooli {
 	@Column(name ="Nimi")
 	private String nimi;
 	
-	@OneToMany(mappedBy= "kayttaja")
-	private List<Kayttaja> kayttajat;
+	/*@OneToMany(mappedBy= "kayttaja")
+	private List<Kayttaja> kayttajat;*/
 }
