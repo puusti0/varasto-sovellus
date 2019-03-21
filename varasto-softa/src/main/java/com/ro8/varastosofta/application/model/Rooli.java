@@ -18,10 +18,10 @@ public class Rooli {
 	@Column(name ="id")
 	private int id;
 	
-	@Column(name ="Nimi")
+	@Column(name ="nimi")
 	private String nimi;
 	
-	@OneToMany(mappedBy= "id")
+	@OneToMany(mappedBy="rooli")
 	private List<Kayttaja> kayttajat;
 	
 	/**

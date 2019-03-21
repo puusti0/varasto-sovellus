@@ -12,21 +12,15 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
- * Kirjautumisruudulle kontrolleri.
- * 
- * @author Riina Antikainen, Tuukka Mytty, Janne Valle.
- *
+ * Kirjautumisivun kontrolleri.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle.
  */
 public class LogInScreenController implements IController {
 	
@@ -50,7 +44,6 @@ public class LogInScreenController implements IController {
 	
 	/**
 	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
-	 * @throws SQLException 
 	 */
 	@FXML
 	private void handleKirjaudu() throws SQLException {
@@ -80,8 +73,8 @@ public class LogInScreenController implements IController {
 	}
 	
 	/**
-	 * @throws SQLException 
-	 * 
+	 * Tarkistetaan salasana ja käyttäjätunnus yhdistelmä.
+	 * TODO: tarkista tietokantataulun tietoja vasten.
 	 */
 	private String authorize() throws SQLException {
 		
@@ -96,10 +89,6 @@ public class LogInScreenController implements IController {
 		}
 		
 		return sessionId;
-//	    return 
-//	      "user".equals(this.tunnusTextField.getText()) && "password".equals(this.salasanaTextField.getText()) 
-//	            ? generateSessionID() 
-//	            : null;
 	}
 	
 	/**
@@ -111,7 +100,9 @@ public class LogInScreenController implements IController {
 		    return "Session" + sessionID;
 	}
 	
-
+	/**
+	 * Alustetaan kirjautumissivun sessio.
+	 */
 	@Override
 	public void initSession(SessionManager sessionManager, String sessionID) {
 		this.sessionManager = sessionManager;
