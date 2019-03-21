@@ -1,9 +1,7 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Kayttaja;
@@ -44,6 +42,8 @@ public class LogInScreenController implements IController {
 	
 	/**
 	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
+	 * 
+	 * @throws SQLException
 	 */
 	@FXML
 	private void handleKirjaudu() throws SQLException {
@@ -75,6 +75,7 @@ public class LogInScreenController implements IController {
 	/**
 	 * Tarkistetaan salasana ja käyttäjätunnus yhdistelmä.
 	 * TODO: tarkista tietokantataulun tietoja vasten.
+	 * @throws SQLException
 	 */
 	private String authorize() throws SQLException {
 		
