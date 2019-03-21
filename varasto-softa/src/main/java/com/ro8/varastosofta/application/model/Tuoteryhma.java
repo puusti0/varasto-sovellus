@@ -19,7 +19,7 @@ public class Tuoteryhma {
 	@Column(name ="id")
 	private int id;
 	
-	@Column(name ="Nimi")
+	@Column(name ="nimi")
 	private String nimi;
 	
 	@OneToMany(mappedBy="tuoteryhma")
