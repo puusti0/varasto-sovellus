@@ -1,8 +1,12 @@
 package com.ro8.varastosofta.application.model;
 
 
+
 /**
  * Luokka syötteiden validointia varten.
+ * 
+ * @author Riina Antikainen, Tuukka Mytty, Janne Valle.
+ * 
  *
  */
 public class Validaattori {
@@ -13,10 +17,10 @@ public class Validaattori {
 	 * id ja lkm ovat numeroita ja nimi ei saa olla yli 20 merkkiä pitkä. Palauttaa
 	 * true jos parametrit valideja muuten false.
 	 * 
-	 * @param id
-	 * @param nimi
-	 * @param lkm
-	 * @return
+	 * @param id tuotteen id
+	 * @param nimi tuotteen nimi
+	 * @param lkm tuotteen lukumäärä
+	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
 	 */
 	public static boolean onkoLisattavaTuoteValidi(String id, String nimi, String lkm) {
 		
@@ -40,8 +44,8 @@ public class Validaattori {
 	
 	/**
 	 * Testaa onko poistettavan tuotteen id validi.
-	 * @param id
-	 * @return
+	 * @param id tuotteen id.
+	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
 	public static boolean onkoPoistettavaIdValidi(String id) {
 		
@@ -58,8 +62,8 @@ public class Validaattori {
 	 * Testaa onko parametri muunnettavissa numeroksi. Palauttaa true jos on
 	 * muuten false.
 	 * 
-	 * @param strNum
-	 * @return
+	 * @param strNum numero String muodossa-
+	 * @return true jos on numero ja false muuten.
 	 */
 	public static boolean onkoNumero(String strNum) {
 		
