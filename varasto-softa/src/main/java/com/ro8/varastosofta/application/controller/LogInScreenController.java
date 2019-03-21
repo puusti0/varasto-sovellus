@@ -39,8 +39,9 @@ public class LogInScreenController implements IController {
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
 	public LogInScreenController() {
-		this.roolidao = new RooliDao();
 		this.kayttajadao = new KayttajaDao();
+		this.roolidao = new RooliDao();
+		
 	}
 	
 	/**
