@@ -37,22 +37,7 @@ public class SessionManager {
 	 * 
 	 */
 	public void logout() {
-	    naytaLogInScreen();
-	}
-	
-	/**
-	 * 
-	 */
-	public void naytaLogInScreen() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LogInScreen.fxml"));
-			final Pane login = (Pane)loader.load();
-			this.scene.setRoot(login);
-			final LogInScreenController controller = (LogInScreenController)loader.getController();
-	        controller.initSessionManager(this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    naytaNakyma("0", "LogInScreen.fxml");
 	}
 
 	/*
