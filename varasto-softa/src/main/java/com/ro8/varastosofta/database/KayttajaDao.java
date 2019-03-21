@@ -1,14 +1,18 @@
 package com.ro8.varastosofta.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.ro8.varastosofta.application.model.Kayttaja;
+import com.ro8.varastosofta.application.model.Tuote;
 
 /**
  * Tietokantayhteys Kayttaja tauluun.
@@ -60,10 +64,28 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 		
 	}
 
+	/**
+	 * Tuotteiden listaaminen tietokannasta.
+	 * @throws SQLException
+	 * @return List<Kayttaja>
+	 */
 	@Override
 	public List<Kayttaja> listaa() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Kayttaja> lista = new ArrayList<Kayttaja>();
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			lista = istunto.createQuery( "FROM Kayttaja" ).list();
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("listaa(Kayttaja):");
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return lista;
 	}
 
 }

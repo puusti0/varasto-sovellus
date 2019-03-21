@@ -1,5 +1,9 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Kayttaja;
@@ -46,9 +50,10 @@ public class LogInScreenController implements IController {
 	
 	/**
 	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
+	 * @throws SQLException 
 	 */
 	@FXML
-	private void handleKirjaudu() {
+	private void handleKirjaudu() throws SQLException {
 		String sessionID = authorize();
         if (sessionID != null) {
           this.sessionManager.authenticated(sessionID);
@@ -75,13 +80,26 @@ public class LogInScreenController implements IController {
 	}
 	
 	/**
+	 * @throws SQLException 
 	 * 
 	 */
-	private String authorize() {
-	    return 
-	      "user".equals(this.tunnusTextField.getText()) && "password".equals(this.salasanaTextField.getText()) 
-	            ? generateSessionID() 
-	            : null;
+	private String authorize() throws SQLException {
+		
+		List<Kayttaja> kayttajat = this.kayttajadao.listaa();
+		String sessionId = null;
+		
+		for (Kayttaja kayttaja : kayttajat) {
+			if ((this.tunnusTextField.getText()).equals(kayttaja.getKayttajatunnus()) 
+					&& (this.salasanaTextField.getText()).equals(kayttaja.getSalasana())) {
+				sessionId = generateSessionID();
+			}
+		}
+		
+		return sessionId;
+//	    return 
+//	      "user".equals(this.tunnusTextField.getText()) && "password".equals(this.salasanaTextField.getText()) 
+//	            ? generateSessionID() 
+//	            : null;
 	}
 	
 	/**
