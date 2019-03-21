@@ -1,5 +1,6 @@
 package com.ro8.varastosofta.application.controller;
 
+import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
  * @author Riina Antikainen, Tuukka Mytty, Janne Valle.
  *
  */
-public class LogInScreenController {
+public class LogInScreenController implements IController {
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -33,6 +34,7 @@ public class LogInScreenController {
 	private Button kirjauduButton;
 	
 	private static int sessionID = 1;
+	private SessionManager sessionManager;
 	private Dao<Rooli, Integer> roolidao;
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
@@ -44,22 +46,13 @@ public class LogInScreenController {
 	/**
 	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
 	 */
-	/**@FXML
+	@FXML
 	private void handleKirjaudu() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MainView.fxml"));
-			final Pane root = (Pane)loader.load();
-			// final MainViewController kontrolleri = (MainViewController)loader.getController();	
-			Stage mainStage = new Stage();
-			final Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../css/application.css").toExternalForm());
-	        mainStage.setScene(scene);
-	        mainStage.setTitle("VarastoSofta");
-			mainStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
+		String sessionID = authorize();
+        if (sessionID != null) {
+          this.sessionManager.authenticated(sessionID);
+        }
+	}
 	
 	/**
 	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
@@ -99,19 +92,10 @@ public class LogInScreenController {
 		    return "Session" + sessionID;
 	}
 	
-	/**
-	 * 
-	 * @param sessionManager
-	 */
-	public void initSessionManager(final SessionManager sessionManager) {
-		 this.kirjauduButton.setOnAction(new EventHandler<ActionEvent>() {
-		      @Override public void handle(ActionEvent event) {
-		        String sessionID = authorize();
-		        if (sessionID != null) {
-		          sessionManager.authenticated(sessionID);
-		        }
-		      }
-		 });
+
+	@Override
+	public void initSession(SessionManager sessionManager, String sessionID) {
+		this.sessionManager = sessionManager;
 	}
 	
 }
