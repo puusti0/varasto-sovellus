@@ -1,14 +1,11 @@
 package com.ro8.varastosofta.application;
 
-import com.ro8.varastosofta.application.controller.LogInScreenController;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 
 /**
- * 
+ * Kirjautuneen käyttäjän näkymien hallinta.
  * @author Riina Antikainen
  * @author Tuukka Mytty
  * @author Janne Valle
@@ -18,30 +15,30 @@ public class SessionManager {
 	private Scene scene;
 	
 	/**
-	 * 
-	 * @param scene
+	 * SessionManager kontrolleri.
+	 * @param scene 
 	 */
 	public SessionManager(Scene scene) {
 		this.scene = scene;
 	}
 	
 	/**
-	 * 
-	 * @param sessionID
+	 * Kirjautuneen käyttäjän näkymä.
+	 * @param sessionID yksilöity session id
 	 */
 	public void authenticated(String sessionID) {
 		naytaNakyma(sessionID, "MainView.fxml");
 	}
 	
 	/**
-	 * 
+	 * Uloskirjautumisen jälkeen näytetään kirjautumissivu.
 	 */
 	public void logout() {
 	    naytaNakyma("0", "LogInScreen.fxml");
 	}
 
-	/*
-	 * Näytetään session näkymä
+	/**
+	 * Näkymän näyttämiseen tarvittavat toimenpiteet.
 	 */
 	public void naytaNakyma(String sessionID, String view) {
 		try {
