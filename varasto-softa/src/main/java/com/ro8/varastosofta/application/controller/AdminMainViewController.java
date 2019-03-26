@@ -13,6 +13,7 @@ public class AdminMainViewController implements IController {
 	
 	@FXML
 	private BorderPane rootPane;
+	
 	private SessionManager sessionManager;
 	
 	/**
@@ -32,6 +33,14 @@ public class AdminMainViewController implements IController {
 	}
 	
 	/**
+	 * Käsitellään valikon "Kirjaudu ulos"-valinta.
+	 */
+	@FXML
+	protected void kasitteleLisaaKayttaja() {
+		aktivoiNakyma("LisaaKayttajaView.fxml");
+	}
+	
+	/**
 	 * Asetetaan näkymä päänäkymän keskelle.
 	 * @param view asetettavan näkymän nimi
 	 */
@@ -40,7 +49,7 @@ public class AdminMainViewController implements IController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
-			this.rootPane.setCenter(nakyma);		
+			this.rootPane.setCenter(nakyma);	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			
