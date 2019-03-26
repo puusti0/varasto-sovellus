@@ -41,8 +41,22 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 	}
 
 	@Override
-	public void lisaa(Kayttaja objekti) throws SQLException {
-		// TODO Auto-generated method stub
+	public void lisaa(Kayttaja kayttaja) throws SQLException {
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			istunto.saveOrUpdate(kayttaja);
+			transaktio.commit();
+		}
+		catch(Exception e){
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("lisaa(Kayttaja):");
+			e.printStackTrace();
+		}
+		finally{
+			istunto.close();
+		}
 		
 	}
 
