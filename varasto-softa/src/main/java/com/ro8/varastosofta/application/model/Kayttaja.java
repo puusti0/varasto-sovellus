@@ -34,6 +34,18 @@ public class Kayttaja {
 	public Kayttaja() {
 		
 	}
+	
+	/**
+	 * Luokan Kayttaja konstruktori parametreilla
+	 * @param kayttajatunnus kayttajan kayttajatunnus
+	 * @param salasana kayttajan salasana
+	 * @param rooli kayttjan rooli
+	 */
+	public Kayttaja(String kayttajatunnus, String salasana, Rooli rooli) {
+		this.kayttajatunnus = kayttajatunnus;
+		this.salasana = salasana;
+		this.rooli = rooli;
+	}
 
 	public int getId() {
 		return id;

@@ -9,6 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Johtaja käyttäjän sivun kontrolleri.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle.
+ */
 public class AdminMainViewController implements IController {
 	
 	@FXML

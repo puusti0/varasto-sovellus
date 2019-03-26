@@ -1,14 +1,18 @@
 package com.ro8.varastosofta.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tuoteryhma;
 
 /**
  * Tietokantayhteys Rooli tauluun.
@@ -44,8 +48,21 @@ public class RooliDao implements Dao<Rooli, Integer>{
 
 	@Override
 	public Rooli hae(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Rooli rooli = new Rooli();
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			istunto.load(rooli, avain);
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("hae(Tuote):");
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return new Rooli(rooli.getId(), rooli.getNimi());
 	}
 
 	@Override
@@ -62,8 +79,21 @@ public class RooliDao implements Dao<Rooli, Integer>{
 
 	@Override
 	public List<Rooli> listaa() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Rooli> lista = new ArrayList<Rooli>();
+		Session istunto = istuntotehdas.openSession();
+		Transaction transaktio = null;
+		try {
+			transaktio = istunto.beginTransaction();
+			lista = istunto.createQuery( "FROM Rooli" ).list();
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio!=null) transaktio.rollback();
+			System.err.println("listaa(Rooli):");
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return lista;
 	}
 
 }

@@ -30,6 +30,16 @@ public class Rooli {
 	public Rooli() {
 		
 	}
+	
+	/**
+	 * Luokan Rooli konstruktori parametreilla
+	 * @param id roolin id
+	 * @param nimi roolin nimi
+	 */
+	public Rooli(int id, String nimi){
+		this.id = id;
+		this.nimi = nimi;
+	}
 
 	public int getId() {
 		return id;
