@@ -34,6 +34,9 @@ public class SessionManager {
 			case "Varastotyöntekijä":
 				naytaNakyma(sessionID, "MainView.fxml");
 				break;
+			case "Myyntiedustaja":
+				naytaNakyma(sessionID, "MainView.fxml");
+				break;
 			case "Johtaja":
 				naytaNakyma(sessionID, "AdminMainView.fxml");
 				break;
