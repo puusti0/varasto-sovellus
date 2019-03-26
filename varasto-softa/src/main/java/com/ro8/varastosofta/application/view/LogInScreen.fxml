@@ -32,7 +32,7 @@
         <buttons>
           <Button fx:id="kirjauduButton" mnemonicParsing="false" onAction="#handleKirjaudu" text="Kirjaudu" />
             <Button mnemonicParsing="false" onAction="#tyhjennaNappiaPainettu" text="Tyhjennä" />
-            <Button mnemonicParsing="false" onAction="#lopetaNappiaPainettu" text="Lopeta" />
+            <Button mnemonicParsing="false" onAction="#kasitteleLopeta" text="Lopeta" />
         </buttons>
       </ButtonBar>
    </children>

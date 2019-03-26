@@ -9,7 +9,6 @@ import com.ro8.varastosofta.application.model.Rooli;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -66,10 +65,8 @@ public class LogInScreenController implements IController {
 	 * Lopetus napin painallus sulkee ohjelman.
 	 */
 	@FXML
-	private void lopetaNappiaPainettu() {
-		
-		Platform.exit();
-		
+	private void kasitteleLopeta() {
+		this.sessionManager.lopeta();
 	}
 	
 	/**
@@ -85,7 +82,7 @@ public class LogInScreenController implements IController {
 		for (Kayttaja kayttaja : kayttajat) {
 			if ((this.tunnusTextField.getText()).equals(kayttaja.getKayttajatunnus()) 
 					&& (this.salasanaTextField.getText()).equals(kayttaja.getSalasana())) {
-				sessionId = generateSessionID();
+				sessionId = generateSessionID(kayttaja.getRooli().getNimi());
 			}
 		}
 		
@@ -96,9 +93,9 @@ public class LogInScreenController implements IController {
 	 * Luodaan sessiolle yksilöllinen id
 	 * @return session id
 	 */
-	private String generateSessionID() {
+	private String generateSessionID(String rooli) {
 		    sessionID++;
-		    return "Session" + sessionID;
+		    return rooli + "-" + sessionID;
 	}
 	
 	/**

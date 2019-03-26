@@ -11,6 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Tiedosto">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleKirjauduUlos" text="Kirjaudu ulos" />
               <MenuItem mnemonicParsing="false" onAction="#close" text="Lopeta" />
             </items>
           </Menu>
