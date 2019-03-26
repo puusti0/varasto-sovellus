@@ -1,5 +1,6 @@
 package com.ro8.varastosofta.application;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,15 +28,34 @@ public class SessionManager {
 	 * @param sessionID yksilöity session id
 	 */
 	public void authenticated(String sessionID) {
-		naytaNakyma(sessionID, "MainView.fxml");
+		String[] session = sessionID.split("-");
+		String rooli = session[0];
+		switch(rooli) {
+			case "Varastotyöntekijä":
+				naytaNakyma(sessionID, "MainView.fxml");
+				break;
+			case "Johtaja":
+				naytaNakyma(sessionID, "AdminMainView.fxml");
+				break;
+			default:
+				naytaNakyma("0", "LogInScreen.fxml");
+		}
 	}
 	
 	/**
 	 * Uloskirjautumisen jälkeen näytetään kirjautumissivu.
 	 */
-	public void logout() {
+	public void kirjauduUlos() {
 	    naytaNakyma("0", "LogInScreen.fxml");
 	}
+	
+	/**
+	 * Suljetaan sovellus.
+	 */
+	public void lopeta() {
+		Platform.exit();
+	}
+
 
 	/**
 	 * Näkymän näyttämiseen tarvittavat toimenpiteet.
