@@ -10,8 +10,10 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * Kirjautumisivun kontrolleri.
@@ -33,6 +35,9 @@ public class LogInScreenController implements IController {
 	private Dao<Rooli, Integer> roolidao;
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
+	/**
+	 * Oletus konstruktori.
+	 */
 	public LogInScreenController() {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
@@ -83,8 +88,10 @@ public class LogInScreenController implements IController {
 			if ((this.tunnusTextField.getText()).equals(kayttaja.getKayttajatunnus()) 
 					&& (this.salasanaTextField.getText()).equals(kayttaja.getSalasana())) {
 				sessionId = generateSessionID(kayttaja.getRooli().getNimi());
-			}
+			} 
 		}
+		
+		tarkistaSalasanaJaTunnus(sessionId);
 		
 		return sessionId;
 	}
@@ -104,6 +111,25 @@ public class LogInScreenController implements IController {
 	@Override
 	public void initSession(SessionManager sessionManager, String sessionID) {
 		this.sessionManager = sessionManager;
+	}
+	
+	/**
+	 * Tarkistetaan ovatko annetut käyttäjätunnus ja salasana oikein
+	 * jos ei niin annetaan ilmoitus.
+	 * 
+	 * @param sessionId, tarkistettava id jos ei null niin tunnus ja salasana oikein.
+	 */
+	public void tarkistaSalasanaJaTunnus(String sessionId) {
+		
+		if (sessionId == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erhe Ilmoitus");
+			alert.setHeaderText("Annetuissa tiedoissa virheitä");
+			alert.setContentText("Tarkista, että käyttäjätunnus ja salasana ovat oikein");
+
+			alert.showAndWait();
+		}
+		
 	}
 	
 }

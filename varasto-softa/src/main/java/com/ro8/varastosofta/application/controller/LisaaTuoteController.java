@@ -103,7 +103,7 @@ public class LisaaTuoteController implements IPopupController {
 	
 	/**
 	 * Napin painaminen validoi poistettavan tuotteen ID:n ja poistaa kyseisen 
-	 * tuotteen tietokannasta sekä antaa ilmoituksen jos poisto onnistui tai tai.
+	 * tuotteen tietokannasta sekä antaa ilmoituksen jos poisto onnistui tai ei.
 	 */
 	@FXML
 	private void poistaTuoteButtonPainettu() {

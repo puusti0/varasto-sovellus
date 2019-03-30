@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 /**
  * Oma popup ikkuna
+ * 
+ * 
  */
 public class Popup {
 	
@@ -19,7 +21,7 @@ public class Popup {
 	private Parent root;
 	
 	/**
-	 * Popup kontrolleri
+	 * Popup konstruktori.
 	 * @param title näytön oikeassa yläkulmassa näkyvä nimi
 	 */
 	public Popup(String title) {
