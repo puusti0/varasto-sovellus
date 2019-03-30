@@ -49,7 +49,7 @@ public class TuoteListausController {
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
 	
 	/**
-	 * Tuotelistauksen kontrolleri.
+	 * Tuotelistauksen konstruktori.
 	 */
 	public TuoteListausController() {
 		this.tuotedao = new TuoteDao();
@@ -85,6 +85,9 @@ public class TuoteListausController {
 	 */
 	@FXML
 	private void initialize() {
+		
+		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
+				
 		List<TitledPane> listaus = new ArrayList<TitledPane>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			
@@ -176,6 +179,10 @@ public class TuoteListausController {
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
 			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -191,10 +198,16 @@ public class TuoteListausController {
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	/**
 	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.

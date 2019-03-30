@@ -48,6 +48,7 @@ public class MainViewController implements IController {
 		aktivoiNakyma("TuoteListausView.fxml");
 	}
 	
+	
 	/**
 	 * Käsitellään valikon "Kirjaudu ulos"-valinta.
 	 */
