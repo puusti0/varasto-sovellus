@@ -39,7 +39,7 @@ public class LisaaTuoteController implements IPopupController {
 	private HashMap<String, Integer> tuoteryhmat;
 	
 	/**
-	 * Tuotteen lisäys kontrolleri
+	 * Tuotteen lisäys konstruktori.
 	 */
 	public LisaaTuoteController() {
 		this.tuotedao = new TuoteDao();

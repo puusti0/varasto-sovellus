@@ -33,6 +33,16 @@ public class MainViewController implements IController {
 	}
 	
 	/**
+	 * Alustetaan nakyma siten, että keskelle asetetaan TuoteListausView.
+	 */
+	@FXML
+	private void initialize() {
+		
+		aktivoiNakyma("TuoteListausView.fxml");
+		
+	}
+	
+	/**
 	 * Käsitellään valikon "Lisää Tuote"-valinta.
 	 */
 	@FXML
