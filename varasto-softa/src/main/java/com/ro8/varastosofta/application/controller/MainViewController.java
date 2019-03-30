@@ -26,7 +26,7 @@ public class MainViewController implements IController {
 	private SessionManager sessionManager;
 	
 	/**
-	 * Päänäkymän kontrolleri.
+	 * Päänäkymän konstruktori.
 	 */
 	public MainViewController() {
 

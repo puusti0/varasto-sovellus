@@ -40,7 +40,7 @@ public class LogInScreenController implements IController {
 	}
 	
 	/**
-	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
+	 * Ulos kirjautumisen käsitteleminen.
 	 * 
 	 * @throws SQLException
 	 */
