@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
-public class LisaaKayttajaViewController {
+public class LisaaKayttajaController {
 	
 	@FXML
 	private TextField kayttajatunnusTextField;
@@ -35,7 +35,7 @@ public class LisaaKayttajaViewController {
 	private List<Rooli> roolit;
 	private HashMap<String, Rooli> rooliryhmat;
 	
-	public LisaaKayttajaViewController() {
+	public LisaaKayttajaController() {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
 		this.rooliryhmat = new HashMap<String, Rooli>();
