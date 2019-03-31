@@ -15,7 +15,7 @@ import javafx.scene.layout.BorderPane;
  * @author Tuukka Mytty
  * @author Janne Valle.
  */
-public class AdminMainViewController implements IController {
+public class JohtajaViewController implements IController {
 	
 	@FXML
 	private BorderPane rootPane;
@@ -27,9 +27,7 @@ public class AdminMainViewController implements IController {
 	 */
 	@FXML
 	private void initialize() {
-		
-		aktivoiNakyma("LisaaKayttajaView.fxml");
-		
+		aktivoiNakyma("LisaaKayttaja.fxml");
 	}
 	
 	/**
@@ -53,7 +51,7 @@ public class AdminMainViewController implements IController {
 	 */
 	@FXML
 	protected void kasitteleLisaaKayttaja() {
-		aktivoiNakyma("LisaaKayttajaView.fxml");
+		aktivoiNakyma("LisaaKayttaja.fxml");
 	}
 	
 	/**

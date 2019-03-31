@@ -21,7 +21,7 @@ import javafx.scene.control.Alert.AlertType;
  * @author Tuukka Mytty
  * @author Janne Valle.
  */
-public class LogInScreenController implements IController {
+public class KirjauduViewController implements IController {
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -38,7 +38,7 @@ public class LogInScreenController implements IController {
 	/**
 	 * Oletus konstruktori.
 	 */
-	public LogInScreenController() {
+	public KirjauduViewController() {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
 		
@@ -53,7 +53,7 @@ public class LogInScreenController implements IController {
 	private void handleKirjaudu() throws SQLException {
 		String sessionID = authorize();
         if (sessionID != null) {
-          this.sessionManager.authenticated(sessionID);
+          this.sessionManager.valitseNakyma(sessionID);
         }
 	}
 	
@@ -126,7 +126,6 @@ public class LogInScreenController implements IController {
 			alert.setTitle("Erhe Ilmoitus");
 			alert.setHeaderText("Annetuissa tiedoissa virheitä");
 			alert.setContentText("Tarkista, että käyttäjätunnus ja salasana ovat oikein");
-
 			alert.showAndWait();
 		}
 		

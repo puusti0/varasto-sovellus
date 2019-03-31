@@ -16,7 +16,7 @@ import javafx.scene.layout.BorderPane;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class MainViewController implements IController {
+public class VarastotyontekijaViewController implements IController {
 	
 	@FXML
 	private BorderPane rootPane;
@@ -28,7 +28,7 @@ public class MainViewController implements IController {
 	/**
 	 * Päänäkymän konstruktori.
 	 */
-	public MainViewController() {
+	public VarastotyontekijaViewController() {
 
 	}
 	

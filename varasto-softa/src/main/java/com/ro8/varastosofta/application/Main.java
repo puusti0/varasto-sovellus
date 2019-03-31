@@ -21,7 +21,7 @@ public class Main extends Application {
 		Scene scene = new Scene(new StackPane());
 	    
 	    SessionManager sessionManager = new SessionManager(scene);
-	    sessionManager.authenticated("-1");
+	    sessionManager.valitseNakyma("-1");
 
 	    primaryStage.setScene(scene);
 	    primaryStage.show();

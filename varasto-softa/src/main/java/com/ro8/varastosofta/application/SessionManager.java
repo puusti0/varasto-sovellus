@@ -27,21 +27,21 @@ public class SessionManager {
 	 * Kirjautuneen käyttäjän näkymä.
 	 * @param sessionID yksilöity session id
 	 */
-	public void authenticated(String sessionID) {
+	public void valitseNakyma(String sessionID) {
 		String[] session = sessionID.split("-");
 		String rooli = session[0];
 		switch(rooli) {
 			case "Varastotyöntekijä":
-				naytaNakyma(sessionID, "MainView.fxml");
+				naytaNakyma(sessionID, "VarastotyontekijaView.fxml");
 				break;
 			case "Myyntiedustaja":
-				naytaNakyma(sessionID, "MainView.fxml");
+				naytaNakyma(sessionID, "VarastotyontekijaView.fxml");
 				break;
 			case "Johtaja":
-				naytaNakyma(sessionID, "AdminMainView.fxml");
+				naytaNakyma(sessionID, "JohtajaView.fxml");
 				break;
 			default:
-				naytaNakyma("0", "LogInScreen.fxml");
+				naytaNakyma("0", "KirjauduView.fxml");
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class SessionManager {
 	 * Uloskirjautumisen jälkeen näytetään kirjautumissivu.
 	 */
 	public void kirjauduUlos() {
-	    naytaNakyma("0", "LogInScreen.fxml");
+		valitseNakyma("-1");
 	}
 	
 	/**
