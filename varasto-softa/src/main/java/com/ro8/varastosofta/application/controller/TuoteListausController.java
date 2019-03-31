@@ -163,6 +163,15 @@ public class TuoteListausController {
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
 			muokkausPopup.open("LisaaTuoteView.fxml", 300, 250, tuote);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
+			// Tyhjennetään tuotteen tiedot näkymä.
+			naytaTyhjatTiedot();
+			
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -208,7 +217,6 @@ public class TuoteListausController {
 	}
 	
 	
-	
 	/**
 	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.
 	 * @param tuote
@@ -220,4 +228,23 @@ public class TuoteListausController {
 		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
 	}
 	
+	private void naytaTyhjatTiedot() {
+		
+		this.idLabel.setText("");
+		this.nimiLabel.setText("");
+		this.lkmLabel.setText("");
+		this.tuoteryhmaLabel.setText("");
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

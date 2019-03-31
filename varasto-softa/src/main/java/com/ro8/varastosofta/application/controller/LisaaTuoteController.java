@@ -152,7 +152,22 @@ public class LisaaTuoteController implements IPopupController {
 		this.idTextField.setText(tuoteX.getId() + "");
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
-		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");		
+		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
