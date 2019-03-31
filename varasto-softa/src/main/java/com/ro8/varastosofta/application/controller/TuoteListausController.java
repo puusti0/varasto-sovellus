@@ -228,6 +228,9 @@ public class TuoteListausController {
 		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
 	}
 	
+	/**
+	 * Asettaa tuotteen yksityiskohtaisen näkymän tyhjäksi.
+	 */
 	private void naytaTyhjatTiedot() {
 		
 		this.idLabel.setText("");
