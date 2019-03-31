@@ -60,7 +60,7 @@
         <buttons>
           <Button mnemonicParsing="false" onAction="#kasitteleLisaa" text="Lisää" />
             <Button mnemonicParsing="false" text="Poista" />
-            <Button mnemonicParsing="false" text="Tyhjennä" />
+            <Button mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="Tyhjennä" />
         </buttons>
       </ButtonBar>
    </children>

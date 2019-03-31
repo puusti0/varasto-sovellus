@@ -23,6 +23,16 @@ public class AdminMainViewController implements IController {
 	private SessionManager sessionManager;
 	
 	/**
+	 * Alustetaan keskunäkymä LisaaKayttajaViewlla.
+	 */
+	@FXML
+	private void initialize() {
+		
+		aktivoiNakyma("LisaaKayttajaView.fxml");
+		
+	}
+	
+	/**
 	 * Käsitellään valikon "Kirjaudu ulos"-valinta.
 	 */
 	@FXML

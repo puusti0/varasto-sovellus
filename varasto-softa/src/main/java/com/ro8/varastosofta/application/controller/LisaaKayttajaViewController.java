@@ -91,4 +91,35 @@ public class LisaaKayttajaViewController {
 		this.rooliComboBox.getSelectionModel().select("Valitse");
 	}
 	
+	/**
+	 * Tyhjennä napin painallus tyhjentää tekstikentät.
+	 */
+	@FXML
+	private void tyhjennaButtonPainettu() {
+		
+		tyhjennaKentat();
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
