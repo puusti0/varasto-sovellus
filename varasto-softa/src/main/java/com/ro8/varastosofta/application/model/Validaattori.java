@@ -1,16 +1,12 @@
 package com.ro8.varastosofta.application.model;
 
-
-
 /**
  * Luokka syötteiden validointia varten.
- * 
- * @author Riina Antikainen, Tuukka Mytty, Janne Valle.
- * 
- *
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Validaattori {
-	
 	
 	/**
 	 * Testaa onko parametreina annetut merkkijonot valideja eli eivät ole tyhjia,
@@ -100,6 +96,30 @@ public class Validaattori {
 		return result;
 		
 	}
+	
+	/**
+	 * Tarkistetaan, että lisättävän käyttäjän käyttäjätunnus ja salasana ei sisällä ylimääräisiä tietoja.
+	 * @param tunnus käyttäjän käyttäjätunnus
+	 * @param salasana käyttäjän salasana
+	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
+	 */
+	public static boolean onkoLisattavaKayttajaValidi(String tunnus, String salasana) {
+		
+		boolean result = true;
+		
+		// Tunnuksen tarkastaminen
+		if(tunnus.contains(";")) {
+			result = false;
+		} 
+		
+		// Salasanan tarkastaminen
+		if(salasana.contains(";")) {
+			result = false;
+		}
+		
+		return result;
+	}
+	
 
 }
 

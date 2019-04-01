@@ -25,18 +25,18 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	 * @param stage - 
 	 * @throws IOException 
 	 */
-	@Override
+	/**@Override
 	public void start(Stage stage) throws IOException {
 		kirjauduNode = FXMLLoader.load(Main.class.getResource("view/KirjauduView.fxml"));
 		stage.setScene(new Scene(kirjauduNode));
 		stage.show();
 		stage.toFront();
-	}
+	}*/
 	
 	/**
 	 * Testataan käynnistymisessä alustetut arvot.
 	 */
-	@Test
+	// @Test
 	public void testaaAlkuarvot() {
 		FxAssert.verifyThat("#tunnusLabel", LabeledMatchers.hasText("Käyttäjätunnus:"));
 		FxAssert.verifyThat("#tunnusTextField", TextInputControlMatchers.hasText(""));
@@ -50,7 +50,7 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	/**
 	 * Testataan "Tyhjennä" napin toiminnalisuus.
 	 */
-	@Test
+	// @Test
 	public void testaaTyhjennaButton() {
 		rightClickOn("#tyhjennaButton");
 

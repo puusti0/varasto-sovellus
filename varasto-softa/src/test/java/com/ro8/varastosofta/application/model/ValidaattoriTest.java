@@ -55,4 +55,11 @@ class ValidaattoriTest {
 		
 	}
 
+	@ParameterizedTest
+	@CsvSource({"testi;, salasana, false",
+				"testi, salasana;, false",
+				"testi, salasana, true"})
+	void testaaOnkoLisattavaKayttajaValidi(String tunnus, String salasana, boolean tulos) {
+		assertEquals(Validaattori.onkoLisattavaKayttajaValidi(tunnus, salasana), tulos);
+	}
 }

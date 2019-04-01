@@ -19,6 +19,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
+/**
+ * Käyttäjän lisäys lomakkeen kontrolleri.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 public class LisaaKayttajaController {
 	
 	@FXML
@@ -35,6 +41,9 @@ public class LisaaKayttajaController {
 	private List<Rooli> roolit;
 	private HashMap<String, Rooli> rooliryhmat;
 	
+	/**
+	 * Käyttäjänlisäys lomakkeen konstruktori.
+	 */
 	public LisaaKayttajaController() {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
@@ -71,6 +80,7 @@ public class LisaaKayttajaController {
 		String salasana = this.salasanaTextField.getText();
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
+		if (Validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
 			try {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
 				this.kayttajadao.lisaa(uusi);
@@ -78,6 +88,7 @@ public class LisaaKayttajaController {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+		}
 			
 		tyhjennaKentat();
 	}
@@ -97,9 +108,7 @@ public class LisaaKayttajaController {
 	 */
 	@FXML
 	private void tyhjennaButtonPainettu() {
-		
 		tyhjennaKentat();
-		
 	}
 	
 	

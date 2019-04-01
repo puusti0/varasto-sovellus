@@ -36,7 +36,7 @@ public class KirjauduViewController implements IController {
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
 	/**
-	 * Oletus konstruktori.
+	 * Kirjautumissivun konstruktori.
 	 */
 	public KirjauduViewController() {
 		this.kayttajadao = new KayttajaDao();

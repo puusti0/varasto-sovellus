@@ -46,6 +46,10 @@ public class RooliDao implements Dao<Rooli, Integer>{
 		
 	}
 
+	/**
+	 * Haetaan käyttäjän rooli tietokannasta.
+	 * @param id roolin id
+	 */
 	@Override
 	public Rooli hae(Integer avain) throws SQLException {
 		Rooli rooli = new Rooli();
@@ -77,6 +81,10 @@ public class RooliDao implements Dao<Rooli, Integer>{
 		
 	}
 
+	/**
+	 * Haetaan kaikki roolit listaan tietokantaan.
+	 * @return List<Rooli> lista rooleista.
+	 */
 	@Override
 	public List<Rooli> listaa() throws SQLException {
 		List<Rooli> lista = new ArrayList<Rooli>();

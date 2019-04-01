@@ -40,6 +40,10 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 		}
 	}
 
+	/**
+	 * Lisätään kayttäjä tietokantaan.
+	 * @param kayttaja lisättävä käyttäjä
+	 */
 	@Override
 	public void lisaa(Kayttaja kayttaja) throws SQLException {
 		Session istunto = istuntotehdas.openSession();

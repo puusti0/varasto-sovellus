@@ -11,9 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Oma popup ikkuna
- * 
- * 
+ * Yksilöllinen popup ikkuna.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Popup {
 	
