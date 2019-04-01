@@ -90,6 +90,9 @@ public class VarastotyontekijaViewController implements IController {
 		}			
 	}
 
+	/**
+	 * Alustetaan istunto.
+	 */
 	@Override
 	public void initSession(SessionManager sessionManager, String sessionID) {
 		this.sessionManager = sessionManager;

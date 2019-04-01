@@ -28,6 +28,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
  * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
  * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class TuoteListausController {
 	

@@ -3,6 +3,12 @@ package com.ro8.varastosofta.application.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Tuotteen tietojen väliaikaiseen tallentamiseen käytettävä luokka.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 public class TuoteProp {
 	
 	private SimpleIntegerProperty id;
@@ -10,6 +16,13 @@ public class TuoteProp {
 	private SimpleIntegerProperty lkm;
 	private SimpleStringProperty tuoteryhma;
 	
+	/**
+	 * Konstruktori TuoteProp luokalle.
+	 * @param id tuotteen id
+	 * @param nimi tuotteen nimi
+	 * @param lkm tuotteen lukumäärä
+	 * @param tuoteryhma tuotteen lukumäärä
+	 */
 	public TuoteProp(int id, String nimi, int lkm, String tuoteryhma) {
 		this.id = new SimpleIntegerProperty(id);
 		this.nimi = new SimpleStringProperty(nimi);
@@ -77,6 +90,9 @@ public class TuoteProp {
 		return this.lkm.get();
 	}
 	
+	/**
+	 * Merkkijono esitys tuotteelle.
+	 */
 	@Override
 	public String toString() {
 		return this.getId() + " " + this.getNimi() + " " + this.getLkm() + " kpl";

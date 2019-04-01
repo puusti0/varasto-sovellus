@@ -9,7 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/**
+ * Tuoteryhmä tietokantataulu.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 @Entity
 @Table(name="Tuoteryhma")
 public class Tuoteryhma {
