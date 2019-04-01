@@ -10,6 +10,10 @@ import java.util.List;
  * T olion tyyppi
  * K pääavaimen tyyppi
  * 
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ * 
  */
 public interface Dao<T, K> {
 	

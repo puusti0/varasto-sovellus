@@ -5,15 +5,19 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.LisaaTuoteController">
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.LisaaKayttajaController">
    <children>
-      <Label text="Tuotteen tiedot" />
+      <Label text="Käyttäjän Tiedot">
+         <padding>
+            <Insets left="10.0" />
+         </padding></Label>
       <GridPane prefHeight="215.0" prefWidth="601.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,36 +30,36 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="ID">
+            <Label text="Käyttäjätunnus">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Nimi" GridPane.rowIndex="1">
+            <Label text="Salasana" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Lukumäärä" GridPane.rowIndex="2">
+            <Label text="Salasana Uudestaan" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="idTextField" GridPane.columnIndex="1" />
-            <TextField fx:id="nimiTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="lkmTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Tuoteryhmä" GridPane.rowIndex="3">
+            <TextField fx:id="kayttajatunnusTextField" GridPane.columnIndex="1" />
+            <Label text="Käyttäjäryhmä" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="tuoteryhmaComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <ComboBox fx:id="rooliComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <PasswordField fx:id="salasanaTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="salasanaUudelleenTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ButtonBar prefHeight="40.0" prefWidth="261.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#lisaaButtonPainettu" text="Lisää" />
-            <Button mnemonicParsing="false" onAction="#poistaTuoteButtonPainettu" text="Poista" />
+          <Button mnemonicParsing="false" onAction="#kasitteleLisaa" text="Lisää" />
+            <Button mnemonicParsing="false" text="Poista" />
             <Button mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="Tyhjennä" />
         </buttons>
       </ButtonBar>

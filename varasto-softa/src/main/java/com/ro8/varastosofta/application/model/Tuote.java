@@ -7,6 +7,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Tuote tietokantataulu.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 @Entity
 @Table(name="Tuote")
 public class Tuote {

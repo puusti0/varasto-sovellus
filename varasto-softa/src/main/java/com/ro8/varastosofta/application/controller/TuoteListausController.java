@@ -28,6 +28,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
  * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
  * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class TuoteListausController {
 	
@@ -49,7 +52,7 @@ public class TuoteListausController {
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
 	
 	/**
-	 * Tuotelistauksen kontrolleri.
+	 * Tuotelistauksen konstruktori.
 	 */
 	public TuoteListausController() {
 		this.tuotedao = new TuoteDao();
@@ -85,6 +88,9 @@ public class TuoteListausController {
 	 */
 	@FXML
 	private void initialize() {
+		
+		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
+				
 		List<TitledPane> listaus = new ArrayList<TitledPane>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			
@@ -160,6 +166,15 @@ public class TuoteListausController {
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
 			muokkausPopup.open("LisaaTuoteView.fxml", 300, 250, tuote);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
+			// Tyhjennetään tuotteen tiedot näkymä.
+			naytaTyhjatTiedot();
+			
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -176,6 +191,10 @@ public class TuoteListausController {
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
 			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -191,10 +210,15 @@ public class TuoteListausController {
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.
@@ -207,4 +231,26 @@ public class TuoteListausController {
 		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
 	}
 	
+	/**
+	 * Asettaa tuotteen yksityiskohtaisen näkymän tyhjäksi.
+	 */
+	private void naytaTyhjatTiedot() {
+		
+		this.idLabel.setText("");
+		this.nimiLabel.setText("");
+		this.lkmLabel.setText("");
+		this.tuoteryhmaLabel.setText("");
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

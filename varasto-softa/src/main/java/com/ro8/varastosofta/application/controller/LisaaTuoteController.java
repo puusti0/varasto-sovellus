@@ -20,6 +20,9 @@ import javafx.scene.control.TextField;
 
 /**
  * Kontrolleri tuotteen lisäämiseen.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class LisaaTuoteController implements IPopupController {
 	
@@ -39,7 +42,7 @@ public class LisaaTuoteController implements IPopupController {
 	private HashMap<String, Integer> tuoteryhmat;
 	
 	/**
-	 * Tuotteen lisäys kontrolleri
+	 * Tuotteen lisäys konstruktori.
 	 */
 	public LisaaTuoteController() {
 		this.tuotedao = new TuoteDao();
@@ -103,7 +106,7 @@ public class LisaaTuoteController implements IPopupController {
 	
 	/**
 	 * Napin painaminen validoi poistettavan tuotteen ID:n ja poistaa kyseisen 
-	 * tuotteen tietokannasta sekä antaa ilmoituksen jos poisto onnistui tai tai.
+	 * tuotteen tietokannasta sekä antaa ilmoituksen jos poisto onnistui tai ei.
 	 */
 	@FXML
 	private void poistaTuoteButtonPainettu() {
@@ -152,7 +155,21 @@ public class LisaaTuoteController implements IPopupController {
 		this.idTextField.setText(tuoteX.getId() + "");
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
-		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");			
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

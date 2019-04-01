@@ -1,22 +1,22 @@
 package com.ro8.varastosofta.application.model;
 
-
 /**
  * Luokka syötteiden validointia varten.
- *
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Validaattori {
-	
 	
 	/**
 	 * Testaa onko parametreina annetut merkkijonot valideja eli eivät ole tyhjia,
 	 * id ja lkm ovat numeroita ja nimi ei saa olla yli 20 merkkiä pitkä. Palauttaa
 	 * true jos parametrit valideja muuten false.
 	 * 
-	 * @param id
-	 * @param nimi
-	 * @param lkm
-	 * @return
+	 * @param id tuotteen id
+	 * @param nimi tuotteen nimi
+	 * @param lkm tuotteen lukumäärä
+	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
 	 */
 	public static boolean onkoLisattavaTuoteValidi(String id, String nimi, String lkm) {
 		
@@ -40,8 +40,8 @@ public class Validaattori {
 	
 	/**
 	 * Testaa onko poistettavan tuotteen id validi.
-	 * @param id
-	 * @return
+	 * @param id tuotteen id.
+	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
 	public static boolean onkoPoistettavaIdValidi(String id) {
 		
@@ -58,8 +58,8 @@ public class Validaattori {
 	 * Testaa onko parametri muunnettavissa numeroksi. Palauttaa true jos on
 	 * muuten false.
 	 * 
-	 * @param strNum
-	 * @return
+	 * @param strNum numero String muodossa-
+	 * @return true jos on numero ja false muuten.
 	 */
 	public static boolean onkoNumero(String strNum) {
 		
@@ -96,6 +96,30 @@ public class Validaattori {
 		return result;
 		
 	}
+	
+	/**
+	 * Tarkistetaan, että lisättävän käyttäjän käyttäjätunnus ja salasana ei sisällä ylimääräisiä tietoja.
+	 * @param tunnus käyttäjän käyttäjätunnus
+	 * @param salasana käyttäjän salasana
+	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
+	 */
+	public static boolean onkoLisattavaKayttajaValidi(String tunnus, String salasana) {
+		
+		boolean result = true;
+		
+		// Tunnuksen tarkastaminen
+		if(tunnus.contains(";")) {
+			result = false;
+		} 
+		
+		// Salasanan tarkastaminen
+		if(salasana.contains(";")) {
+			result = false;
+		}
+		
+		return result;
+	}
+	
 
 }
 
