@@ -8,6 +8,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import com.ro8.varastosofta.application.model.Validaattori;
 
+/**
+ * Testiluokka tuotteen lisäykselle.
+ * @author Riina Antikainen
+ * @author Janne Valle
+ * @author Tuukka Mytty
+ */
 class ValidaattoriTest {
 
 	@ParameterizedTest
@@ -16,12 +22,19 @@ class ValidaattoriTest {
 				"10, testi, '', false",
 				"14, testiNimi, 54, true",
 				"19, liianpitkanimitestataanjaakokiinnivaimeneeklapiheittamalla, 98, false"})
+	
+	/**
+	 * Testataan onko lisättävä tuote validi.
+	 */
 	void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
 		
 		assertEquals(Validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
 		
 	}
 
+	/**
+	 * Testataan onko syöte numero.
+	 */
 	@Test
 	void testOnkoNumero() {
 		
@@ -30,6 +43,9 @@ class ValidaattoriTest {
 		
 	}
 	
+	/**
+	 * Testataan onko lisättävä tuoteryhmä sallittu.
+	 */
 	@Test
 	void testOnkoTuoterymavValidi() {
 		
