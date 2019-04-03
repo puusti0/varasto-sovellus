@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
@@ -35,6 +36,13 @@ public class LisaaKayttajaController {
 	private TextField salasanaUudelleenTextField;
 	@FXML
 	private ComboBox<String> rooliComboBox;
+	@FXML
+	private Button lisaaButton;
+	@FXML 
+	private Button poistaButton;
+	@FXML
+	private Button tyhjennaButton;
+	
 	
 	private Dao kayttajadao;
 	private Dao roolidao;
@@ -69,6 +77,9 @@ public class LisaaKayttajaController {
 			this.rooliComboBox.getItems().add(rooli.getNimi());
 		}
 		this.rooliComboBox.getSelectionModel().select("Valitse");
+		
+		lisaaTooltipitKomponentteihin();
+		
 	}
 	
 	/**
@@ -109,6 +120,21 @@ public class LisaaKayttajaController {
 	@FXML
 	private void tyhjennaButtonPainettu() {
 		tyhjennaKentat();
+	}
+	
+	/**
+	 * Lisää Tooltipit komponennteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin(){
+		
+		Tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
+		Tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
+		Tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
+		Tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
+		Tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
+		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		
 	}
 	
 	

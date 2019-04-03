@@ -1,7 +1,6 @@
 package com.ro8.varastosofta.application.model;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 
 /**
@@ -13,19 +12,14 @@ import javafx.scene.control.Tooltip;
  */
 public class Tooltipit {
 	
-	public static void asetaTooltip(TextField textfield, String viesti) {
+	public static void asetaTooltip(Control control, String viesti) {
 		
 		Tooltip tooltip = new Tooltip(viesti);
 		
-		textfield.setTooltip(tooltip);
+		control.setTooltip(tooltip);
 		
 	}
 	
-	public static void asetaTooltip(Button button, String viesti) {
-		
-		Tooltip tooltip = new Tooltip(viesti);
-		
-		button.setTooltip(tooltip);
-	}
+	
 
 }

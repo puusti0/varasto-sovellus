@@ -58,9 +58,9 @@
       </GridPane>
       <ButtonBar prefHeight="40.0" prefWidth="261.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#kasitteleLisaa" text="Lisää" />
-            <Button mnemonicParsing="false" text="Poista" />
-            <Button mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="Tyhjennä" />
+          <Button fx:id="lisaaButton" mnemonicParsing="false" onAction="#kasitteleLisaa" text="Lisää" />
+            <Button fx:id="poistaButton" mnemonicParsing="false" text="Poista" />
+            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="Tyhjennä" />
         </buttons>
       </ButtonBar>
    </children>
