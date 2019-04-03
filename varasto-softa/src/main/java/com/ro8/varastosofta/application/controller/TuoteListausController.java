@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.Popup;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.TuoteProp;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -44,6 +46,8 @@ public class TuoteListausController {
 	private Label lkmLabel;
 	@FXML
 	private Label tuoteryhmaLabel;
+	@FXML
+	private Button muokkaaButton;
 	
 	private TuoteDao tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -129,6 +133,8 @@ public class TuoteListausController {
 			listaus.add(tuoteryhmalista);
 		}
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
+		
+		lisaaTooltipitKomponentteihin();
 		
 		/** Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
 		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
@@ -240,6 +246,15 @@ public class TuoteListausController {
 		this.nimiLabel.setText("");
 		this.lkmLabel.setText("");
 		this.tuoteryhmaLabel.setText("");
+		
+	}
+	
+	/**
+	 * Lisää Tooltipit komponentteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
 		
 	}
 	

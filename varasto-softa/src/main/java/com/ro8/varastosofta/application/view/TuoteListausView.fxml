@@ -64,7 +64,7 @@
             </Label>
          </top>
          <bottom>
-            <Button mnemonicParsing="false" onAction="#handleMuokkaa" text="Muokkaa" BorderPane.alignment="CENTER">
+            <Button fx:id="muokkaaButton" mnemonicParsing="false" onAction="#handleMuokkaa" text="Muokkaa" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin>
