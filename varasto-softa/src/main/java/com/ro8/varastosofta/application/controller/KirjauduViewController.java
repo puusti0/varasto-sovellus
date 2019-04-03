@@ -6,6 +6,7 @@ import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
@@ -29,6 +30,10 @@ public class KirjauduViewController implements IController {
 	private TextField salasanaTextField;
 	@FXML
 	private Button kirjauduButton;
+	@FXML 
+	private Button tyhjennaButton;
+	@FXML 
+	private Button lopetaButton;
 	
 	private static int sessionID = 1;
 	private SessionManager sessionManager;
@@ -42,6 +47,18 @@ public class KirjauduViewController implements IController {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
 		
+	}
+	
+	/**
+	 * Javafx komponenttien alustus.
+	 */
+	@FXML public void initialize() {
+		
+		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
+		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
+		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
+		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
 	}
 	
 	/**
