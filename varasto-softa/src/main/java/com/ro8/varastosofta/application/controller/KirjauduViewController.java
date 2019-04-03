@@ -54,11 +54,7 @@ public class KirjauduViewController implements IController {
 	 */
 	@FXML public void initialize() {
 		
-		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
-		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
-		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
-		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
-		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
+		lisaaTooltipitKomponentteihin();
 	}
 	
 	/**
@@ -148,4 +144,35 @@ public class KirjauduViewController implements IController {
 		
 	}
 	
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
+		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
+		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
+		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

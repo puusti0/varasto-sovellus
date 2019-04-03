@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.ro8.varastosofta.application.IPopupController;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
@@ -15,6 +16,7 @@ import com.ro8.varastosofta.database.TuoteryhmaDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -34,6 +36,12 @@ public class LisaaTuoteController implements IPopupController {
 	private TextField lkmTextField;
 	@FXML
 	private ComboBox<String> tuoteryhmaComboBox;
+	@FXML 
+	private Button lisaaButton;
+	@FXML 
+	private Button poistaButton;
+	@FXML
+	private Button tyhjennaButton;
 		
 	private Dao<Tuote, Integer> tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -71,6 +79,8 @@ public class LisaaTuoteController implements IPopupController {
 			this.tuoteryhmaComboBox.getItems().add(tuoteryhma.getNimi());
 		}
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+		
+		lisaaTooltipitKomponentteihin();
 	}
 	
 	
@@ -156,6 +166,21 @@ public class LisaaTuoteController implements IPopupController {
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");			
+	}
+	
+	/**
+	 * Lisää Tooltipit komponentteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.idTextField, "Set the ID for the product");
+		Tooltipit.asetaTooltip(this.nimiTextField, "Set the name for the product.");
+		Tooltipit.asetaTooltip(this.lkmTextField, "Set the quantity for the product.");
+		Tooltipit.asetaTooltip(this.tuoteryhmaComboBox, "Set the group for the product.");
+		Tooltipit.asetaTooltip(this.lisaaButton, "Add the product to the database.");
+		Tooltipit.asetaTooltip(this.poistaButton, "Remove the product from the database.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		
 	}
 	
 }
