@@ -1,5 +1,7 @@
 package com.ro8.varastosofta.application;
 	
+import java.util.Locale;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -19,8 +21,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Scene scene = new Scene(new StackPane());
+		Locale locale = new Locale("en","GB");
 	    
-	    SessionManager sessionManager = new SessionManager(scene);
+	    SessionManager sessionManager = new SessionManager(scene, locale);
 	    sessionManager.valitseNakyma("-1");
 
 	    primaryStage.setScene(scene);

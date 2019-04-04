@@ -22,17 +22,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="tunnusLabel" text="Käyttäjätunnus:" />
-            <Label fx:id="salasanaLabel" text="Salasana:" GridPane.rowIndex="1" />
+            <Label fx:id="tunnusLabel" text="%username" />
+            <Label fx:id="salasanaLabel" text="%password" GridPane.rowIndex="1" />
             <TextField fx:id="tunnusTextField" GridPane.columnIndex="1" />
             <PasswordField fx:id="salasanaTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <ButtonBar layoutX="168.0" layoutY="286.0" prefHeight="40.0" prefWidth="294.0">
         <buttons>
-          <Button fx:id="kirjauduButton" mnemonicParsing="false" onAction="#handleKirjaudu" text="Kirjaudu" />
-            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaNappiaPainettu" text="Tyhjennä" />
-            <Button fx:id="lopetaButton" mnemonicParsing="false" onAction="#kasitteleLopeta" text="Lopeta" />
+          <Button fx:id="kirjauduButton" mnemonicParsing="false" onAction="#handleKirjaudu" text="%login" />
+            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaNappiaPainettu" text="%empty" />
+            <Button fx:id="lopetaButton" mnemonicParsing="false" onAction="#kasitteleLopeta" text="%quit" />
         </buttons>
       </ButtonBar>
    </children>
