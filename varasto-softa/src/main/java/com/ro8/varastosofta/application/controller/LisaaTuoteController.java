@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.ro8.varastosofta.application.IPopupController;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
@@ -98,16 +99,15 @@ public class LisaaTuoteController implements IPopupController {
 				Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
 				this.tuotedao.lisaa(uusi);
 				
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information Dialog");
-				alert.setHeaderText("User Added");
-				alert.setContentText("User successfully added into the database.");
-
-				alert.showAndWait();
+				
+				Ilmoitukset.tuoteLisattyOnnistuneestiIlmo();
+				
 				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				
+				Ilmoitukset.tuotteenLisaysEiOnnistunutIlmo();
 			}
 
 		} else {
@@ -129,28 +129,37 @@ public class LisaaTuoteController implements IPopupController {
 	@FXML
 	private void poistaTuoteButtonPainettu() {
 		
-		// 
-		if(Validaattori.onkoPoistettavaIdValidi(this.idTextField.getText().toString()) 
-				&& Validaattori.onkoNumero(this.idTextField.getText().toString())) {
+		
+		if(Ilmoitukset.tuotteenPoistonVarmistus()) {
 			
-			
-			try {
-				this.tuotedao.poista(Integer.parseInt(this.idTextField.getText().toString()));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		} else {
-			
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Erhe Ilmoitus");
-			alert.setHeaderText("Annetuissa tiedoissa virheitä");
-			alert.setContentText("Tarkista, että Id-kenttä ei ole tyhjä."
-					+ "\nId-kentässä on vain numeroita.");
+			if(Validaattori.onkoPoistettavaIdValidi(this.idTextField.getText().toString()) 
+					&& Validaattori.onkoNumero(this.idTextField.getText().toString())) {
+					
+				try {
+					this.tuotedao.poista(Integer.parseInt(this.idTextField.getText().toString()));
+					
+					Ilmoitukset.tuotePoistettuOnnistuneesti();
+					
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					
+					Ilmoitukset.tuotePoistettuEiOnnistunut();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erhe Ilmoitus");
+				alert.setHeaderText("Annetuissa tiedoissa virheitä");
+				alert.setContentText("Tarkista, että Id-kenttä ei ole tyhjä."
+						+ "\nId-kentässä on vain numeroita.");
 
-			alert.showAndWait();
+				alert.showAndWait();
+				
+			}
 			
 		}
 		

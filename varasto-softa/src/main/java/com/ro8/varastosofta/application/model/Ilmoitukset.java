@@ -57,6 +57,7 @@ public class Ilmoitukset {
 		alert.setContentText("Are you sure you want to delete the user?");
 
 		Optional<ButtonType> result = alert.showAndWait();
+		
 		if (result.get() == ButtonType.OK){
 		    
 			return true;
@@ -96,6 +97,88 @@ public class Ilmoitukset {
 			alert.showAndWait();
 			
 		}
+	
+	/**
+	 * Ilmoitus tuotteen onnistuneesta lisäämisestä tietokantaan.
+	 */
+	public static void tuoteLisattyOnnistuneestiIlmo() {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("The product was successfully added into the database.");
+	
+			alert.showAndWait();
+			
+		}
+	
+	/**
+	 * Ilmoitus jos tuotteen lisääminen tietokantaan ei onnistunut.
+	 */
+	public static void tuotteenLisaysEiOnnistunutIlmo() {
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("The adding of the product into the database was not successful.");
+
+		alert.showAndWait();
+		
+	}
+	
+	/**
+	 * Ilmoitus tuotteen onnistuneesta tietokannasta poistosta.
+	 */
+	public static void tuotePoistettuOnnistuneesti() {
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("The product was successfully removed from the database.");
+
+		alert.showAndWait();
+		
+	}
+	
+	/**
+	 * Ilmoitus jos tuotetta ei poistettu tietokannasta.
+	 */
+	public static void tuotePoistettuEiOnnistunut() {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("The product was not removed from the database.");
+	
+			alert.showAndWait();
+			
+		}
+	
+	/**
+	 * Varmistetaan tuotteen poisto.
+	 * 
+	 * @return true, jos tuote halutaan poistaa ja false muuten.
+	 */
+	public static boolean tuotteenPoistonVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure you want to delete the product?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+		
+	}
 	
 	
 
