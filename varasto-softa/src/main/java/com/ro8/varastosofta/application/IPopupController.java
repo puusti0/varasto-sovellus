@@ -8,4 +8,5 @@ package com.ro8.varastosofta.application;
  */
 public interface IPopupController {
 	public void setObject(Object objekti);
+	public void asetaTeksti();
 }

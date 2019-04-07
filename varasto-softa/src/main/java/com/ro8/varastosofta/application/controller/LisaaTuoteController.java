@@ -82,6 +82,9 @@ public class LisaaTuoteController implements IPopupController {
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
 		
 		lisaaTooltipitKomponentteihin();
+		
+		this.lisaaButton.setText("Lisää");
+		
 	}
 	
 	
@@ -197,6 +200,12 @@ public class LisaaTuoteController implements IPopupController {
 		Tooltipit.asetaTooltip(this.lisaaButton, "Add the product to the database.");
 		Tooltipit.asetaTooltip(this.poistaButton, "Remove the product from the database.");
 		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		
+	}
+	
+	public void asetaTeksti() {
+		
+		this.lisaaButton.setText("Päivitä");
 		
 	}
 	

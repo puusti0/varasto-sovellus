@@ -45,6 +45,7 @@ public class Popup {
 			this.root = (Parent)loader.load();
 			IPopupController controller = loader.<IPopupController>getController();
 			controller.setObject(objekti);
+			controller.asetaTeksti();
 			Scene scene = new Scene(root, leveys, korkeus);
 			this.popupStage.setScene(scene);
 			this.popupStage.showAndWait();
