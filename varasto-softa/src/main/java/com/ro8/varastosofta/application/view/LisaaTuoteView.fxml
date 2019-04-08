@@ -26,17 +26,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="ID">
+            <Label text="%id">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Nimi" GridPane.rowIndex="1">
+            <Label text="%productName" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Lukumäärä" GridPane.rowIndex="2">
+            <Label text="%number" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -44,7 +44,7 @@
             <TextField fx:id="idTextField" GridPane.columnIndex="1" />
             <TextField fx:id="nimiTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lkmTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Tuoteryhmä" GridPane.rowIndex="3">
+            <Label text="%productGroup" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
