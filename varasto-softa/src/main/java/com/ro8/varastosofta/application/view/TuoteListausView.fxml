@@ -30,7 +30,7 @@
                <children>
                   <Label text="%id" />
                   <Label text="%productName" GridPane.rowIndex="1" />
-                  <Label text="number" GridPane.rowIndex="2" />
+                  <Label text="%number" GridPane.rowIndex="2" />
                   <Label text="%productGroup" GridPane.rowIndex="3" />
                   <Label fx:id="idLabel" GridPane.columnIndex="1" />
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
