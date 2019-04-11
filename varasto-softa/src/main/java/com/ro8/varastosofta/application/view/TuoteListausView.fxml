@@ -28,10 +28,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="ID:" />
-                  <Label text="Nimi:" GridPane.rowIndex="1" />
-                  <Label text="Lukumäärä:" GridPane.rowIndex="2" />
-                  <Label text="Tuoteryhmä:" GridPane.rowIndex="3" />
+                  <Label text="%id" />
+                  <Label text="%productName" GridPane.rowIndex="1" />
+                  <Label text="number" GridPane.rowIndex="2" />
+                  <Label text="%productGroup" GridPane.rowIndex="3" />
                   <Label fx:id="idLabel" GridPane.columnIndex="1" />
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -64,7 +64,7 @@
             </Label>
          </top>
          <bottom>
-            <Button fx:id="muokkaaButton" mnemonicParsing="false" onAction="#handleMuokkaa" text="Muokkaa" BorderPane.alignment="CENTER">
+            <Button fx:id="muokkaaButton" mnemonicParsing="false" onAction="#handleMuokkaa" text="%button.modify" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" />
                </BorderPane.margin>

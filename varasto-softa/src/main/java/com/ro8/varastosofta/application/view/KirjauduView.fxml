@@ -30,9 +30,9 @@
       </GridPane>
       <ButtonBar layoutX="168.0" layoutY="286.0" prefHeight="40.0" prefWidth="294.0">
         <buttons>
-          <Button fx:id="kirjauduButton" mnemonicParsing="false" onAction="#handleKirjaudu" text="%login" />
-            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaNappiaPainettu" text="%empty" />
-            <Button fx:id="lopetaButton" mnemonicParsing="false" onAction="#kasitteleLopeta" text="%quit" />
+          <Button fx:id="kirjauduButton" mnemonicParsing="false" onAction="#handleKirjaudu" text="%button.login" />
+            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaNappiaPainettu" text="%button.empty" />
+            <Button fx:id="lopetaButton" mnemonicParsing="false" onAction="#kasitteleLopeta" text="%button.quit" />
         </buttons>
       </ButtonBar>
    </children>
