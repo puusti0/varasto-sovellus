@@ -18,6 +18,7 @@
           <Menu mnemonicParsing="false" text="Näkymä">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#kasitteleLisaaKayttaja" text="Lisää käyttäjä" />
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleTuoteryhmat" text="Tuoteryhmät" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Opastus" />

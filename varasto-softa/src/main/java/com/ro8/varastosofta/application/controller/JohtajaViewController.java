@@ -55,6 +55,14 @@ public class JohtajaViewController implements IController {
 	}
 	
 	/**
+	 * Käsitellään valikon "Tuoteryhmat"-valinta.
+	 */
+	@FXML
+	protected void kasitteleTuoteryhmat() {
+		aktivoiNakyma("TuoteryhmatView.fxml");
+	}
+	
+	/**
 	 * Asetetaan näkymä päänäkymän keskelle.
 	 * @param view asetettavan näkymän nimi
 	 */
