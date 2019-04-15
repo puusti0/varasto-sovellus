@@ -30,23 +30,23 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Käyttäjätunnus">
+            <Label text="%username">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Salasana" GridPane.rowIndex="1">
+            <Label text="%password" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Salasana Uudestaan" GridPane.rowIndex="2">
+            <Label text="%retypePassword" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
             <TextField fx:id="kayttajatunnusTextField" GridPane.columnIndex="1" />
-            <Label text="Käyttäjäryhmä" GridPane.rowIndex="3">
+            <Label text="%userGroup" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -58,9 +58,9 @@
       </GridPane>
       <ButtonBar prefHeight="40.0" prefWidth="261.0">
         <buttons>
-          <Button fx:id="lisaaButton" mnemonicParsing="false" onAction="#kasitteleLisaa" text="Lisää" />
-            <Button fx:id="poistaButton" mnemonicParsing="false" onAction="#poistaButtonPainettu" text="Poista" />
-            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="Tyhjennä" />
+          <Button fx:id="lisaaButton" mnemonicParsing="false" onAction="#kasitteleLisaa" text="%button.add" />
+            <Button fx:id="poistaButton" mnemonicParsing="false" text="%button.delete" />
+            <Button fx:id="tyhjennaButton" mnemonicParsing="false" onAction="#tyhjennaButtonPainettu" text="%button.empty" />
         </buttons>
       </ButtonBar>
    </children>

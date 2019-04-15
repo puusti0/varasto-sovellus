@@ -1,17 +1,30 @@
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\view\TuoteListausController.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Asiakasyritys.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Validaattori.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilaus.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Varastotyontekija.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tyontekija.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Myyntiedustaja.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\TuoteDao.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilausrivi.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Yritys.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\Main.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\TuoteController.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\Dao.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\view\MainViewController.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuote.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\TuoteProp.java
-D:\Metropolia\TX00CF81-3007 Ohjelmistotuotantoprojekti 1\Projekti\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuoteryhma.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\TuoteryhmaDao.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\TuoteDao.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tyontekija.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\KirjauduViewController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\TuoteProp.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\RooliDao.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\VarastotyontekijaViewController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\TuoteListausController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Asiakasyritys.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuote.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\Popup.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Myyntiedustaja.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\IPopupController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Varastotyontekija.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Validaattori.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\KayttajaDao.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\JohtajaViewController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\Main.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\LisaaKayttajaController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Kayttaja.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tuoteryhma.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Yritys.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilausrivi.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\database\Dao.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\SessionManager.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tilaus.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\IController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Tooltipit.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\controller\LisaaTuoteController.java
+C:\Users\janne\git\varasto-sovellus\varasto-softa\src\main\java\com\ro8\varastosofta\application\model\Rooli.java
