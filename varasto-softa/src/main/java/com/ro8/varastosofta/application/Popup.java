@@ -11,7 +11,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Oma popup ikkuna
+ * Yksilöllinen popup ikkuna.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Popup {
 	
@@ -19,7 +22,7 @@ public class Popup {
 	private Parent root;
 	
 	/**
-	 * Popup kontrolleri
+	 * Popup konstruktori.
 	 * @param title näytön oikeassa yläkulmassa näkyvä nimi
 	 */
 	public Popup(String title) {
@@ -42,6 +45,7 @@ public class Popup {
 			this.root = (Parent)loader.load();
 			IPopupController controller = loader.<IPopupController>getController();
 			controller.setObject(objekti);
+			controller.asetaTeksti();
 			Scene scene = new Scene(root, leveys, korkeus);
 			this.popupStage.setScene(scene);
 			this.popupStage.showAndWait();

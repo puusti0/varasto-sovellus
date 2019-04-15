@@ -1,13 +1,17 @@
 package com.ro8.varastosofta.application;
 	
+import java.util.Locale;
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  * Sovelluksen käynnistäjä.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Main extends Application {
 	
@@ -16,18 +20,14 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainView.fxml"));
-			final Pane root = (Pane)loader.load();
-			// final MainViewController kontrolleri = (MainViewController)loader.getController();	
-			final Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("css/application.css").toExternalForm());
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("VarastoSofta");
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Scene scene = new Scene(new StackPane());
+		Locale locale = new Locale("en","GB");
+	    
+	    SessionManager sessionManager = new SessionManager(scene, locale);
+	    sessionManager.valitseNakyma("-1");
+
+	    primaryStage.setScene(scene);
+	    primaryStage.show();
 	}
 
 	/**

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.Popup;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.TuoteProp;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -28,6 +30,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
  * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
  * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class TuoteListausController {
 	
@@ -41,6 +46,8 @@ public class TuoteListausController {
 	private Label lkmLabel;
 	@FXML
 	private Label tuoteryhmaLabel;
+	@FXML
+	private Button muokkaaButton;
 	
 	private TuoteDao tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -49,7 +56,7 @@ public class TuoteListausController {
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
 	
 	/**
-	 * Tuotelistauksen kontrolleri.
+	 * Tuotelistauksen konstruktori.
 	 */
 	public TuoteListausController() {
 		this.tuotedao = new TuoteDao();
@@ -85,6 +92,9 @@ public class TuoteListausController {
 	 */
 	@FXML
 	private void initialize() {
+		
+		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
+				
 		List<TitledPane> listaus = new ArrayList<TitledPane>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			
@@ -124,6 +134,8 @@ public class TuoteListausController {
 		}
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
 		
+		lisaaTooltipitKomponentteihin();
+		
 		/** Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
 		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
 		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -160,6 +172,15 @@ public class TuoteListausController {
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
 			muokkausPopup.open("LisaaTuoteView.fxml", 300, 250, tuote);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
+			// Tyhjennetään tuotteen tiedot näkymä.
+			naytaTyhjatTiedot();
+			
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -176,6 +197,10 @@ public class TuoteListausController {
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
 			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -191,10 +216,15 @@ public class TuoteListausController {
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
 			this.lkmLabel.setText(uusi+"");
+			
+			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
+			initialize();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.
@@ -207,4 +237,35 @@ public class TuoteListausController {
 		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
 	}
 	
+	/**
+	 * Asettaa tuotteen yksityiskohtaisen näkymän tyhjäksi.
+	 */
+	private void naytaTyhjatTiedot() {
+		
+		this.idLabel.setText("");
+		this.nimiLabel.setText("");
+		this.lkmLabel.setText("");
+		this.tuoteryhmaLabel.setText("");
+		
+	}
+	
+	/**
+	 * Lisää Tooltipit komponentteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

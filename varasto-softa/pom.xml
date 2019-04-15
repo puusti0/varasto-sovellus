@@ -10,6 +10,16 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>varasto-softa</name>
+	
+	<repositories>
+    	<repository>
+        	<id>maven-central-repo</id>
+        	<url>http://repo1.maven.org/maven2</url>
+        	<snapshots>
+            	<enabled>false</enabled>
+        	</snapshots>
+   	 	</repository>
+	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +35,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+        	<groupId>org.junit.jupiter</groupId>
+        	<artifactId>junit-jupiter-api</artifactId>
+        	<version>5.4.0</version>
+        	<scope>test</scope>
+    	</dependency>
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-params</artifactId>
 			<version>5.4.0</version>
@@ -39,6 +55,18 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.testfx</groupId>
+    		<artifactId>testfx-core</artifactId>
+    		<version>4.0.15-alpha</version>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.testfx</groupId>
+    		<artifactId>testfx-junit5</artifactId>
+    		<version>4.0.15-alpha</version>
+    		<scope>test</scope>
 		</dependency>
 	</dependencies>
 

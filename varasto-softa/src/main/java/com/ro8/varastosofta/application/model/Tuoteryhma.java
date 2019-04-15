@@ -9,7 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/**
+ * Tuoteryhmä tietokantataulu.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 @Entity
 @Table(name="Tuoteryhma")
 public class Tuoteryhma {
@@ -19,10 +24,10 @@ public class Tuoteryhma {
 	@Column(name ="id")
 	private int id;
 	
-	@Column(name ="Nimi")
+	@Column(name ="nimi")
 	private String nimi;
 	
-	@OneToMany(mappedBy= "tuoteryhma")
+	@OneToMany(mappedBy="tuoteryhma")
 	private List<Tuote> tuotteet;
 	
 	/**
