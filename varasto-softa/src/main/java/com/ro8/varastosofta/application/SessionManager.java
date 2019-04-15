@@ -75,7 +75,7 @@ public class SessionManager {
 			Parent nakyma = (Parent)loader.load();
 			this.scene.setRoot(nakyma);
 			IController controller = (IController)loader.getController();
-			controller.initSession(this, sessionID);
+			controller.initSession(this, sessionID, this.locale);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			

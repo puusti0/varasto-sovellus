@@ -9,19 +9,19 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Tiedosto">
+          <Menu mnemonicParsing="false" text="%navigation.file">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#kasitteleKirjauduUlos" text="Kirjaudu ulos" />
-              <MenuItem mnemonicParsing="false" onAction="#close" text="Lopeta" />
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleKirjauduUlos" text="%navigation.logout" />
+              <MenuItem mnemonicParsing="false" onAction="#close" text="%navigation.quit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Näkymä">
+          <Menu mnemonicParsing="false" text="%navigation.view">
             <items>
-              <MenuItem fx:id="lisaaTuoteMenuItem" mnemonicParsing="false" onAction="#handleLisaaTuoteMenuItem" text="Lisää Tuote" />
-              <MenuItem fx:id="tuotelistausMenuItem" mnemonicParsing="false" onAction="#handleTuotelistausMenuItem" text="Tuotelistaus" />
+              <MenuItem fx:id="lisaaTuoteMenuItem" mnemonicParsing="false" onAction="#handleLisaaTuoteMenuItem" text="%navigation.addProduct" />
+              <MenuItem fx:id="tuotelistausMenuItem" mnemonicParsing="false" onAction="#handleTuotelistausMenuItem" text="%navigation.productList" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Opastus">
+          <Menu mnemonicParsing="false" text="%navigation.help">
             <items>
               <MenuItem mnemonicParsing="false" text="Lisätietoja" />
             </items>
