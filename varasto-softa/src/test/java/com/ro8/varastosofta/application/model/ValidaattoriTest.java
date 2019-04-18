@@ -55,6 +55,13 @@ class ValidaattoriTest {
 		
 	}
 
+	/**
+	 * Testataan on lisättävä käyttäjä validi.
+	 * 
+	 * @param tunnus, ehdotettu käyttäjätunnus.
+	 * @param salasana, ehdotettu salasana.
+	 * @param tulos, testin tulos.
+	 */
 	@ParameterizedTest
 	@CsvSource({"testi;, salasana, false",
 				"testi, salasana;, false",

@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
@@ -35,6 +37,13 @@ public class LisaaKayttajaController {
 	private TextField salasanaUudelleenTextField;
 	@FXML
 	private ComboBox<String> rooliComboBox;
+	@FXML
+	private Button lisaaButton;
+	@FXML 
+	private Button poistaButton;
+	@FXML
+	private Button tyhjennaButton;
+	
 	
 	private Dao kayttajadao;
 	private Dao roolidao;
@@ -69,6 +78,9 @@ public class LisaaKayttajaController {
 			this.rooliComboBox.getItems().add(rooli.getNimi());
 		}
 		this.rooliComboBox.getSelectionModel().select("Valitse");
+		
+		lisaaTooltipitKomponentteihin();
+		
 	}
 	
 	/**
@@ -85,22 +97,28 @@ public class LisaaKayttajaController {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
 				this.kayttajadao.lisaa(uusi);
 				
+				Ilmoitukset.kayttajaLisattyOnnistuneestiIlmo();
+				
 			} catch (SQLException e1) {
+				
 				e1.printStackTrace();
 			}
+		} else {
+			Ilmoitukset.kayttajaLisaysEiOnnistunutIlmo();
+
 		}
 			
-		tyhjennaKentat();
+		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
 	}
 	
 	/**
 	 * Tyhjentää tekstikentät.
 	 */
-	public void tyhjennaKentat() {
-		this.kayttajatunnusTextField.setText("");
-		this.salasanaTextField.setText("");
-		this.salasanaUudelleenTextField.setText("");
-		this.rooliComboBox.getSelectionModel().select("Valitse");
+	public void tyhjennaKentat(TextField tunnus, TextField salasana, TextField salasanaUudestaan) {
+		
+		tunnus.setText("");
+		salasana.setText("");
+		salasanaUudestaan.setText("");
 	}
 	
 	/**
@@ -108,7 +126,46 @@ public class LisaaKayttajaController {
 	 */
 	@FXML
 	private void tyhjennaButtonPainettu() {
-		tyhjennaKentat();
+		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
+		this.rooliComboBox.getSelectionModel().select("Valitse");
+
+	}
+	
+	/**
+	 * Poista napin painallus jolla poistetaan käyttäjä tietokannasta.
+	 */
+	@FXML
+	private void poistaButtonPainettu() {
+		
+		if(Ilmoitukset.kayttajanPoistonVarmistus()) {
+			
+			//TODO: tähän käyttäjän poistamisen toiminnallisuus.
+			
+			Ilmoitukset.kayttajaPoistettuOnnistuneesti();
+			
+		} else {
+			
+			//TODO: ja tähän myös käyttäjän poistamisen toiminnallisuus.
+			Ilmoitukset.kayttajaPoistettuEiOnnistunut();
+			
+		}
+		
+		
+	}
+	
+	/**
+	 * Lisää Tooltipit komponennteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin(){
+		
+		Tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
+		Tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
+		Tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
+		Tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
+		Tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
+		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		
 	}
 	
 	

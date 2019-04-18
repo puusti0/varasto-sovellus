@@ -1,5 +1,8 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
@@ -21,6 +24,7 @@ public class JohtajaViewController implements IController {
 	private BorderPane rootPane;
 	
 	private SessionManager sessionManager;
+	private Locale locale;
 	
 	/**
 	 * Alustetaan keskunäkymä LisaaKayttajaViewlla.
@@ -55,12 +59,21 @@ public class JohtajaViewController implements IController {
 	}
 	
 	/**
+	 * Käsitellään valikon "Tuoteryhmat"-valinta.
+	 */
+	@FXML
+	protected void kasitteleTuoteryhmat() {
+		aktivoiNakyma("TuoteryhmatView.fxml");
+	}
+	
+	/**
 	 * Asetetaan näkymä päänäkymän keskelle.
 	 * @param view asetettavan näkymän nimi
 	 */
 	public void aktivoiNakyma(String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
+			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.locale));
 			loader.setLocation(Main.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
 			this.rootPane.setCenter(nakyma);	
@@ -73,8 +86,9 @@ public class JohtajaViewController implements IController {
 	 * Alustetaan istunto.
 	 */
 	@Override
-	public void initSession(SessionManager sessionManager, String sessionID) {
+	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
+		this.locale = locale;
 	}
 	
 }

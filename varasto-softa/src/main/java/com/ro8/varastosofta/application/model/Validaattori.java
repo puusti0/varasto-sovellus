@@ -108,7 +108,7 @@ public class Validaattori {
 		boolean result = true;
 		
 		// Tunnuksen tarkastaminen
-		if(tunnus.contains(";")) {
+		if(tunnus.contains(";") || tunnus.length() == 0) {
 			result = false;
 		} 
 		

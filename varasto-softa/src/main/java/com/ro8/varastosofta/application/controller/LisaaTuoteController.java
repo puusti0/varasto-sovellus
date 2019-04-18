@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.ro8.varastosofta.application.IPopupController;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
@@ -15,6 +17,7 @@ import com.ro8.varastosofta.database.TuoteryhmaDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -34,6 +37,12 @@ public class LisaaTuoteController implements IPopupController {
 	private TextField lkmTextField;
 	@FXML
 	private ComboBox<String> tuoteryhmaComboBox;
+	@FXML 
+	private Button lisaaButton;
+	@FXML 
+	private Button poistaButton;
+	@FXML
+	private Button tyhjennaButton;
 		
 	private Dao<Tuote, Integer> tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
@@ -71,6 +80,11 @@ public class LisaaTuoteController implements IPopupController {
 			this.tuoteryhmaComboBox.getItems().add(tuoteryhma.getNimi());
 		}
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+		
+		lisaaTooltipitKomponentteihin();
+		
+		this.lisaaButton.setText("Lisää");
+		
 	}
 	
 	
@@ -87,9 +101,16 @@ public class LisaaTuoteController implements IPopupController {
 				Tuoteryhma tuoteryhma = this.tuoteryhmadao.hae(this.tuoteryhmat.get(this.tuoteryhmaComboBox.getValue()));
 				Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
 				this.tuotedao.lisaa(uusi);
+				
+				
+				Ilmoitukset.tuoteLisattyOnnistuneestiIlmo();
+				
+				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				
+				Ilmoitukset.tuotteenLisaysEiOnnistunutIlmo();
 			}
 
 		} else {
@@ -111,28 +132,37 @@ public class LisaaTuoteController implements IPopupController {
 	@FXML
 	private void poistaTuoteButtonPainettu() {
 		
-		// 
-		if(Validaattori.onkoPoistettavaIdValidi(this.idTextField.getText().toString()) 
-				&& Validaattori.onkoNumero(this.idTextField.getText().toString())) {
+		
+		if(Ilmoitukset.tuotteenPoistonVarmistus()) {
 			
-			
-			try {
-				this.tuotedao.poista(Integer.parseInt(this.idTextField.getText().toString()));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		} else {
-			
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Erhe Ilmoitus");
-			alert.setHeaderText("Annetuissa tiedoissa virheitä");
-			alert.setContentText("Tarkista, että Id-kenttä ei ole tyhjä."
-					+ "\nId-kentässä on vain numeroita.");
+			if(Validaattori.onkoPoistettavaIdValidi(this.idTextField.getText().toString()) 
+					&& Validaattori.onkoNumero(this.idTextField.getText().toString())) {
+					
+				try {
+					this.tuotedao.poista(Integer.parseInt(this.idTextField.getText().toString()));
+					
+					Ilmoitukset.tuotePoistettuOnnistuneesti();
+					
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					
+					Ilmoitukset.tuotePoistettuEiOnnistunut();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erhe Ilmoitus");
+				alert.setHeaderText("Annetuissa tiedoissa virheitä");
+				alert.setContentText("Tarkista, että Id-kenttä ei ole tyhjä."
+						+ "\nId-kentässä on vain numeroita.");
 
-			alert.showAndWait();
+				alert.showAndWait();
+				
+			}
 			
 		}
 		
@@ -156,6 +186,27 @@ public class LisaaTuoteController implements IPopupController {
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
 		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");			
+	}
+	
+	/**
+	 * Lisää Tooltipit komponentteihin.
+	 */
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.idTextField, "Set the ID for the product");
+		Tooltipit.asetaTooltip(this.nimiTextField, "Set the name for the product.");
+		Tooltipit.asetaTooltip(this.lkmTextField, "Set the quantity for the product.");
+		Tooltipit.asetaTooltip(this.tuoteryhmaComboBox, "Set the group for the product.");
+		Tooltipit.asetaTooltip(this.lisaaButton, "Add the product to the database.");
+		Tooltipit.asetaTooltip(this.poistaButton, "Remove the product from the database.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		
+	}
+	
+	public void asetaTeksti() {
+		
+		this.lisaaButton.setText("Päivitä");
+		
 	}
 	
 }

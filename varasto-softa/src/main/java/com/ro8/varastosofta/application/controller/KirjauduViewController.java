@@ -2,10 +2,13 @@ package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
+
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
@@ -29,9 +32,14 @@ public class KirjauduViewController implements IController {
 	private TextField salasanaTextField;
 	@FXML
 	private Button kirjauduButton;
+	@FXML 
+	private Button tyhjennaButton;
+	@FXML 
+	private Button lopetaButton;
 	
 	private static int sessionID = 1;
 	private SessionManager sessionManager;
+	private Locale locale;
 	private Dao<Rooli, Integer> roolidao;
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
@@ -42,6 +50,14 @@ public class KirjauduViewController implements IController {
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
 		
+	}
+	
+	/**
+	 * Javafx komponenttien alustus.
+	 */
+	@FXML public void initialize() {
+		
+		lisaaTooltipitKomponentteihin();
 	}
 	
 	/**
@@ -109,8 +125,9 @@ public class KirjauduViewController implements IController {
 	 * Alustetaan kirjautumissivun sessio.
 	 */
 	@Override
-	public void initSession(SessionManager sessionManager, String sessionID) {
+	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
+		this.locale = locale;
 	}
 	
 	/**
@@ -131,4 +148,35 @@ public class KirjauduViewController implements IController {
 		
 	}
 	
+	public void lisaaTooltipitKomponentteihin() {
+		
+		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
+		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
+		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
+		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
+		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
