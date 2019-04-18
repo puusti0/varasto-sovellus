@@ -40,7 +40,7 @@ public class VarastotyontekijaViewController implements IController {
 	 * Alustetaan nakyma siten, että keskelle asetetaan TuoteListausView.
 	 */
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		
 		aktivoiNakyma("TuoteListausView.fxml");
 		
