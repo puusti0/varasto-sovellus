@@ -93,6 +93,7 @@ public class LisaaKayttajaController {
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
 		if (Validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
+			
 			try {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
 				this.kayttajadao.lisaa(uusi);

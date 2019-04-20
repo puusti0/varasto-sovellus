@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -84,7 +85,13 @@ public class KirjauduViewController implements IController {
 	 */
 	@FXML
 	private void kasitteleLopeta() {
-		this.sessionManager.lopeta();
+		
+		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+			
+			this.sessionManager.lopeta();
+			
+		}
+		
 	}
 	
 	/**

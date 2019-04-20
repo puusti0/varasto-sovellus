@@ -180,6 +180,58 @@ public class Ilmoitukset {
 		
 	}
 	
+	/**
+	 * Varmistetaan uloskirjautuminen
+	 * 
+	 * @return true, jos kirjaudutaan ulos ja false muuten
+	 */
+	public static boolean uloskirjautumisenVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure want to Log Out?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+			
+	}
+	
+	/**
+	 * Ohjelman lopettamisen varmistus.
+	 * 
+	 * @return true, jos lopetus varmistettu ja false muuten.
+	 */
+	public static boolean ohjelmanLopetusVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure want to Exit the program?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+			
+	}
+	
 	
 
 }

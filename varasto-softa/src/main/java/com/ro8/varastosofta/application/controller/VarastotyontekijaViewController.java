@@ -3,6 +3,8 @@ package com.ro8.varastosofta.application.controller;
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -64,7 +66,12 @@ public class VarastotyontekijaViewController implements IController {
 	 */
 	@FXML
 	protected void kasitteleKirjauduUlos() {
-		this.sessionManager.kirjauduUlos();
+		
+		if(Ilmoitukset.uloskirjautumisenVarmistus()) {
+			
+			this.sessionManager.kirjauduUlos();
+			
+		}
 	}
 	
 	/**
@@ -72,7 +79,13 @@ public class VarastotyontekijaViewController implements IController {
 	 */
 	@FXML
 	public void close() {
-		this.sessionManager.lopeta();
+		
+		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+			
+			this.sessionManager.lopeta();
+			
+		}
+		
 	}
 	
 	/**
