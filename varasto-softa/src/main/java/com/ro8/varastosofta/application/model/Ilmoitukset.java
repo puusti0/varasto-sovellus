@@ -232,6 +232,32 @@ public class Ilmoitukset {
 			
 	}
 	
+	/**
+	 * Tuotteen lisäyksen varmistus.
+	 * 
+	 * @return true, jos tuote halutaan lisätä ja false muuten.
+	 */
+	public static boolean tuotteenLisaysVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure you want to add the product?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+		
+	}
+	
 	
 
 }

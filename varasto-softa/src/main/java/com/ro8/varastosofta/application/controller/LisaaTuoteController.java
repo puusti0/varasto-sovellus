@@ -97,20 +97,22 @@ public class LisaaTuoteController implements IPopupController {
 		if(Validaattori.onkoLisattavaTuoteValidi(this.idTextField.getText().toString(), this.nimiTextField.getText().toString(), this.lkmTextField.getText().toString())
 				&& Validaattori.onkoTuoteryhmaValidi(this.tuoteryhmaComboBox.getValue())) {
 			
-			try {
-				Tuoteryhma tuoteryhma = this.tuoteryhmadao.hae(this.tuoteryhmat.get(this.tuoteryhmaComboBox.getValue()));
-				Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
-				this.tuotedao.lisaa(uusi);
-				
-				
-				Ilmoitukset.tuoteLisattyOnnistuneestiIlmo();
-				
-				
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				
-				Ilmoitukset.tuotteenLisaysEiOnnistunutIlmo();
+			if(Ilmoitukset.tuotteenLisaysVarmistus()) {
+				try {
+					Tuoteryhma tuoteryhma = this.tuoteryhmadao.hae(this.tuoteryhmat.get(this.tuoteryhmaComboBox.getValue()));
+					Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
+					this.tuotedao.lisaa(uusi);
+					
+					
+					Ilmoitukset.tuoteLisattyOnnistuneestiIlmo();
+					
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+					Ilmoitukset.tuotteenLisaysEiOnnistunutIlmo();
+				}
 			}
 
 		} else {
