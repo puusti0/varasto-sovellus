@@ -1,5 +1,8 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
@@ -26,6 +29,7 @@ public class VarastotyontekijaViewController implements IController {
 	private MenuItem lisaaTuoteMenuItem;
 	
 	private SessionManager sessionManager;
+	private Locale locale;
 	
 	/**
 	 * Päänäkymän konstruktori.
@@ -38,7 +42,7 @@ public class VarastotyontekijaViewController implements IController {
 	 * Alustetaan nakyma siten, että keskelle asetetaan TuoteListausView.
 	 */
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		
 		aktivoiNakyma("TuoteListausView.fxml");
 		
@@ -95,6 +99,7 @@ public class VarastotyontekijaViewController implements IController {
 	public void aktivoiNakyma(String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
+			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.locale));
 			loader.setLocation(Main.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
 			this.rootPane.setCenter(nakyma);		
@@ -107,9 +112,9 @@ public class VarastotyontekijaViewController implements IController {
 	 * Alustetaan istunto.
 	 */
 	@Override
-	public void initSession(SessionManager sessionManager, String sessionID) {
+	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
-		
+		this.locale = locale;
 	}
 
 }

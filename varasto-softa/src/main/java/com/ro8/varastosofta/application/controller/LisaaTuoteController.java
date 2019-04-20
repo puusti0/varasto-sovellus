@@ -83,7 +83,6 @@ public class LisaaTuoteController implements IPopupController {
 		
 		lisaaTooltipitKomponentteihin();
 		
-		this.lisaaButton.setText("Lisää");
 		
 	}
 	
@@ -152,6 +151,9 @@ public class LisaaTuoteController implements IPopupController {
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
+					
+					Ilmoitukset.tuotePoistettuEiOnnistunut();
+
 				}
 				
 			} else {
@@ -205,6 +207,9 @@ public class LisaaTuoteController implements IPopupController {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.ro8.varastosofta.application.IPopupController#asetaTeksti()
+	 */
 	public void asetaTeksti() {
 		
 		this.lisaaButton.setText("Päivitä");
