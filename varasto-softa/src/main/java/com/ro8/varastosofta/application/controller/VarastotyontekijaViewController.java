@@ -44,7 +44,7 @@ public class VarastotyontekijaViewController implements IController {
 	@FXML
 	public void initialize() {
 		
-		aktivoiNakyma("TuoteListausView.fxml");
+		
 		
 	}
 	
@@ -115,6 +115,8 @@ public class VarastotyontekijaViewController implements IController {
 	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
 		this.locale = locale;
+		
+		aktivoiNakyma("TuoteListausView.fxml");
 	}
 
 }

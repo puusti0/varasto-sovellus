@@ -212,7 +212,7 @@ public class LisaaTuoteController implements IPopupController {
 	 */
 	public void asetaTeksti() {
 		
-		this.lisaaButton.setText("Päivitä");
+		this.lisaaButton.setText("Update");
 		
 	}
 	
