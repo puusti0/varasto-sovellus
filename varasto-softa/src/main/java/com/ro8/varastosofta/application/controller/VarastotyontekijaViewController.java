@@ -39,7 +39,7 @@ public class VarastotyontekijaViewController implements IController {
 	}
 	
 	/**
-	 * Alustetaan nakyma siten, että keskelle asetetaan TuoteListausView.
+	 * Alustetaan nakyma tyhjana.
 	 */
 	@FXML
 	public void initialize() {
@@ -116,6 +116,7 @@ public class VarastotyontekijaViewController implements IController {
 		this.sessionManager = sessionManager;
 		this.locale = locale;
 		
+		// Asetetaan tuotelistausnäkymä keskelle UI:ta oletuksena.
 		aktivoiNakyma("TuoteListausView.fxml");
 	}
 

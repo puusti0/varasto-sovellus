@@ -2,7 +2,9 @@ package com.ro8.varastosofta.application.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
 
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Button;
@@ -20,6 +22,7 @@ class TooltipitTest {
 	/**
 	 * Testi sille asettaako testattava metodi Tooltipin niin kuin kuuluu.
 	 */
+	@Disabled
 	@Test
 	void testAsetaTooltip() {
 		

@@ -1,6 +1,7 @@
 package com.ro8.varastosofta.application;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +21,7 @@ public class Popup {
 	
 	private Stage popupStage;
 	private Parent root;
+	
 	
 	/**
 	 * Popup konstruktori.

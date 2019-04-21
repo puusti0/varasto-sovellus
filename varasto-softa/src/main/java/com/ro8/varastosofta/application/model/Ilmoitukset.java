@@ -239,7 +239,7 @@ public class Ilmoitukset {
 	 */
 	public static boolean tuotteenLisaysVarmistus() {
 		
-		Alert alert = new Alert(AlertType.CONFIRMATION);
+		/** Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
 		alert.setContentText("Are you sure you want to add the product?");
@@ -251,10 +251,29 @@ public class Ilmoitukset {
 			return true;
 			
 		} else {
+			return false;	
+		}	*/
+		
+		return confirmaatioAlertti("Confirmation Dialog", null, "Are you sure you want to add this product?");
+	}
+	
+	private static boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(titteli);
+		alert.setHeaderText(headeri);
+		alert.setContentText(contentti);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
 		    
-			return false;
+			return true;
 			
+		} else {
+			return false;	
 		}
+		
 		
 	}
 	
