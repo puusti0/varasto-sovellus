@@ -22,6 +22,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Scene scene = new Scene(new StackPane());
 		Locale locale = new Locale("en","GB");
+		
+		// Asetaan locale talteen muita ohjelmien osia varten.
+		Lokaali.setLocale(locale);
 	    
 	    SessionManager sessionManager = new SessionManager(scene, locale);
 	    sessionManager.valitseNakyma("-1");

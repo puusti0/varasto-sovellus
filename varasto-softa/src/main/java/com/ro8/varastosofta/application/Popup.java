@@ -2,6 +2,7 @@ package com.ro8.varastosofta.application;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,6 +43,7 @@ public class Popup {
 	 */
 	public void open(String view, int leveys, int korkeus, Object objekti) {
 		FXMLLoader loader = new FXMLLoader();
+		loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
 		loader.setLocation(Main.class.getResource("view/" + view));
 		try {
 			this.root = (Parent)loader.load();
