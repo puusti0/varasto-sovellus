@@ -38,6 +38,7 @@ public class TuoteryhmatController {
 				listItems.add(tr.toString());
 			}
 			tuoteryhmaList.setItems(listItems);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +56,7 @@ public class TuoteryhmatController {
 		tr.setNimi(tuoteryhma);
 		try {
 			this.tuoteryhmadao.lisaa(tr);
+			listItems.add(tr.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
