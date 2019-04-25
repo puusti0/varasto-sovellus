@@ -14,16 +14,12 @@ public class Lokaali {
 	
 	private static Locale locale;
 	
-	public static void setLocale(Locale localeToSet) {
-		
-		locale = localeToSet;
-		
+	public static void setLocale(Locale localeToSet) {	
+		locale = localeToSet;	
 	}
 	
 	public static Locale getLocale() {
-		
 		return locale;
-		
 	}
 	
 

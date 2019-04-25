@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 
@@ -18,6 +19,7 @@ import com.ro8.varastosofta.application.model.Tuoteryhma;
  */
 public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	
+
 	private SessionFactory istuntotehdas;
 	private final StandardServiceRegistry rekisteri;
 	
@@ -35,6 +37,10 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			e.printStackTrace();
 		}
 	}
+	
+	public SessionFactory getIstuntotehdas() {
+		return this.istuntotehdas;
+	}
 
 	/**
 	 * Lisää tuoteryhmän tietokantaan
@@ -43,20 +49,15 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	 */
 	@Override
 	public void lisaa(Tuoteryhma tuoteryhma) throws SQLException {
-		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
-		try {
+		try (Session istunto = getIstuntotehdas().openSession()) {
 			transaktio = istunto.beginTransaction();
 			istunto.saveOrUpdate(tuoteryhma);
 			transaktio.commit();
-		}
-		catch(Exception e){
-			if (transaktio!=null) transaktio.rollback();
-			System.err.println("lisaa(Tuoteryhma):");
+		} catch(Exception e) {
+			if (transaktio != null) transaktio.rollback();
+			System.err.println("lisaa(Kayttaja):");
 			e.printStackTrace();
-		}
-		finally{
-			istunto.close();
 		}
 	}
 
@@ -68,18 +69,15 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	@Override
 	public Tuoteryhma hae(Integer avain) throws SQLException {
 		Tuoteryhma tuoteryhma = new Tuoteryhma();
-		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
-		try {
+		try (Session istunto = getIstuntotehdas().openSession()) {
 			transaktio = istunto.beginTransaction();
 			istunto.load(tuoteryhma, avain);
 			transaktio.commit();
 		} catch(Exception e) {
-			if (transaktio!=null) transaktio.rollback();
+			if (transaktio != null) transaktio.rollback();
 			System.err.println("hae(Tuote):");
 			e.printStackTrace();
-		} finally {
-			istunto.close();
 		}
 		return new Tuoteryhma(tuoteryhma.getId(), tuoteryhma.getNimi());
 	}
@@ -113,18 +111,17 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	@Override
 	public List<Tuoteryhma> listaa() throws SQLException {
 		List<Tuoteryhma> lista = new ArrayList<Tuoteryhma>();
-		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
-		try {
+		try (Session istunto = getIstuntotehdas().openSession()) {
 			transaktio = istunto.beginTransaction();
-			lista = istunto.createQuery( "FROM Tuoteryhma" ).list();
+			@SuppressWarnings("unchecked")
+			Query<Tuoteryhma> q = istunto.createQuery("FROM Tuoteryhma");
+			lista = q.list();
 			transaktio.commit();
 		} catch(Exception e) {
-			if (transaktio!=null) transaktio.rollback();
+			if (transaktio != null) transaktio.rollback();
 			System.err.println("listaa(Tuoteryhma):");
 			e.printStackTrace();
-		} finally {
-			istunto.close();
 		}
 		return lista;
 	}
