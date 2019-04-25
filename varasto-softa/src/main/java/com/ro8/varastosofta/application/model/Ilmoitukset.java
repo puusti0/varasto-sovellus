@@ -58,7 +58,7 @@ public class Ilmoitukset {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -168,7 +168,7 @@ public class Ilmoitukset {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -194,7 +194,7 @@ public class Ilmoitukset {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -220,7 +220,7 @@ public class Ilmoitukset {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -266,7 +266,7 @@ public class Ilmoitukset {
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
