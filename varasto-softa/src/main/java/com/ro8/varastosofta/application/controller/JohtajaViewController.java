@@ -32,7 +32,7 @@ public class JohtajaViewController implements IController {
 	 */
 	@FXML
 	private void initialize() {
-		aktivoiNakyma("LisaaKayttaja.fxml");
+	
 	}
 	
 	/**
@@ -102,6 +102,8 @@ public class JohtajaViewController implements IController {
 	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
 		this.locale = locale;
+		aktivoiNakyma("LisaaKayttaja.fxml");
+
 	}
 	
 }
