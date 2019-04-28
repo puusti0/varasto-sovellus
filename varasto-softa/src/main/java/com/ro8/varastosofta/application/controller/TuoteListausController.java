@@ -4,12 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
-import com.ro8.varastosofta.application.model.TuoteProp;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
@@ -20,11 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TitledPane;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Käyttöliittymä tuotelistaukselle.
@@ -72,21 +66,6 @@ public class TuoteListausController {
 			this.tuoteryhmat.put(tuoteryhma.getNimi(), tuoteryhma);
 		}
 	}
-	
-	//--------------------------------
-	// Tässä blokissa koodia testausta varten voi poistaa jos ei tarvetta tai
-	// muokata loppukäyttöä varten.
-	
-	/**@FXML
-	private TableView<TuoteProp> tpData;
-	@FXML
-	private TableColumn<TuoteProp, String> tuoteNimi;
-	@FXML 
-	private TableColumn<TuoteProp, Integer> tuoteId;
-	@FXML 
-	private TableColumn<TuoteProp, Integer> tuoteLkm;*/
-	
-	private ObservableList<TuoteProp> tuotteet =  FXCollections.observableArrayList();
 	
 	/**
 	 * Alustetaan tuotteen tiedot JavaFX komponentteihin
@@ -149,16 +128,13 @@ public class TuoteListausController {
 			Tuote tuote = new Tuote(id, nimi, lkm);
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
-			muokkausPopup.open("LisaaTuoteView.fxml", 300, 250, tuote);
+			muokkausPopup.avaa("LisaaTuoteView.fxml", 300, 250, tuote);
 			
 			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 			initialize();
 			
 			// Tyhjennetään tuotteen tiedot näkymä.
 			naytaTyhjatTiedot();
-			
-
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -212,7 +188,11 @@ public class TuoteListausController {
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
-		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma().getNimi());
+		if (tuote.getTuoteryhma() == null) {
+			this.tuoteryhmaLabel.setText("");
+		} else {
+			this.tuoteryhmaLabel.setText(tuote.getTuoteryhma().getNimi());
+		}
 	}
 	
 	/**
@@ -231,9 +211,7 @@ public class TuoteListausController {
 	 * Lisää Tooltipit komponentteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin() {
-		
 		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
-		
 	}
 	
 }

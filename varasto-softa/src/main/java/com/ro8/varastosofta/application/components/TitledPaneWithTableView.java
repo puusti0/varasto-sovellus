@@ -1,8 +1,6 @@
 package com.ro8.varastosofta.application.components;
 
 import com.ro8.varastosofta.application.model.Tuote;
-import com.ro8.varastosofta.application.model.Tuoteryhma;
-
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,12 +16,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class TitledPaneWithTableView extends TitledPane {
 
 	public TitledPaneWithTableView(String nimi) {
-		
 		super();
 		this.setText(nimi);
-		
 	}
 	
+	/**
+	 * Luodaan näkymän taulukko.
+	 * @param items taulukon alkiot
+	 * @return taulukko
+	 */
 	public TableView<Tuote> luoTaulukko(ObservableList<Tuote> items) {
 		TableView<Tuote> tuotelistaus = new TableView<Tuote>();
 		TableColumn<Tuote, Integer> tuoteId = new TableColumn<Tuote, Integer>("Id");

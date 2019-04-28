@@ -1,9 +1,7 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
 import com.ro8.varastosofta.application.components.HBoxWithButton;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
@@ -18,6 +16,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+/**
+ * Tuoteryhmien hallinnointi.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
+ */
 public class TuoteryhmatController {
 	
 	@FXML

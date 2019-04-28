@@ -1,14 +1,10 @@
 package com.ro8.varastosofta.application;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -35,13 +31,13 @@ public class Popup {
 	}
 	
 	/**
-	 * Avataan popup
+	 * Avataan popup-ikkuna.
 	 * @param view näkymä
 	 * @param leveys leveys
 	 * @param korkeus leveys
 	 * @param objekti Popup:n käyttämät luokat
 	 */
-	public void open(String view, int leveys, int korkeus, Object objekti) {
+	public void avaa(String view, int leveys, int korkeus, Object objekti) {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
 		loader.setLocation(Main.class.getResource("view/" + view));
@@ -54,10 +50,16 @@ public class Popup {
 			this.popupStage.setScene(scene);
 			this.popupStage.showAndWait();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * Suljetaan popup-ikkuna.
+	 */
+	public void sulje() {
+		this.popupStage.close();
 	}
 
 }

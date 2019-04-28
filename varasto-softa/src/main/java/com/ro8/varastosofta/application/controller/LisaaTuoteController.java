@@ -3,7 +3,6 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-
 import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -13,7 +12,6 @@ import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -101,15 +99,9 @@ public class LisaaTuoteController implements IPopupController {
 					Tuoteryhma tuoteryhma = this.tuoteryhmadao.hae(this.tuoteryhmat.get(this.tuoteryhmaComboBox.getValue()));
 					Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
 					this.tuotedao.lisaa(uusi);
-					
-					
 					Ilmoitukset.tuoteLisattyOnnistuneestiIlmo();
-					
-					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					
 					Ilmoitukset.tuotteenLisaysEiOnnistunutIlmo();
 				}
 			}
