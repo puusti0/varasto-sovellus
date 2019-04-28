@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 
 /**
@@ -100,8 +101,16 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	 */
 	@Override
 	public void poista(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		Transaction transaktio = null;
+		try (Session istunto = getIstuntotehdas().openSession()) {
+			transaktio = istunto.beginTransaction();
+			istunto.delete(hae(avain));
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio != null) transaktio.rollback();
+			System.err.println("poista(Tuoteryhma):");
+			e.printStackTrace();
+		}
 	}
 
 	/**

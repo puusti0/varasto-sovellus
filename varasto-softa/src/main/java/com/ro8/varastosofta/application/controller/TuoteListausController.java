@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.Popup;
+import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.TuoteProp;
@@ -95,69 +96,46 @@ public class TuoteListausController {
 		
 		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
 				
-		List<TitledPane> listaus = new ArrayList<TitledPane>();
+		List<TitledPaneWithTableView> listaus = new ArrayList<TitledPaneWithTableView>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
-			
-			TitledPane tuoteryhmalista = new TitledPane();
-			tuoteryhmalista.setText(tuoteryhma.getNimi());
-			
-			//ListView<TuoteProp> tuotelistaus = new ListView<TuoteProp>();
-			TableView<TuoteProp> tuotelistaus = new TableView<TuoteProp>();
-			TableColumn<TuoteProp, String> tuoteNimi = new TableColumn<TuoteProp, String>("Nimi");
-			TableColumn<TuoteProp, Integer> tuoteId = new TableColumn<TuoteProp, Integer>("Id");
-			TableColumn<TuoteProp, Integer> tuoteLkm = new TableColumn<TuoteProp, Integer>("Lukumäärä");
-			tuotelistaus.getColumns().addAll(tuoteId, tuoteNimi, tuoteLkm);
-			
-			//Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
-			tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-			tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
-			tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));
-			
-			ObservableList<TuoteProp> items = FXCollections.observableArrayList();
-			
+			ObservableList<Tuote> items = FXCollections.observableArrayList();
 			// Haetaan tuoteryhmän tuotteet tietokannasta
 			try {
 				List<Tuote> tuoteryhmanTuotteet = this.tuotedao.hae(tuoteryhma);
 				for (Tuote tuote : tuoteryhmanTuotteet) {
-					items.add(new TuoteProp( tuote.getId(), tuote.getNimi(), tuote.getLkm(), tuote.getTuoteryhma().getNimi()));
+					items.add(tuote);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+			TitledPaneWithTableView taulukko = new TitledPaneWithTableView(tuoteryhma.getNimi());
+			TableView<Tuote> tuotelistaus = taulukko.luoTaulukko(items);
 			tuotelistaus.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
-			
-			tuotelistaus.setItems(items);
-			tuoteryhmalista.setContent(tuotelistaus);
-			listaus.add(tuoteryhmalista);
+					(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
+			listaus.add(taulukko);
 		}
+		Tuoteryhma tyhja = null;
+		TitledPaneWithTableView taulukko = new TitledPaneWithTableView("Muut");
+		ObservableList<Tuote> items = FXCollections.observableArrayList();
+		try {
+			List<Tuote> tuoteryhmanTuotteet = this.tuotedao.hae(tyhja);
+			for (Tuote tuote : tuoteryhmanTuotteet) {
+				items.add(tuote);
+			}
+			TableView<Tuote> tuotelistaus = taulukko.luoTaulukko(items);
+			tuotelistaus.getSelectionModel().selectedItemProperty().addListener(
+					(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
+			listaus.add(taulukko);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
 		
 		lisaaTooltipitKomponentteihin();
-		
-		/** Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
-		this.tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-		this.tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		this.tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));*/
 	}
-		/**
-		 // Lisätään pari tuotetta testausta varten.
-		this.tuotteet.add(new TuoteProp( 1, "Hila",10));
-		this.tuotteet.add(new TuoteProp(2, "Vitkutin", 15));
-		*
-		
-		// Lisätään tuotteet ObservableListaan
-		this.tpData.setItems(this.tuotteet);
-		
-		// Lisätää kuuntelija ja metodi tuotteiden tietojen näyttämistä varten listaan.
-		this.tpData.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
-		
-		naytaTuotteenTiedot(this.tuotteet.get(0));
-	}
-	
-	//--------------------------------
+
 	
 	/**
 	 * Muokkaus napin toiminnallisuus, jolla avataan muokkaus popup
@@ -230,11 +208,11 @@ public class TuoteListausController {
 	 * Tuotteen tietojen lisääminen JavaFX-komponenteihin.
 	 * @param tuote
 	 */
-	private void naytaTuotteenTiedot(TuoteProp tuote) {	
+	private void naytaTuotteenTiedot(Tuote tuote) {	
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
-		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma());
+		this.tuoteryhmaLabel.setText(tuote.getTuoteryhma().getNimi());
 	}
 	
 	/**
