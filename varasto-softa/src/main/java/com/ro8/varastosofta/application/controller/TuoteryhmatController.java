@@ -38,14 +38,18 @@ public class TuoteryhmatController {
 	public TuoteryhmatController() {
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuotedao = new TuoteDao();
-		
 	}
 	
+	/**
+	 * Poisto-napin luominen.
+	 * @param buttontext napin teksti
+	 * @param tuoteryhma poistettava tuoteryhma
+	 * @return nappi
+	 */
 	private Button luoPoistoNappi(String buttontext, Tuoteryhma tuoteryhma) {
 		Button removebutton = new Button();
-	
-	removebutton.setText("Poista");
-	removebutton.setOnAction(new EventHandler<ActionEvent>() {
+		removebutton.setText("Poista");
+		removebutton.setOnAction(new EventHandler<ActionEvent>() {
 	      @Override 
 	      public void handle(ActionEvent event) {
 	    	System.out.println(buttontext);
@@ -53,7 +57,9 @@ public class TuoteryhmatController {
 	        try {
 				tuotedao.poista(tuoteryhma);
 				tuoteryhmadao.poista(tuoteryhma.getId());
-				listItems.remove(tuoteryhma.getId());
+				int index = tuoteryhmaList.getSelectionModel().getSelectedIndex();
+				System.out.println("Indeksi " + index);
+				listItems.remove(index);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
