@@ -24,7 +24,7 @@ public class Main extends Application {
 		Locale localeFI = new Locale("fi", "FI");
 		
 		// Asetaan locale talteen muita ohjelmien osia varten.
-		Lokaali.setLocale(localeFI);
+		Lokaali.setLocale(localeGB);
 	    
 	    SessionManager sessionManager = new SessionManager(scene);
 	    sessionManager.valitseNakyma("-1");
