@@ -26,7 +26,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The user was successfully added into the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.succesfulAdd"));
+		//alert.setContentText("The user was successfully added into the database.");
 
 		alert.showAndWait();
 		
@@ -40,7 +41,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The adding of the user into the database was not successful.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.failedAdd"));
+		//alert.setContentText("The adding of the user into the database was not successful.");
 
 		alert.showAndWait();
 		
@@ -56,7 +58,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure you want to delete the user?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.deleteUser"));
+		//alert.setContentText("Are you sure you want to delete the user?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
@@ -80,7 +83,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The user was successfully removed from the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.succesfulRemove"));
+		//alert.setContentText("The user was successfully removed from the database.");
 
 		alert.showAndWait();
 		
@@ -94,7 +98,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The user was not removed from the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.user.failedRemove"));
+			//alert.setContentText("The user was not removed from the database.");
 	
 			alert.showAndWait();
 			
@@ -108,7 +113,7 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText(Lokaali.getBundle().getString("alert.succesfulAdd"));
+			alert.setContentText(Lokaali.getBundle().getString("alert.product.succesfulAdd"));
 			//alert.setContentText("The product was successfully added into the database.");
 	
 			alert.showAndWait();
@@ -123,7 +128,7 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText(Lokaali.getBundle().getString("alert.failedAdd"));
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.failedAdd"));
 		//alert.setContentText("The adding of the product into the database was not successful.");
 
 		alert.showAndWait();
@@ -138,7 +143,7 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText(Lokaali.getBundle().getString("alert.succesfulRemove"));
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.succesfulRemove"));
 		//alert.setContentText("The product was successfully removed from the database.");
 
 		alert.showAndWait();
@@ -153,7 +158,7 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText(Lokaali.getBundle().getString("alert.failedRemove"));
+			alert.setContentText(Lokaali.getBundle().getString("alert.product.failedRemove"));
 			//alert.setContentText("The product was not removed from the database.");
 	
 			alert.showAndWait();
@@ -170,7 +175,7 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText(Lokaali.getBundle().getString("alert.deleteProduct"));
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.deleteProduct"));
 		//alert.setContentText("Are you sure you want to delete the product?");
 
 		Optional<ButtonType> result = alert.showAndWait();
@@ -263,7 +268,7 @@ public class Ilmoitukset {
 			return false;	
 		}	*/
 		
-		return confirmaatioAlertti("Confirmation Dialog", null, "Are you sure you want to add this product?");
+		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.product.addProduct"));
 	}
 	
 	private static boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
