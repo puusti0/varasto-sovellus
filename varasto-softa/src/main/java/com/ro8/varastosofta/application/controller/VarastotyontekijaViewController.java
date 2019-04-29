@@ -3,6 +3,7 @@ package com.ro8.varastosofta.application.controller;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import com.ro8.varastosofta.application.IController;
+import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
 import com.ro8.varastosofta.application.model.Ilmoitukset;

@@ -68,7 +68,8 @@ public class SessionManager {
 	public void naytaNakyma(String sessionID, String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
+			loader.setResources(Lokaali.getBundle());
+			//loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
 			loader.setLocation(Main.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
 			this.scene.setRoot(nakyma);

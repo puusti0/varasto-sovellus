@@ -2,6 +2,8 @@ package com.ro8.varastosofta.application.model;
 
 import java.util.Optional;
 
+import com.ro8.varastosofta.application.Lokaali;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -106,7 +108,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The product was successfully added into the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.succesfulAdd"));
+			//alert.setContentText("The product was successfully added into the database.");
 	
 			alert.showAndWait();
 			
@@ -120,7 +123,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The adding of the product into the database was not successful.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.failedAdd"));
+		//alert.setContentText("The adding of the product into the database was not successful.");
 
 		alert.showAndWait();
 		
@@ -134,7 +138,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The product was successfully removed from the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.succesfulRemove"));
+		//alert.setContentText("The product was successfully removed from the database.");
 
 		alert.showAndWait();
 		
@@ -148,7 +153,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The product was not removed from the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.failedRemove"));
+			//alert.setContentText("The product was not removed from the database.");
 	
 			alert.showAndWait();
 			
@@ -164,7 +170,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure you want to delete the product?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.deleteProduct"));
+		//alert.setContentText("Are you sure you want to delete the product?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
@@ -190,7 +197,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure want to Log Out?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.logout"));
+		//alert.setContentText("Are you sure want to Log Out?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
@@ -216,7 +224,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure want to Exit the program?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.exit"));
+		//alert.setContentText("Are you sure want to Exit the program?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
