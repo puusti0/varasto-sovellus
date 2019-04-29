@@ -23,18 +23,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="%id" />
-            <Label text="%productName" GridPane.rowIndex="1">
+            <Label text="%product.id" />
+            <Label text="%product.productName" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="%number" GridPane.rowIndex="2">
+            <Label text="%product.number" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="%productGroupId" GridPane.rowIndex="3">
+            <Label text="%product.productGroupId" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

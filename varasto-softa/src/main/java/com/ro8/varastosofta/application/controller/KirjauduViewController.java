@@ -3,9 +3,9 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
-
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.SessionManager;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -40,7 +40,6 @@ public class KirjauduViewController implements IController {
 	private static int sessionID = 1;
 	private SessionManager sessionManager;
 	private Locale locale;
-	private Dao<Rooli, Integer> roolidao;
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
 	/**
@@ -48,8 +47,6 @@ public class KirjauduViewController implements IController {
 	 */
 	public KirjauduViewController() {
 		this.kayttajadao = new KayttajaDao();
-		this.roolidao = new RooliDao();
-		
 	}
 	
 	/**
@@ -87,7 +84,13 @@ public class KirjauduViewController implements IController {
 	 */
 	@FXML
 	private void kasitteleLopeta() {
-		this.sessionManager.lopeta();
+		
+		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+			
+			this.sessionManager.lopeta();
+			
+		}
+		
 	}
 	
 	/**

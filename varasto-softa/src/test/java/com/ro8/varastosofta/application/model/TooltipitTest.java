@@ -1,9 +1,8 @@
 package com.ro8.varastosofta.application.model;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -20,6 +19,7 @@ class TooltipitTest {
 	/**
 	 * Testi sille asettaako testattava metodi Tooltipin niin kuin kuuluu.
 	 */
+	@Disabled
 	@Test
 	void testAsetaTooltip() {
 		
@@ -30,7 +30,6 @@ class TooltipitTest {
 		Button buttonTyhja = new Button();
 		String teksti = "testi";
 		
-		
 		Tooltipit.asetaTooltip(textField, teksti);
 		Tooltipit.asetaTooltip(button, teksti);
 		
@@ -39,10 +38,6 @@ class TooltipitTest {
 		
 		assertTrue(button.getTooltip() instanceof Tooltip, "Oikein meni, Button");
 		assertFalse(buttonTyhja.getTooltip() instanceof Tooltip, "Ei tooltippia, Button");
-		
-		
-		
-		
 	}
 
 }

@@ -2,11 +2,10 @@ package com.ro8.varastosofta.application.controller;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.IController;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
-
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +30,7 @@ public class JohtajaViewController implements IController {
 	 */
 	@FXML
 	private void initialize() {
-		aktivoiNakyma("LisaaKayttaja.fxml");
+	
 	}
 	
 	/**
@@ -39,7 +38,13 @@ public class JohtajaViewController implements IController {
 	 */
 	@FXML
 	protected void kasitteleKirjauduUlos() {
-		this.sessionManager.kirjauduUlos();
+		
+		
+		if(Ilmoitukset.uloskirjautumisenVarmistus()) {
+			
+			this.sessionManager.kirjauduUlos();
+			
+		}
 	}
 	
 	/**
@@ -47,7 +52,13 @@ public class JohtajaViewController implements IController {
 	 */
 	@FXML
 	private void kasitteleLopeta() {
-		this.sessionManager.lopeta();
+		
+		
+		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+			
+			this.sessionManager.lopeta();
+			
+		}
 	}
 	
 	/**
@@ -89,6 +100,8 @@ public class JohtajaViewController implements IController {
 	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
 		this.locale = locale;
+		aktivoiNakyma("LisaaKayttaja.fxml");
+
 	}
 	
 }

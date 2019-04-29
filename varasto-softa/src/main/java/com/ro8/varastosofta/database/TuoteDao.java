@@ -214,13 +214,38 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		List<Tuote> lista = new ArrayList<Tuote>();
 		try (Session istunto = istuntotehdas.openSession()) {
 			Transaction transaktio = istunto.beginTransaction();
-			String sql = "FROM Tuote WHERE tuoteryhma_id = " + tuoteryhma.getId();
+			String sql;
+			if (tuoteryhma == null) {
+				sql = "FROM Tuote WHERE tuoteryhma_id = null";
+			} else {
+				sql = "FROM Tuote WHERE tuoteryhma_id = " + tuoteryhma.getId();
+			}
 			lista = istunto.createQuery(sql).list();
 			transaktio.commit();
 		} catch (Exception e) {
 			
 		}
 		return lista;
+	}
+	
+	/**
+	 * Hae tuotteilta tuoteryhman, jotka kuuluvat tiettyyn tuoteryhmään.
+	 * @param tuoteryhma tuotteen tuoteryhma
+	 * @throws SQLException
+	 */
+	public void poista(Tuoteryhma tuoteryhma) throws SQLException {
+		List<Tuote> lista = new ArrayList<Tuote>();
+		Transaction transaktio = null;
+		try (Session istunto = istuntotehdas.openSession()) {
+			transaktio = istunto.beginTransaction();
+			Query kysely = istunto.createQuery("UPDATE Tuote SET tuoteryhma_id = null WHERE tuoteryhma_id = " + tuoteryhma.getId());
+			kysely.executeUpdate();
+			transaktio.commit();
+		} catch(Exception e) {
+			if (transaktio != null) transaktio.rollback();
+			System.err.println("listaa(Tuoteryhma):");
+			e.printStackTrace();
+		}
 	}
 
 }

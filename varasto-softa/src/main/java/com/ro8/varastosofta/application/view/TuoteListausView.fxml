@@ -28,10 +28,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="%id" />
-                  <Label text="%productName" GridPane.rowIndex="1" />
-                  <Label text="%number" GridPane.rowIndex="2" />
-                  <Label text="%productGroup" GridPane.rowIndex="3" />
+                  <Label text="%product.id" />
+                  <Label text="%product.productName" GridPane.rowIndex="1" />
+                  <Label text="%product.number" GridPane.rowIndex="2" />
+                  <Label text="%product.productGroup" GridPane.rowIndex="3" />
                   <Label fx:id="idLabel" GridPane.columnIndex="1" />
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -57,7 +57,7 @@
             </GridPane>
          </center>
          <top>
-            <Label text="Tuotetiedot" BorderPane.alignment="CENTER">
+            <Label text="%product.productInfo" BorderPane.alignment="CENTER">
                <padding>
                   <Insets top="10.0" />
                </padding>

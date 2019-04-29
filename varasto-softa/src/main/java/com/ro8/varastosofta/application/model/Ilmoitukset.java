@@ -2,6 +2,8 @@ package com.ro8.varastosofta.application.model;
 
 import java.util.Optional;
 
+import com.ro8.varastosofta.application.Lokaali;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -24,7 +26,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The user was successfully added into the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.succesfulAdd"));
+		//alert.setContentText("The user was successfully added into the database.");
 
 		alert.showAndWait();
 		
@@ -38,7 +41,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The adding of the user into the database was not successful.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.failedAdd"));
+		//alert.setContentText("The adding of the user into the database was not successful.");
 
 		alert.showAndWait();
 		
@@ -54,11 +58,12 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure you want to delete the user?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.deleteUser"));
+		//alert.setContentText("Are you sure you want to delete the user?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -78,7 +83,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The user was successfully removed from the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.user.succesfulRemove"));
+		//alert.setContentText("The user was successfully removed from the database.");
 
 		alert.showAndWait();
 		
@@ -92,7 +98,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The user was not removed from the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.user.failedRemove"));
+			//alert.setContentText("The user was not removed from the database.");
 	
 			alert.showAndWait();
 			
@@ -106,7 +113,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The product was successfully added into the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.product.succesfulAdd"));
+			//alert.setContentText("The product was successfully added into the database.");
 	
 			alert.showAndWait();
 			
@@ -120,7 +128,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The adding of the product into the database was not successful.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.failedAdd"));
+		//alert.setContentText("The adding of the product into the database was not successful.");
 
 		alert.showAndWait();
 		
@@ -134,7 +143,8 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("The product was successfully removed from the database.");
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.succesfulRemove"));
+		//alert.setContentText("The product was successfully removed from the database.");
 
 		alert.showAndWait();
 		
@@ -148,7 +158,8 @@ public class Ilmoitukset {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("The product was not removed from the database.");
+			alert.setContentText(Lokaali.getBundle().getString("alert.product.failedRemove"));
+			//alert.setContentText("The product was not removed from the database.");
 	
 			alert.showAndWait();
 			
@@ -164,11 +175,12 @@ public class Ilmoitukset {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Are you sure you want to delete the product?");
+		alert.setContentText(Lokaali.getBundle().getString("alert.product.deleteProduct"));
+		//alert.setContentText("Are you sure you want to delete the product?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		
-		if (result.get() == ButtonType.OK){
+		if (result.isPresent() && result.get() == ButtonType.OK){
 		    
 			return true;
 			
@@ -177,6 +189,105 @@ public class Ilmoitukset {
 			return false;
 			
 		}
+		
+	}
+	
+	/**
+	 * Varmistetaan uloskirjautuminen
+	 * 
+	 * @return true, jos kirjaudutaan ulos ja false muuten
+	 */
+	public static boolean uloskirjautumisenVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText(Lokaali.getBundle().getString("alert.logout"));
+		//alert.setContentText("Are you sure want to Log Out?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if  (result.isPresent() && result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+			
+	}
+	
+	/**
+	 * Ohjelman lopettamisen varmistus.
+	 * 
+	 * @return true, jos lopetus varmistettu ja false muuten.
+	 */
+	public static boolean ohjelmanLopetusVarmistus() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText(Lokaali.getBundle().getString("alert.exit"));
+		//alert.setContentText("Are you sure want to Exit the program?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.isPresent() && result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+		    
+			return false;
+			
+		}
+			
+	}
+	
+	/**
+	 * Tuotteen lisäyksen varmistus.
+	 * 
+	 * @return true, jos tuote halutaan lisätä ja false muuten.
+	 */
+	public static boolean tuotteenLisaysVarmistus() {
+		
+		/** Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Are you sure you want to add the product?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+			return false;	
+		}	*/
+		
+		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.product.addProduct"));
+	}
+	
+	private static boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(titteli);
+		alert.setHeaderText(headeri);
+		alert.setContentText(contentti);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.isPresent() && result.get() == ButtonType.OK){
+		    
+			return true;
+			
+		} else {
+			return false;	
+		}
+		
 		
 	}
 	

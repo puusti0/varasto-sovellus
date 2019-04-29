@@ -2,10 +2,11 @@ package com.ro8.varastosofta.application.controller;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.IController;
+import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.Main;
 import com.ro8.varastosofta.application.SessionManager;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,12 +38,12 @@ public class VarastotyontekijaViewController implements IController {
 	}
 	
 	/**
-	 * Alustetaan nakyma siten, että keskelle asetetaan TuoteListausView.
+	 * Alustetaan nakyma tyhjana.
 	 */
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		
-		aktivoiNakyma("TuoteListausView.fxml");
+		
 		
 	}
 	
@@ -68,7 +69,12 @@ public class VarastotyontekijaViewController implements IController {
 	 */
 	@FXML
 	protected void kasitteleKirjauduUlos() {
-		this.sessionManager.kirjauduUlos();
+		
+		if(Ilmoitukset.uloskirjautumisenVarmistus()) {
+			
+			this.sessionManager.kirjauduUlos();
+			
+		}
 	}
 	
 	/**
@@ -76,7 +82,13 @@ public class VarastotyontekijaViewController implements IController {
 	 */
 	@FXML
 	public void close() {
-		this.sessionManager.lopeta();
+		
+		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+			
+			this.sessionManager.lopeta();
+			
+		}
+		
 	}
 	
 	/**
@@ -102,6 +114,9 @@ public class VarastotyontekijaViewController implements IController {
 	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
 		this.sessionManager = sessionManager;
 		this.locale = locale;
+		
+		// Asetetaan tuotelistausnäkymä keskelle UI:ta oletuksena.
+		aktivoiNakyma("TuoteListausView.fxml");
 	}
 
 }

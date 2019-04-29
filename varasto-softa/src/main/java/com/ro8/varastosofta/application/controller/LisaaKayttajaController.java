@@ -3,22 +3,17 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
 import com.ro8.varastosofta.application.model.Tooltipit;
-import com.ro8.varastosofta.application.model.Tuote;
-import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 /**
@@ -93,6 +88,7 @@ public class LisaaKayttajaController {
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
 		if (Validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
+			
 			try {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
 				this.kayttajadao.lisaa(uusi);
