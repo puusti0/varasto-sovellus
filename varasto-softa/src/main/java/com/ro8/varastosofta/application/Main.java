@@ -22,6 +22,8 @@ public class Main extends Application {
 		Scene scene = new Scene(new StackPane());
 		Locale localeGB = new Locale("en","GB");
 		Locale localeFI = new Locale("fi", "FI");
+		Locale localeENMY = new Locale("en", "MY");
+		
 		
 		// Asetaan locale talteen muita ohjelmien osia varten.
 		Lokaali.setLocale(localeGB);
