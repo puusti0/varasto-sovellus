@@ -16,15 +16,13 @@ import javafx.scene.Scene;
 public class SessionManager {
 	
 	private Scene scene;
-	private Locale locale;
 	
 	/**
 	 * SessionManager kontrolleri.
 	 * @param scene 
 	 */
-	public SessionManager(Scene scene, Locale locale) {
+	public SessionManager(Scene scene) {
 		this.scene = scene;
-		this.locale = locale;
 	}
 	
 	/**
@@ -70,12 +68,12 @@ public class SessionManager {
 	public void naytaNakyma(String sessionID, String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.locale));
+			loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
 			loader.setLocation(Main.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
 			this.scene.setRoot(nakyma);
 			IController controller = (IController)loader.getController();
-			controller.initSession(this, sessionID, this.locale);
+			controller.initSession(this, sessionID, Lokaali.getLocale());
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			

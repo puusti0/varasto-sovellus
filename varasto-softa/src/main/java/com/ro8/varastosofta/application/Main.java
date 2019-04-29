@@ -25,7 +25,7 @@ public class Main extends Application {
 		// Asetaan locale talteen muita ohjelmien osia varten.
 		Lokaali.setLocale(locale);
 	    
-	    SessionManager sessionManager = new SessionManager(scene, locale);
+	    SessionManager sessionManager = new SessionManager(scene);
 	    sessionManager.valitseNakyma("-1");
 
 	    primaryStage.setScene(scene);

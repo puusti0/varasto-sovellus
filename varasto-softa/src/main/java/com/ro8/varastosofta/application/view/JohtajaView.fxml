@@ -9,19 +9,19 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Tiedosto">
+          <Menu mnemonicParsing="false" text="%navigation.file">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#kasitteleKirjauduUlos" text="KIrjaudu ulos" />
-              <MenuItem mnemonicParsing="false" onAction="#kasitteleLopeta" text="Lopeta" />
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleKirjauduUlos" text="%navigation.logout" />
+              <MenuItem mnemonicParsing="false" onAction="#kasitteleLopeta" text="%navigation.quit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Näkymä">
+          <Menu mnemonicParsing="false" text="%navigation.view">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#kasitteleLisaaKayttaja" text="Lisää käyttäjä" />
-                  <MenuItem mnemonicParsing="false" onAction="#kasitteleTuoteryhmat" text="Tuoteryhmät" />
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleLisaaKayttaja" text="%navigation.addUser" />
+                  <MenuItem mnemonicParsing="false" onAction="#kasitteleTuoteryhmat" text="%navigation.productGroups" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Opastus" />
+          <Menu mnemonicParsing="false" text="%navigation.help" />
         </menus>
       </MenuBar>
    </top>
