@@ -143,9 +143,9 @@ public class KirjauduViewController implements IController {
 		
 		if (sessionId == null) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Erhe Ilmoitus");
-			alert.setHeaderText("Annetuissa tiedoissa virheitä");
-			alert.setContentText("Tarkista, että käyttäjätunnus ja salasana ovat oikein");
+			alert.setTitle("Error in Input");
+			alert.setHeaderText(null);
+			alert.setContentText("Please, check that the username and the password are correct.");
 			alert.showAndWait();
 		}
 		

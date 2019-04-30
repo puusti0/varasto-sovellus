@@ -77,7 +77,6 @@ public class LisaaTuoteController implements IPopupController {
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			this.tuoteryhmaComboBox.getItems().add(tuoteryhma.getNimi());
 		}
-		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
 		
 		lisaaTooltipitKomponentteihin();
 		
@@ -108,11 +107,11 @@ public class LisaaTuoteController implements IPopupController {
 
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Erhe Ilmoitus");
-			alert.setHeaderText("Annetuissa tiedoissa virheitä");
-			alert.setContentText("Tarkista, että yksikään kenttä ei ole tyhjä."
-					+ "\nId-kentässä ja Lkm-kentässä on vain numeroita."
-					+ "\nNimi-kentän teksti on korkeintaan 20 merkkiä pitkä");
+			alert.setTitle("Error alert");
+			alert.setHeaderText(null);
+			alert.setContentText("Please check that none of the fields are empty."
+					+ "\nId-field and number-field contain only numbers."
+					+ "\nName-fied can be at most 20 characters long.");
 
 			alert.showAndWait();
 		}	
@@ -151,10 +150,10 @@ public class LisaaTuoteController implements IPopupController {
 			} else {
 				
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Erhe Ilmoitus");
-				alert.setHeaderText("Annetuissa tiedoissa virheitä");
-				alert.setContentText("Tarkista, että Id-kenttä ei ole tyhjä."
-						+ "\nId-kentässä on vain numeroita.");
+				alert.setTitle("Error Alert");
+				alert.setHeaderText(null);
+				alert.setContentText("Please, check that the id-field is not empty."
+						+ "\nId-field contains only numbers.");
 
 				alert.showAndWait();
 				
@@ -172,7 +171,7 @@ public class LisaaTuoteController implements IPopupController {
 		this.idTextField.setText("");
 		this.nimiTextField.setText("");
 		this.lkmTextField.setText("");
-		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");
+		this.tuoteryhmaComboBox.getSelectionModel().select("Choose");
 	}
 
 	@Override
@@ -181,7 +180,7 @@ public class LisaaTuoteController implements IPopupController {
 		this.idTextField.setText(tuoteX.getId() + "");
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
-		this.tuoteryhmaComboBox.getSelectionModel().select("Valitse");			
+		this.tuoteryhmaComboBox.getSelectionModel().select("Choose");			
 	}
 	
 	/**
