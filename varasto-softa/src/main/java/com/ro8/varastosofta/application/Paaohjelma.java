@@ -2,6 +2,7 @@ package com.ro8.varastosofta.application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -21,6 +22,8 @@ public class Paaohjelma extends Application {
 		Scene scene = new Scene(new StackPane());
 	    Istunto istunto = new Istunto(scene);
 	    istunto.valitseNakyma();
+	    primaryStage.getIcons().add(new Image("/Kuvat/Logo.PNG"));
+	    primaryStage.setTitle("Procu");
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
 	}

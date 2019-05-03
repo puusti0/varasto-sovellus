@@ -17,6 +17,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 
 /**
@@ -37,6 +39,8 @@ public class KirjauduViewController implements INakymaController {
 	private Button tyhjennaButton;
 	@FXML 
 	private Button lopetaButton;
+	@FXML
+	private ImageView nimiImageView;
 	
 	public KirjauduViewController(Istunto istunto) {
 		this.kayttajadao = new KayttajaDao();
@@ -136,6 +140,8 @@ public class KirjauduViewController implements INakymaController {
 	@Override
 	public void initSession(Istunto sessionManager, String sessionID) {
 		//this.sessionManager = sessionManager;
+
+		this.nimiImageView.setImage(new Image("/Kuvat/Nimi.PNG"));
 	}
 	
 	/**
