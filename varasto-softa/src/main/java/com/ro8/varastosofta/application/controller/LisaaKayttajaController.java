@@ -3,6 +3,8 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
+import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
@@ -11,6 +13,7 @@ import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
+import com.ro8.varastosofta.interfaces.IController;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -22,7 +25,7 @@ import javafx.scene.control.Button;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class LisaaKayttajaController {
+public class LisaaKayttajaController implements IController {
 	
 	@FXML
 	private TextField kayttajatunnusTextField;
@@ -44,11 +47,14 @@ public class LisaaKayttajaController {
 	private Dao roolidao;
 	private List<Rooli> roolit;
 	private HashMap<String, Rooli> rooliryhmat;
+	private ResourceBundle kaannokset;
+	private Ilmoitukset ilmoitukset;
 	
 	/**
 	 * Käyttäjänlisäys lomakkeen konstruktori.
 	 */
 	public LisaaKayttajaController() {
+		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
 		this.rooliryhmat = new HashMap<String, Rooli>();
@@ -92,16 +98,12 @@ public class LisaaKayttajaController {
 			try {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
 				this.kayttajadao.lisaa(uusi);
-				
-				Ilmoitukset.kayttajaLisattyOnnistuneestiIlmo();
-				
+				this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulAdd"));
 			} catch (SQLException e1) {
-				
 				e1.printStackTrace();
 			}
 		} else {
-			Ilmoitukset.kayttajaLisaysEiOnnistunutIlmo();
-
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedAdd"));
 		}
 			
 		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
@@ -132,21 +134,13 @@ public class LisaaKayttajaController {
 	 */
 	@FXML
 	private void poistaButtonPainettu() {
-		
-		if(Ilmoitukset.kayttajanPoistonVarmistus()) {
-			
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.user.deleteUser"))) {
 			//TODO: tähän käyttäjän poistamisen toiminnallisuus.
-			
-			Ilmoitukset.kayttajaPoistettuOnnistuneesti();
-			
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.succesfulRemove"));		
 		} else {
-			
 			//TODO: ja tähän myös käyttäjän poistamisen toiminnallisuus.
-			Ilmoitukset.kayttajaPoistettuEiOnnistunut();
-			
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedRemove"));	
 		}
-		
-		
 	}
 	
 	/**
@@ -162,6 +156,11 @@ public class LisaaKayttajaController {
 		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
 		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
 		
+	}
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		this.kaannokset = kaannokset;
 	}
 	
 	

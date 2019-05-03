@@ -40,7 +40,7 @@ public class Popup {
 	public void avaa(String view, int leveys, int korkeus, Object objekti) {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
-		loader.setLocation(Main.class.getResource("view/" + view));
+		loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 		try {
 			this.root = (Parent)loader.load();
 			IPopupController controller = loader.<IPopupController>getController();

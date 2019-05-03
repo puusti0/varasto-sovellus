@@ -1,6 +1,5 @@
 package com.ro8.varastosofta.application;
-	
-import java.util.Locale;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -12,7 +11,7 @@ import javafx.stage.Stage;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class Main extends Application {
+public class Paaohjelma extends Application {
 	
 	/**
 	 * Näytetään käyttöliittymä.
@@ -20,51 +19,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Scene scene = new Scene(new StackPane());
-		Locale localeGB = new Locale("en","GB");
-		Locale localeFI = new Locale("fi", "FI");
-		Locale localeENMY = new Locale("en", "MY");
-		
-		
-		// Asetaan locale talteen muita ohjelmien osia varten.
-		Lokaali.setLocale(localeGB);
-	    
-	    SessionManager sessionManager = new SessionManager(scene);
-	    sessionManager.valitseNakyma("-1");
-
+	    Istunto istunto = new Istunto(scene);
+	    istunto.valitseNakyma();
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
 	}
 
 	/**
 	 * Käynnistetään JavaFX sovellus.
-	 * @param args argumentit
+	 * @param args komentorivin argumentit
 	 */
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

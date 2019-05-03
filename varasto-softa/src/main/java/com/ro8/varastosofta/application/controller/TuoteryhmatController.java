@@ -2,11 +2,15 @@ package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.components.HBoxWithButton;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
+import com.ro8.varastosofta.interfaces.IController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +26,7 @@ import javafx.scene.control.TextField;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuoteryhmatController {
+public class TuoteryhmatController  implements IController {
 	
 	@FXML
 	private Button lisaaButton;
@@ -33,11 +37,13 @@ public class TuoteryhmatController {
 	
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	private TuoteDao tuotedao;
-	ObservableList<HBoxWithButton> listItems = FXCollections.observableArrayList();  
+	ObservableList<HBoxWithButton> listItems = FXCollections.observableArrayList(); 
+	private ResourceBundle kaannokset;
 	
 	public TuoteryhmatController() {
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuotedao = new TuoteDao();
+		
 	}
 	
 	/**
@@ -109,6 +115,12 @@ public class TuoteryhmatController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		this.kaannokset = kaannokset;
+		
 	}
 
 }
