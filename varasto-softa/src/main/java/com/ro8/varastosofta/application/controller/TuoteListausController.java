@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
+
+import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -12,6 +15,8 @@ import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
+import com.ro8.varastosofta.interfaces.IController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,7 +34,7 @@ import javafx.scene.control.TableView;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuoteListausController {
+public class TuoteListausController implements IController {
 	
 	@FXML
 	private Accordion tuotelistausAccordion;
@@ -49,6 +54,7 @@ public class TuoteListausController {
 	
 	private List<Tuoteryhma> ryhmat;
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
+	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuotelistauksen konstruktori.
@@ -212,6 +218,12 @@ public class TuoteListausController {
 	 */
 	public void lisaaTooltipitKomponentteihin() {
 		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
+	}
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		this.kaannokset = kaannokset;
+		
 	}
 	
 }

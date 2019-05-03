@@ -21,7 +21,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus käyttäjän onnistuneesta lisäämisestä tietokantaan.
 	 */
-	public static void kayttajaLisattyOnnistuneestiIlmo() {
+	public void kayttajaLisattyOnnistuneestiIlmo() {
 		
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.succesfulAdd"));
 		
@@ -30,7 +30,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus jos käyttäjän lisääminen tietokantaan ei onnistunut.
 	 */
-	public static void kayttajaLisaysEiOnnistunutIlmo() {
+	public void kayttajaLisaysEiOnnistunutIlmo() {
 		
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedAdd"));
 		
@@ -41,7 +41,7 @@ public class Ilmoitukset {
 	 * 
 	 * @return true, jos käyttäjä halutaan poistaa ja false muuten.
 	 */
-	public static boolean kayttajanPoistonVarmistus() {
+	public boolean kayttajanPoistonVarmistus() {
 		
 		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.user.deleteUser"));
 		
@@ -50,7 +50,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus käyttäjän onnistuneesta tietokannasta poistosta.
 	 */
-	public static void kayttajaPoistettuOnnistuneesti() {
+	public void kayttajaPoistettuOnnistuneesti() {
 		
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.succesfulRemove"));
 		
@@ -59,7 +59,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus jos käyttäjää ei poistettu tietokannasta.
 	 */
-	public static void kayttajaPoistettuEiOnnistunut() {
+	public void kayttajaPoistettuEiOnnistunut() {
 			
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedRemove"));
 		
@@ -68,7 +68,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus tuotteen onnistuneesta lisäämisestä tietokantaan.
 	 */
-	public static void tuoteLisattyOnnistuneestiIlmo() {
+	public void tuoteLisattyOnnistuneestiIlmo() {
 			
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.product.succesfulAdd"));
 		
@@ -77,7 +77,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus jos tuotteen lisääminen tietokantaan ei onnistunut.
 	 */
-	public static void tuotteenLisaysEiOnnistunutIlmo() {
+	public void tuotteenLisaysEiOnnistunutIlmo() {
 		
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.product.failedAdd"));
 		
@@ -86,7 +86,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus tuotteen onnistuneesta tietokannasta poistosta.
 	 */
-	public static void tuotePoistettuOnnistuneesti() {
+	public void tuotePoistettuOnnistuneesti() {
 		
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.product.succesfulRemove"));
 		
@@ -95,7 +95,7 @@ public class Ilmoitukset {
 	/**
 	 * Ilmoitus jos tuotetta ei poistettu tietokannasta.
 	 */
-	public static void tuotePoistettuEiOnnistunut() {
+	public void tuotePoistettuEiOnnistunut() {
 			
 		informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.product.failedRemove"));
 		
@@ -106,7 +106,7 @@ public class Ilmoitukset {
 	 * 
 	 * @return true, jos tuote halutaan poistaa ja false muuten.
 	 */
-	public static boolean tuotteenPoistonVarmistus() {
+	public boolean tuotteenPoistonVarmistus() {
 		
 		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.product.deleteProduct"));
 		
@@ -117,7 +117,7 @@ public class Ilmoitukset {
 	 * 
 	 * @return true, jos kirjaudutaan ulos ja false muuten
 	 */
-	public static boolean uloskirjautumisenVarmistus() {
+	public boolean uloskirjautumisenVarmistus() {
 		
 		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.logout"));
 			
@@ -128,18 +128,19 @@ public class Ilmoitukset {
 	 * 
 	 * @return true, jos lopetus varmistettu ja false muuten.
 	 */
-	public static boolean ohjelmanLopetusVarmistus() {
+	public boolean ohjelmanLopetusVarmistus() {
 		
 		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.exit"));
 			
 	}
+
 	
 	/**
 	 * Tuotteen lisäyksen varmistus.
 	 * 
 	 * @return true, jos tuote halutaan lisätä ja false muuten.
 	 */
-	public static boolean tuotteenLisaysVarmistus() {
+	public boolean tuotteenLisaysVarmistus() {
 		
 		return confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.product.addProduct"));
 	}
@@ -152,7 +153,7 @@ public class Ilmoitukset {
 	 * @param contentti, dialogin kuvaava sisältöteksti.
 	 * @return
 	 */
-	private static boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
+	public boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(titteli);
@@ -168,8 +169,6 @@ public class Ilmoitukset {
 		} else {
 			return false;	
 		}
-		
-		
 	}
 	
 	/**
@@ -179,7 +178,7 @@ public class Ilmoitukset {
 	 * @param headeri, dialogin otsake.
 	 * @param contentti, dialogin kuvaava sisältö.
 	 */
-	private static void informaatioAlertti(String titteli, String headeri, String contentti) {
+	public void informaatioAlertti(String titteli, String headeri, String contentti) {
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(titteli);

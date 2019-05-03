@@ -10,7 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.ro8.varastosofta.application.Main;
+import com.ro8.varastosofta.application.Paaohjelma;
 
 /**
  * Testiluokka kirjautumissivulle.

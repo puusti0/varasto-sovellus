@@ -3,8 +3,8 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
-import com.ro8.varastosofta.application.IController;
-import com.ro8.varastosofta.application.SessionManager;
+import com.ro8.varastosofta.interfaces.INakymaController;
+import com.ro8.varastosofta.application.Istunto;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
@@ -15,6 +15,7 @@ import com.ro8.varastosofta.database.RooliDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
@@ -24,7 +25,7 @@ import javafx.scene.control.Alert.AlertType;
  * @author Tuukka Mytty
  * @author Janne Valle.
  */
-public class KirjauduViewController implements IController {
+public class KirjauduViewController implements INakymaController {
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -37,16 +38,20 @@ public class KirjauduViewController implements IController {
 	@FXML 
 	private Button lopetaButton;
 	
+	public KirjauduViewController(Istunto istunto) {
+		this.kayttajadao = new KayttajaDao();
+		this.sessionManager = istunto;
+	}
+	
 	private static int sessionID = 1;
-	private SessionManager sessionManager;
-	private Locale locale;
+	private Istunto sessionManager;
 	private Dao<Kayttaja, Integer> kayttajadao;
 	
 	/**
 	 * Kirjautumissivun konstruktori.
 	 */
 	public KirjauduViewController() {
-		this.kayttajadao = new KayttajaDao();
+		
 	}
 	
 	/**
@@ -66,7 +71,8 @@ public class KirjauduViewController implements IController {
 	private void handleKirjaudu() throws SQLException {
 		String sessionID = authorize();
         if (sessionID != null) {
-          this.sessionManager.valitseNakyma(sessionID);
+        	this.sessionManager.setSessionID(sessionID);
+          this.sessionManager.valitseNakyma();
         }
 	}
 	
@@ -85,11 +91,11 @@ public class KirjauduViewController implements IController {
 	@FXML
 	private void kasitteleLopeta() {
 		
-		if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
+		//if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
 			
 			this.sessionManager.lopeta();
 			
-		}
+		//}
 		
 	}
 	
@@ -128,9 +134,8 @@ public class KirjauduViewController implements IController {
 	 * Alustetaan kirjautumissivun sessio.
 	 */
 	@Override
-	public void initSession(SessionManager sessionManager, String sessionID, Locale locale) {
-		this.sessionManager = sessionManager;
-		this.locale = locale;
+	public void initSession(Istunto sessionManager, String sessionID) {
+		//this.sessionManager = sessionManager;
 	}
 	
 	/**
@@ -158,6 +163,11 @@ public class KirjauduViewController implements IController {
 		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
 		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
 		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
+		
+	}
+
+	@Override
+	public void setViewMenu(Menu menu) {
 		
 	}
 	
