@@ -20,7 +20,7 @@ public class Istunto {
 	
 	private Scene scene;
 	private INakymaController kontrolleri;
-	private String sessionID;
+	private String istuntoID;
 	private Locale kieli;
 	
 	/**
@@ -29,24 +29,40 @@ public class Istunto {
 	 */
 	public Istunto(Scene scene) {
 		this.scene = scene;
-		this.sessionID = "";
+		this.istuntoID = "";
 		this.kieli = new Locale("en","GB");
 	}	
 	
+	/**
+	 * Palautetaan kielivalinta.
+	 * @return kielivalinta
+	 */
 	public Locale getKieli() {
 		return kieli;
 	}
 
+	/**
+	 * Asetetaan kielivalinta.
+	 * @param kieli kielivalinta
+	 */
 	public void setKieli(Locale kieli) {
 		this.kieli = kieli;
 	}
 	
+	/**
+	 * Palautetaan istunnon ID.
+	 * @return istunnon ID
+	 */
 	public String getSessionID() {
-		return sessionID;
+		return this.istuntoID;
 	}
 
-	public void setSessionID(String sessionID) {
-		this.sessionID = sessionID;
+	/**
+	 * Asetetaan istunnon iD.
+	 * @param istuntoID istunnon IDs
+	 */
+	public void setSessionID(String istuntoID) {
+		this.istuntoID = istuntoID;
 	}
 
 	/**

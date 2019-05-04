@@ -9,11 +9,21 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
+/**
+ * Varastotyöntekijän näkymävalikko.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle.
+ */
 public class VarastotyontekijaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
 	
+	/**
+	 * Varastotyöntekijän kontrolleri.
+	 * @param kontrolleri
+	 */
 	public VarastotyontekijaViewValikko(INakymaController kontrolleri) {
 		this.kontrolleri = (MainViewController)kontrolleri;
 		MenuItem tuote = new MenuItem("Add product");
