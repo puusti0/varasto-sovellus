@@ -8,11 +8,21 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
+/**
+ * Johtajan näkymävalikko.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle.
+ */
 public class JohtajaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
 	
+	/**
+	 * Johtajan näkymävalikon kontrolleri.
+	 * @param kontrolleri
+	 */
 	public JohtajaViewValikko(INakymaController kontrolleri) {
 		this.kontrolleri = (MainViewController)kontrolleri;
 		MenuItem kayttajat = new MenuItem("Users");

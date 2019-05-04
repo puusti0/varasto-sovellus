@@ -2,13 +2,11 @@ package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.Paaohjelma;
 import com.ro8.varastosofta.application.Istunto;
-import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.UTF8Control;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.interfaces.IMenuValikkoTehdas;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,25 +49,38 @@ public class MainViewController implements INakymaController {
 		return valikkotehdas;
 	}
 
-	
+	/**
+	 * Asetetaan käyttäjän näkymävalikko.
+	 * @param menu näkymävalikko
+	 */
 	public void setViewMenu(Menu menu) {
 		this.viewMenu.getItems().addAll(menu.getItems());
 	}
 
+	/**
+	 * Alustetaan istunto.
+	 * @param istunto istunto
+	 * @param istuntoID istunnon ID
+	 */
 	@Override
-	public void initSession(Istunto sessionManager, String sessionID) {
+	public void initSession(Istunto istunto, String istuntoID) {
 		this.viewMenu.getItems().addAll(this.getValikkoTehdas().luoViewValikko(this).getMenu().getItems());
-		this.sessionManager = sessionManager;
-		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", sessionManager.getKieli(), new UTF8Control());
+		this.sessionManager = istunto;
+		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", istunto.getKieli(), new UTF8Control());
 		aktivoiNakyma("TervehdysView.fxml");
 	}
 	
-	
+	/**
+	 * Käsitellään valikon "Suomi"-valinta.
+	 */
 	@FXML
 	protected void kasitteleSuomi() {
 		this.sessionManager.valitseKieli("Suomi");
 	}
 	
+	/**
+	 * Käsitellään valikon "English"valinta.
+	 */
 	@FXML
 	protected void kasitteleEnglish() {
 		this.sessionManager.valitseKieli("English");
