@@ -93,7 +93,6 @@ public class TuoteryhmatController  implements IController {
 			tuoteryhmaList.setItems(listItems);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -112,7 +111,6 @@ public class TuoteryhmatController  implements IController {
 			
 			listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi("Poistaa", tr)));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

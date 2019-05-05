@@ -1,5 +1,7 @@
 package com.ro8.varastosofta.application.model;
 
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.controller.MainViewController;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IViewValikko;
@@ -19,16 +21,18 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
+	private ResourceBundle kaannokset;
 	
 	/**
 	 * Varastotyöntekijän kontrolleri.
 	 * @param kontrolleri
 	 */
-	public VarastotyontekijaViewValikko(INakymaController kontrolleri) {
+	public VarastotyontekijaViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
 		this.kontrolleri = (MainViewController)kontrolleri;
-		MenuItem tuote = new MenuItem("Add product");
+		this.kaannokset = kaannokset;
+		MenuItem tuote = new MenuItem(this.kaannokset.getString("navigation.addProduct"));
 		tuote.setOnAction(tuoteLisays);
-		MenuItem tuotteet = new MenuItem("Products");
+		MenuItem tuotteet = new MenuItem(this.kaannokset.getString("navigation.productList"));  
 		tuotteet.setOnAction(tuotelistaus);
 		this.valikko = new Menu();
 		this.valikko.getItems().add(tuote);
@@ -48,7 +52,7 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
 		@Override 
         public void handle(ActionEvent e) 
         { 
-			getKontrolleri().aktivoiNakyma("LisaaTuoteView.fxml");
+			getKontrolleri().aktivoiNakyma("LisaaTuote.fxml");
         } 
     };
     
@@ -56,7 +60,7 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
     	@Override 
         public void handle(ActionEvent e) 
         { 
-        	getKontrolleri().aktivoiNakyma("TuoteListausView.fxml");
+        	getKontrolleri().aktivoiNakyma("TuoteListaus.fxml");
         } 
     };
 

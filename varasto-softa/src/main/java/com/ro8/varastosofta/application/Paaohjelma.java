@@ -19,7 +19,7 @@ public class Paaohjelma extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		Scene scene = new Scene(new StackPane());
+		Scene scene = new Scene(new StackPane()); 
 	    Istunto istunto = new Istunto(scene);
 	    istunto.valitseNakyma();
 	    primaryStage.getIcons().add(new Image("/Kuvat/Logo.PNG"));

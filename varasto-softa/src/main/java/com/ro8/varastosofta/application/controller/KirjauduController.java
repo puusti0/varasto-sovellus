@@ -2,16 +2,12 @@ package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.application.Istunto;
-import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
-import com.ro8.varastosofta.application.model.Rooli;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
-import com.ro8.varastosofta.database.RooliDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -27,7 +23,7 @@ import javafx.scene.control.Alert.AlertType;
  * @author Tuukka Mytty
  * @author Janne Valle.
  */
-public class KirjauduViewController implements INakymaController {
+public class KirjauduController implements INakymaController {
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -36,13 +32,11 @@ public class KirjauduViewController implements INakymaController {
 	@FXML
 	private Button kirjauduButton;
 	@FXML 
-	private Button tyhjennaButton;
-	@FXML 
 	private Button lopetaButton;
 	@FXML
 	private ImageView nimiImageView;
 	
-	public KirjauduViewController(Istunto istunto) {
+	public KirjauduController(Istunto istunto) {
 		this.kayttajadao = new KayttajaDao();
 		this.sessionManager = istunto;
 	}
@@ -54,7 +48,7 @@ public class KirjauduViewController implements INakymaController {
 	/**
 	 * Kirjautumissivun konstruktori.
 	 */
-	public KirjauduViewController() {
+	public KirjauduController() {
 		
 	}
 	
@@ -78,15 +72,6 @@ public class KirjauduViewController implements INakymaController {
         	this.sessionManager.setSessionID(sessionID);
           this.sessionManager.valitseNakyma();
         }
-	}
-	
-	/**
-	 * Tyhjennä napin painallus asettaa tunnus ja salasana kentät tyhjiksi.
-	 */
-	@FXML
-	private void tyhjennaNappiaPainettu() {
-		this.tunnusTextField.setText("");
-		this.salasanaTextField.setText("");
 	}
 	
 	/**
@@ -162,14 +147,11 @@ public class KirjauduViewController implements INakymaController {
 		
 	}
 	
-	public void lisaaTooltipitKomponentteihin() {
-		
+	public void lisaaTooltipitKomponentteihin() {	
 		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
 		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
 		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
-		Tooltipit.asetaTooltip(this.tyhjennaButton, "Press to clear the input fields");
-		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");
-		
+		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");	
 	}
 
 	@Override

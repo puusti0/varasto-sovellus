@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
@@ -103,7 +102,7 @@ public class LisaaKayttajaController implements IController {
 				e1.printStackTrace();
 			}
 		} else {
-			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedAdd"));
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.failedAdd"));
 		}
 			
 		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
@@ -134,12 +133,12 @@ public class LisaaKayttajaController implements IController {
 	 */
 	@FXML
 	private void poistaButtonPainettu() {
-		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.user.deleteUser"))) {
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, this.kaannokset.getString("alert.user.deleteUser"))) {
 			//TODO: tähän käyttäjän poistamisen toiminnallisuus.
-			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.succesfulRemove"));		
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulRemove"));		
 		} else {
 			//TODO: ja tähän myös käyttäjän poistamisen toiminnallisuus.
-			this.ilmoitukset.informaatioAlertti("Information Dialog", null, Lokaali.getBundle().getString("alert.user.failedRemove"));	
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.failedRemove"));	
 		}
 	}
 	

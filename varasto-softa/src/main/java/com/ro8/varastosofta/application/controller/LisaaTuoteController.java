@@ -1,7 +1,6 @@
 package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.IPopupController;
-import com.ro8.varastosofta.application.Lokaali;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
@@ -128,7 +127,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 		String id = this.idTextField.getText().toString();
 		String numero = this.idTextField.getText().toString();
 		
-		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, Lokaali.getBundle().getString("alert.product.deleteProduct"))) {
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, this.kaannokset.getString("alert.product.deleteProduct"))) {
 			
 			if(Validaattori.onkoPoistettavaIdValidi(id) && Validaattori.onkoNumero(numero)) {
 				try {

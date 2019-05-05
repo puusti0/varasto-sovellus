@@ -1,5 +1,7 @@
 package com.ro8.varastosofta.application.model;
 
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.controller.MainViewController;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IViewValikko;
@@ -18,16 +20,18 @@ public class JohtajaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
+	private ResourceBundle kaannokset;
 	
 	/**
 	 * Johtajan näkymävalikon kontrolleri.
 	 * @param kontrolleri
 	 */
-	public JohtajaViewValikko(INakymaController kontrolleri) {
+	public JohtajaViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
 		this.kontrolleri = (MainViewController)kontrolleri;
-		MenuItem kayttajat = new MenuItem("Users");
+		this.kaannokset = kaannokset;
+		MenuItem kayttajat = new MenuItem(this.kaannokset.getString("navigation.users"));
 		kayttajat.setOnAction(kayttajaNakyma);
-		MenuItem tuoteryhmat = new MenuItem("Categories");
+		MenuItem tuoteryhmat = new MenuItem(this.kaannokset.getString("navigation.categories"));
 		tuoteryhmat.setOnAction(tuoteryhmaNakyma);
 		this.valikko = new Menu();
 		this.valikko.getItems().add(kayttajat);
@@ -55,7 +59,7 @@ public class JohtajaViewValikko implements IViewValikko {
     	@Override 
         public void handle(ActionEvent e) 
         { 
-        	getKontrolleri().aktivoiNakyma("TuoteryhmatView.fxml");
+        	getKontrolleri().aktivoiNakyma("Tuoteryhmat.fxml");
         } 
     };
 	

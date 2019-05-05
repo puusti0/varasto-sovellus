@@ -1,5 +1,7 @@
 package com.ro8.varastosofta.application;
 
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.application.model.JohtajaViewValikko;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IMenuValikkoTehdas;
@@ -18,8 +20,8 @@ public class JohtajaMenuValikkoTehdas implements IMenuValikkoTehdas {
 	 * @param kontrolleri valikkoa käyttävän näkymän kontrolleri
 	 */
 	@Override
-	public IViewValikko luoViewValikko(INakymaController kontrolleri) {
-		return new JohtajaViewValikko(kontrolleri);
+	public IViewValikko luoViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
+		return new JohtajaViewValikko(kontrolleri, kaannokset);
 	}
 
 }

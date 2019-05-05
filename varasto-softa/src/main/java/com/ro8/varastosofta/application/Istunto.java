@@ -1,6 +1,6 @@
 package com.ro8.varastosofta.application;
 
-import com.ro8.varastosofta.application.controller.KirjauduViewController;
+import com.ro8.varastosofta.application.controller.KirjauduController;
 import com.ro8.varastosofta.application.controller.MainViewController;
 import com.ro8.varastosofta.interfaces.INakymaController;
 import java.util.Locale;
@@ -82,8 +82,8 @@ public class Istunto {
 				naytaNakyma(this.getSessionID(), "MainView.fxml", 2);
 				break;
 			default:
-				this.kontrolleri = new KirjauduViewController(this);
-				naytaNakyma("0", "KirjauduView.fxml", -1);
+				this.kontrolleri = new KirjauduController(this);
+				naytaNakyma("0", "Kirjaudu.fxml", -1);
 		}
 	}
 	
@@ -108,6 +108,7 @@ public class Istunto {
 	 * Uloskirjautumisen jälkeen näytetään kirjautumissivu.
 	 */
 	public void kirjauduUlos() {
+		this.istuntoID = "";
 		valitseNakyma();
 	}
 	

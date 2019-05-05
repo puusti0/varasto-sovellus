@@ -34,7 +34,7 @@ import javafx.scene.control.TableView;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuoteListausController implements IController {
+public class TuotelistausController implements IController {
 	
 	@FXML
 	private Accordion tuotelistausAccordion;
@@ -59,7 +59,7 @@ public class TuoteListausController implements IController {
 	/**
 	 * Tuotelistauksen konstruktori.
 	 */
-	public TuoteListausController() {
+	public TuotelistausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuoteryhmat = new HashMap<String, Tuoteryhma>();
@@ -134,7 +134,7 @@ public class TuoteListausController implements IController {
 			Tuote tuote = new Tuote(id, nimi, lkm);
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
-			muokkausPopup.avaa("LisaaTuoteView.fxml", 300, 250, tuote);
+			muokkausPopup.avaa("LisaaTuote.fxml", 300, 250, tuote);
 			
 			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 			initialize();

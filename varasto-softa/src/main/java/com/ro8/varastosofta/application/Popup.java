@@ -1,7 +1,12 @@
 package com.ro8.varastosofta.application;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
+import com.ro8.varastosofta.application.model.Ilmoitukset;
+import com.ro8.varastosofta.interfaces.IController;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,10 +19,12 @@ import javafx.stage.Stage;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class Popup {
+public class Popup implements IController{
 	
 	private Stage popupStage;
 	private Parent root;
+	private ResourceBundle kaannokset;
+	private Ilmoitukset ilmoitukset;
 	
 	
 	/**
@@ -25,6 +32,7 @@ public class Popup {
 	 * @param title näytön oikeassa yläkulmassa näkyvä nimi
 	 */
 	public Popup(String title) {
+		this.ilmoitukset = new Ilmoitukset();
 		this.popupStage = new Stage();
 		this.popupStage.initModality(Modality.APPLICATION_MODAL);
 		this.popupStage.setTitle(title);
@@ -39,7 +47,7 @@ public class Popup {
 	 */
 	public void avaa(String view, int leveys, int korkeus, Object objekti) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
+		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));
 		loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 		try {
 			this.root = (Parent)loader.load();
@@ -60,6 +68,11 @@ public class Popup {
 	 */
 	public void sulje() {
 		this.popupStage.close();
+	}
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		this.kaannokset = kaannokset;
 	}
 
 }
