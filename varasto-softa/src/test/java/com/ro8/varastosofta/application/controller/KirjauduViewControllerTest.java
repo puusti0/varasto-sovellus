@@ -1,6 +1,10 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
@@ -10,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.ro8.varastosofta.application.Paaohjelma;
+import com.ro8.varastosofta.application.UTF8Control;
 
 /**
  * Testiluokka kirjautumissivulle.
@@ -18,15 +23,23 @@ import com.ro8.varastosofta.application.Paaohjelma;
 class KirjauduViewControllerTest extends ApplicationTest {
 	
 	private Parent kirjauduNode;
+	private ResourceBundle kaannokset;
 	
 	/**
 	 * Kirjautumissivun lataus testausta varten.
 	 * @param stage - 
 	 * @throws IOException 
 	 */
+	@SuppressWarnings("static-access")
 	@Override
 	public void start(Stage stage) throws IOException {
-		kirjauduNode = FXMLLoader.load(Paaohjelma.class.getResource("view/Kirjaudu.fxml"));
+		//
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setController(new KirjauduController());
+		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));
+		loader.setLocation(Paaohjelma.class.getResource("view/Kirjaudu.fxml"));
+		kirjauduNode = (Parent)loader.load();
 		stage.setScene(new Scene(kirjauduNode));
 		stage.show();
 		stage.toFront();
@@ -35,25 +48,14 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	/**
 	 * Testataan käynnistymisessä alustetut arvot.
 	 */
-	// @Test
+	@Test
 	public void testaaAlkuarvot() {
-		FxAssert.verifyThat("#tunnusLabel", LabeledMatchers.hasText("Käyttäjätunnus:"));
+		FxAssert.verifyThat("#tunnusLabel", LabeledMatchers.hasText("Username"));
 		FxAssert.verifyThat("#tunnusTextField", TextInputControlMatchers.hasText(""));
-		FxAssert.verifyThat("#salasanaLabel", LabeledMatchers.hasText("Salasana:"));
+		FxAssert.verifyThat("#salasanaLabel", LabeledMatchers.hasText("Password"));
 		FxAssert.verifyThat("#salasanaTextField", TextInputControlMatchers.hasText(""));
-		FxAssert.verifyThat("#kirjauduButton", LabeledMatchers.hasText("Kirjaudu"));
-		FxAssert.verifyThat("#tyhjennaButton", LabeledMatchers.hasText("Tyhjennä"));
-		FxAssert.verifyThat("#lopetaButton", LabeledMatchers.hasText("Lopeta"));
-	}
-	
-	/**
-	 * Testataan "Tyhjennä" napin toiminnalisuus.
-	 */
-	// @Test
-	public void testaaTyhjennaButton() {
-		rightClickOn("#tyhjennaButton");
-		FxAssert.verifyThat("#tunnusTextField", TextInputControlMatchers.hasText(""));
-		FxAssert.verifyThat("#salasanaTextField", TextInputControlMatchers.hasText(""));
+		FxAssert.verifyThat("#kirjauduButton", LabeledMatchers.hasText("Login"));
+		FxAssert.verifyThat("#lopetaButton", LabeledMatchers.hasText("Quit"));
 	}
 
 }
