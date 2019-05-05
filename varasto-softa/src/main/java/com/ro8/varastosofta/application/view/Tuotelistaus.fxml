@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.4029126213592233" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.TuoteListausController">
+<SplitPane dividerPositions="0.4029126213592233" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ro8.varastosofta.application.controller.TuotelistausController">
    <items>
       <Accordion fx:id="tuotelistausAccordion" />
       <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -29,9 +29,9 @@
                </rowConstraints>
                <children>
                   <Label text="%product.id" />
-                  <Label text="%product.productName" GridPane.rowIndex="1" />
-                  <Label text="%product.number" GridPane.rowIndex="2" />
-                  <Label text="%product.productGroup" GridPane.rowIndex="3" />
+                  <Label text="%product.name" GridPane.rowIndex="1" />
+                  <Label text="%product.count" GridPane.rowIndex="2" />
+                  <Label text="%product.group" GridPane.rowIndex="3" />
                   <Label fx:id="idLabel" GridPane.columnIndex="1" />
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -57,7 +57,7 @@
             </GridPane>
          </center>
          <top>
-            <Label text="%product.productInfo" BorderPane.alignment="CENTER">
+            <Label text="%product.title" BorderPane.alignment="CENTER">
                <padding>
                   <Insets top="10.0" />
                </padding>

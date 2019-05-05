@@ -10,7 +10,6 @@ public class TervehdysViewController implements IController {
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
 		this.kaannokset = kaannokset;
-		
 	}
 
 

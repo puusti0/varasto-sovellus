@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Menu;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -31,6 +33,10 @@ public class MainViewController implements INakymaController {
 	private BorderPane rootPane;
 	@FXML
 	private Menu viewMenu;
+	@FXML
+	private ImageView suomiImageView;
+	@FXML
+	private ImageView englishImageView;
 	
 	/**
 	 * Päänäkymän kontrolleri.
@@ -64,9 +70,11 @@ public class MainViewController implements INakymaController {
 	 */
 	@Override
 	public void initSession(Istunto istunto, String istuntoID) {
-		this.viewMenu.getItems().addAll(this.getValikkoTehdas().luoViewValikko(this).getMenu().getItems());
+		this.suomiImageView.setImage(new Image("/Kuvat/Suomi.png"));
+		this.englishImageView.setImage(new Image("/Kuvat/England.png"));
 		this.sessionManager = istunto;
 		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", istunto.getKieli(), new UTF8Control());
+		this.viewMenu.getItems().addAll(this.getValikkoTehdas().luoViewValikko(this, this.kaannokset).getMenu().getItems());
 		aktivoiNakyma("TervehdysView.fxml");
 	}
 	
@@ -91,7 +99,7 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	protected void kasitteleKirjauduUlos() {
-		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, kaannokset.getString("alert.exit"))) {
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, kaannokset.getString("alert.logout"))) {
 			this.sessionManager.kirjauduUlos();
 		}
 	}
