@@ -1,6 +1,5 @@
 package com.ro8.varastosofta.application.controller;
 
-import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
@@ -10,6 +9,8 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.interfaces.IPopupController;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;

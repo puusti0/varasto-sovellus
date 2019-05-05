@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.interfaces.IPopupController;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

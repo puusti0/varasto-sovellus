@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -16,6 +15,7 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.interfaces.IPopupController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
