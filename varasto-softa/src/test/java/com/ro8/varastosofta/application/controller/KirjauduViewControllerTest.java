@@ -1,7 +1,6 @@
 package com.ro8.varastosofta.application.controller;
 
 import java.io.IOException;
-import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
@@ -25,13 +24,13 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	 * @param stage - 
 	 * @throws IOException 
 	 */
-	/**@Override
+	@Override
 	public void start(Stage stage) throws IOException {
-		kirjauduNode = FXMLLoader.load(Main.class.getResource("view/KirjauduView.fxml"));
+		kirjauduNode = FXMLLoader.load(Paaohjelma.class.getResource("view/Kirjaudu.fxml"));
 		stage.setScene(new Scene(kirjauduNode));
 		stage.show();
 		stage.toFront();
-	}*/
+	}
 	
 	/**
 	 * Testataan käynnistymisessä alustetut arvot.
@@ -53,7 +52,6 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	// @Test
 	public void testaaTyhjennaButton() {
 		rightClickOn("#tyhjennaButton");
-
 		FxAssert.verifyThat("#tunnusTextField", TextInputControlMatchers.hasText(""));
 		FxAssert.verifyThat("#salasanaTextField", TextInputControlMatchers.hasText(""));
 	}
