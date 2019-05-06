@@ -10,7 +10,6 @@ import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.interfaces.IPopupController;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +29,13 @@ import javafx.scene.control.TextField;
  */
 public class LisaaTuoteController implements IPopupController, IController {
 	
+	private Dao<Tuote, Integer> tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Integer> tuoteryhmat;
+	private Ilmoitukset ilmoitukset;
+	private ResourceBundle kaannokset;
+	
 	@FXML
 	private TextField idTextField;
 	@FXML
@@ -44,13 +50,6 @@ public class LisaaTuoteController implements IPopupController, IController {
 	private Button poistaButton;
 	@FXML
 	private Button tyhjennaButton;
-		
-	private Dao<Tuote, Integer> tuotedao;
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	private List<Tuoteryhma> ryhmat;
-	private HashMap<String, Integer> tuoteryhmat;
-	private Ilmoitukset ilmoitukset;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuotteen lisäys konstruktori.

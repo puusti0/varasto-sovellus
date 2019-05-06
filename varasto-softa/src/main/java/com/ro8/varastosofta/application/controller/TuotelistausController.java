@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -15,8 +14,6 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
-import com.ro8.varastosofta.interfaces.IPopupController;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,6 +33,11 @@ import javafx.scene.control.TableView;
  */
 public class TuotelistausController implements IController {
 	
+	private TuoteDao tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Tuoteryhma> tuoteryhmat;
+	
 	@FXML
 	private Accordion tuotelistausAccordion;
 	@FXML
@@ -48,13 +50,6 @@ public class TuotelistausController implements IController {
 	private Label tuoteryhmaLabel;
 	@FXML
 	private Button muokkaaButton;
-	
-	private TuoteDao tuotedao;
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	
-	private List<Tuoteryhma> ryhmat;
-	private HashMap<String, Tuoteryhma> tuoteryhmat;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuotelistauksen konstruktori.
@@ -222,7 +217,6 @@ public class TuotelistausController implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
 		
 	}
 	

@@ -42,8 +42,8 @@ public class LisaaKayttajaController implements IController {
 	private Button tyhjennaButton;
 	
 	
-	private Dao kayttajadao;
-	private Dao roolidao;
+	private Dao<Kayttaja, Integer> kayttajadao;
+	private Dao<Rooli, Integer> roolidao;
 	private List<Rooli> roolit;
 	private HashMap<String, Rooli> rooliryhmat;
 	private ResourceBundle kaannokset;
@@ -124,8 +124,7 @@ public class LisaaKayttajaController implements IController {
 	@FXML
 	private void tyhjennaButtonPainettu() {
 		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
-		this.rooliComboBox.getSelectionModel().select("Valitse");
-
+		this.rooliComboBox.getSelectionModel().select(this.kaannokset.getString("button.choose"));
 	}
 	
 	/**
@@ -134,10 +133,8 @@ public class LisaaKayttajaController implements IController {
 	@FXML
 	private void poistaButtonPainettu() {
 		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, this.kaannokset.getString("alert.user.deleteUser"))) {
-			//TODO: tähän käyttäjän poistamisen toiminnallisuus.
 			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulRemove"));		
 		} else {
-			//TODO: ja tähän myös käyttäjän poistamisen toiminnallisuus.
 			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.failedRemove"));	
 		}
 	}
@@ -146,7 +143,6 @@ public class LisaaKayttajaController implements IController {
 	 * Lisää Tooltipit komponennteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin(){
-		
 		Tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
 		Tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
 		Tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
@@ -154,7 +150,6 @@ public class LisaaKayttajaController implements IController {
 		Tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
 		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
 		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
-		
 	}
 
 	@Override

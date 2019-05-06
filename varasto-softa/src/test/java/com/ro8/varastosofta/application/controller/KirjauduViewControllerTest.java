@@ -3,7 +3,6 @@ package com.ro8.varastosofta.application.controller;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -14,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.ro8.varastosofta.application.Paaohjelma;
-import com.ro8.varastosofta.application.UTF8Control;
 
 /**
  * Testiluokka kirjautumissivulle.
@@ -23,18 +21,14 @@ import com.ro8.varastosofta.application.UTF8Control;
 class KirjauduViewControllerTest extends ApplicationTest {
 	
 	private Parent kirjauduNode;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Kirjautumissivun lataus testausta varten.
 	 * @param stage - 
 	 * @throws IOException 
 	 */
-	@SuppressWarnings("static-access")
 	@Override
 	public void start(Stage stage) throws IOException {
-		//
-		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setController(new KirjauduController());
 		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));

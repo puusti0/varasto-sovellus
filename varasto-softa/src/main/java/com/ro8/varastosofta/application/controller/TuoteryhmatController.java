@@ -3,14 +3,12 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.components.HBoxWithButton;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +26,11 @@ import javafx.scene.control.TextField;
  */
 public class TuoteryhmatController  implements IController {
 	
+	private ResourceBundle kaannokset;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private TuoteDao tuotedao;
+	ObservableList<HBoxWithButton> listItems = FXCollections.observableArrayList(); 
+	
 	@FXML
 	private Button lisaaButton;
 	@FXML
@@ -35,15 +38,12 @@ public class TuoteryhmatController  implements IController {
 	@FXML
 	private TextField nimiTextField;
 	
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	private TuoteDao tuotedao;
-	ObservableList<HBoxWithButton> listItems = FXCollections.observableArrayList(); 
-	private ResourceBundle kaannokset;
-	
+	/**
+	 * Tuoteryhmat kontrolleri.
+	 */
 	public TuoteryhmatController() {
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuotedao = new TuoteDao();
-		
 	}
 	
 	/**
@@ -58,31 +58,23 @@ public class TuoteryhmatController  implements IController {
 		removebutton.setOnAction(new EventHandler<ActionEvent>() {
 	      @Override 
 	      public void handle(ActionEvent event) {
-	    	System.out.println(buttontext);
-	        System.out.println(buttontext +  " valinta "+ tuoteryhma.getId());
 	        try {
 				tuotedao.poista(tuoteryhma);
 				tuoteryhmadao.poista(tuoteryhma.getId());
 				int index = tuoteryhmaList.getSelectionModel().getSelectedIndex();
-				System.out.println("Indeksi " + index);
 				listItems.remove(index);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        
-	        /**if (selectedIdx != -1) {
-	          String itemToRemove = tuoteryhmaList.getSelectionModel().getSelectedItem();
-	          final int newSelectedIdx = (selectedIdx == tuoteryhmaList.getItems().size() - 1) ? selectedIdx - 1 : selectedIdx;
-	          tuoteryhmaList.getItems().remove(selectedIdx);
-	          tuoteryhmaList.getSelectionModel().select(newSelectedIdx);
-	        }*/
 	      }
-	});
-	return removebutton;
+		});
+		return removebutton;
 	}
 	
 	
+	/**
+	 * Alustetaan tuoteryhmä näkymän JavaFX komponentit.
+	 */
 	@FXML
 	private void initialize() {
 		try {
@@ -91,7 +83,6 @@ public class TuoteryhmatController  implements IController {
 				listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi("Poistaa", tr)));
 			}
 			tuoteryhmaList.setItems(listItems);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -108,7 +99,6 @@ public class TuoteryhmatController  implements IController {
 		tr.setNimi(tuoteryhma);
 		try {
 			this.tuoteryhmadao.lisaa(tr);
-			
 			listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi("Poistaa", tr)));
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,7 +108,6 @@ public class TuoteryhmatController  implements IController {
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
 		this.kaannokset = kaannokset;
-		
 	}
 
 }
