@@ -96,7 +96,7 @@ public class Istunto {
 				this.setKieli(new Locale("fi", "FI"));
 				break;
 			case "Malesia":
-				this.setKieli(new Locale("fi", "FI"));
+				this.setKieli(new Locale("zsm", "MY"));
 				break;
 			default:
 				this.setKieli(new Locale("en","GB"));
@@ -126,7 +126,7 @@ public class Istunto {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this.kontrolleri);
-			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.kieli));
+			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.kieli, new UTF8Control()));
 			loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
 			this.kontrolleri.initSession(this, sessionID);
