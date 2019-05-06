@@ -3,11 +3,7 @@ package com.ro8.varastosofta.application;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.ro8.varastosofta.application.model.Ilmoitukset;
-import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.interfaces.IPopupController;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,20 +16,15 @@ import javafx.stage.Stage;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class Popup implements IController{
+public class Popup {
 	
 	private Stage popupStage;
-	private Parent root;
-	private ResourceBundle kaannokset;
-	private Ilmoitukset ilmoitukset;
-	
 	
 	/**
 	 * Popup konstruktori.
 	 * @param title näytön oikeassa yläkulmassa näkyvä nimi
 	 */
 	public Popup(String title) {
-		this.ilmoitukset = new Ilmoitukset();
 		this.popupStage = new Stage();
 		this.popupStage.initModality(Modality.APPLICATION_MODAL);
 		this.popupStage.setTitle(title);
@@ -51,7 +42,7 @@ public class Popup implements IController{
 		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));
 		loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 		try {
-			this.root = (Parent)loader.load();
+			Parent root = (Parent)loader.load();
 			IPopupController controller = loader.<IPopupController>getController();
 			controller.setObject(objekti);
 			controller.asetaTeksti();
@@ -69,11 +60,6 @@ public class Popup implements IController{
 	 */
 	public void sulje() {
 		this.popupStage.close();
-	}
-
-	@Override
-	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
 	}
 
 }

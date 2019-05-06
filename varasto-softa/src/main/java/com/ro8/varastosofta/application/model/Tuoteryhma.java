@@ -94,7 +94,7 @@ public class Tuoteryhma {
 	
 	@Override
 	public String toString() {
-		return this.getNimi().toString();
+		return this.getNimi();
 	}
 	
 }
