@@ -110,4 +110,9 @@ public class TuoteryhmatController  implements IController {
 		this.kaannokset = kaannokset;
 	}
 
+	@Override
+	public void init() {
+		
+	}
+
 }

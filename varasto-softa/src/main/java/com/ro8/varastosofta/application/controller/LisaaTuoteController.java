@@ -62,7 +62,6 @@ public class LisaaTuoteController implements IPopupController, IController {
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
@@ -201,6 +200,11 @@ public class LisaaTuoteController implements IPopupController, IController {
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
 		this.kaannokset = kaannokset;
+	}
+
+	@Override
+	public void init() {
+		
 	}
 }
 

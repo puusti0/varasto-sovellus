@@ -156,6 +156,11 @@ public class LisaaKayttajaController implements IController {
 	public void setKaannokset(ResourceBundle kaannokset) {
 		this.kaannokset = kaannokset;
 	}
+
+	@Override
+	public void init() {
+		
+	}
 	
 	
 }

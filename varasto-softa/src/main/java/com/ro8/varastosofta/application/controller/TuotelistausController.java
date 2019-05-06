@@ -73,7 +73,6 @@ public class TuotelistausController implements IController {
 	 */
 	@FXML
 	private void initialize() {
-		
 		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
 				
 		List<TitledPaneWithTableView> listaus = new ArrayList<TitledPaneWithTableView>();
@@ -107,12 +106,10 @@ public class TuotelistausController implements IController {
 					(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
 			listaus.add(taulukko);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
-		
 		lisaaTooltipitKomponentteihin();
 	}
 
@@ -150,12 +147,8 @@ public class TuotelistausController implements IController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,11 +163,8 @@ public class TuotelistausController implements IController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -217,6 +207,11 @@ public class TuotelistausController implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
+		
+	}
+
+	@Override
+	public void init() {
 		
 	}
 	
