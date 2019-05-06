@@ -26,10 +26,10 @@ public class TitledPaneWithTableView extends TitledPane {
 	 * @return taulukko
 	 */
 	public TableView<Tuote> luoTaulukko(ObservableList<Tuote> items) {
-		TableView<Tuote> tuotelistaus = new TableView<Tuote>();
-		TableColumn<Tuote, Integer> tuoteId = new TableColumn<Tuote, Integer>("Id");
-		TableColumn<Tuote, String> tuoteNimi = new TableColumn<Tuote, String>("Nimi");
-		TableColumn<Tuote, Integer> tuoteLkm = new TableColumn<Tuote, Integer>("Lukumäärä");
+		TableColumn<Tuote, Integer> tuoteId = new TableColumn<>("Id");
+		TableColumn<Tuote, String> tuoteNimi = new TableColumn<>("Nimi");
+		TableColumn<Tuote, Integer> tuoteLkm = new TableColumn<>("Lukumäärä");
+		TableView<Tuote> tuotelistaus = new TableView<>();
 		tuotelistaus.getColumns().addAll(tuoteId, tuoteNimi, tuoteLkm);
 		
 		//Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
@@ -39,7 +39,6 @@ public class TitledPaneWithTableView extends TitledPane {
 		
 		tuotelistaus.setItems(items);
 		this.setContent(tuotelistaus);
-		
 		return tuotelistaus;
 	}
 
