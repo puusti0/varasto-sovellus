@@ -75,15 +75,15 @@ public class Istunto {
 		switch(rooli) {
 			case "Varastotyöntekijä":
 				this.kontrolleri = new MainViewController(new VarastotyontekijaMenuValikkoTehdas());
-				naytaNakyma(this.getSessionID(), "MainView.fxml", 1);
+				naytaNakyma(this.getSessionID(), "MainView.fxml");
 				break;
 			case "Johtaja":
 				this.kontrolleri = new MainViewController(new JohtajaMenuValikkoTehdas());
-				naytaNakyma(this.getSessionID(), "MainView.fxml", 2);
+				naytaNakyma(this.getSessionID(), "MainView.fxml");
 				break;
 			default:
 				this.kontrolleri = new KirjauduController(this);
-				naytaNakyma("0", "Kirjaudu.fxml", -1);
+				naytaNakyma("0", "Kirjaudu.fxml");
 		}
 	}
 	
@@ -122,7 +122,7 @@ public class Istunto {
 	/**
 	 * Näkymän näyttämiseen tarvittavat toimenpiteet.
 	 */
-	public void naytaNakyma(String sessionID, String view, int luku) {
+	public void naytaNakyma(String sessionID, String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this.kontrolleri);

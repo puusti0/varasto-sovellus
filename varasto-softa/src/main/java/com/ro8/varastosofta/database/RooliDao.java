@@ -3,16 +3,13 @@ package com.ro8.varastosofta.database;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
 import com.ro8.varastosofta.application.model.Rooli;
-import com.ro8.varastosofta.application.model.Tuoteryhma;
 
 /**
  * Tietokantayhteys Rooli tauluun.

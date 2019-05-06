@@ -1,4 +1,4 @@
-package com.ro8.varastosofta.application;
+package com.ro8.varastosofta.interfaces;
 
 /**
  * Rajapinta popup kontrollerille.

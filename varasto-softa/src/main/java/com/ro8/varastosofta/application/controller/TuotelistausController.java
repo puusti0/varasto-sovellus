@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -16,7 +14,6 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,6 +33,11 @@ import javafx.scene.control.TableView;
  */
 public class TuotelistausController implements IController {
 	
+	private TuoteDao tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Tuoteryhma> tuoteryhmat;
+	
 	@FXML
 	private Accordion tuotelistausAccordion;
 	@FXML
@@ -48,13 +50,6 @@ public class TuotelistausController implements IController {
 	private Label tuoteryhmaLabel;
 	@FXML
 	private Button muokkaaButton;
-	
-	private TuoteDao tuotedao;
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	
-	private List<Tuoteryhma> ryhmat;
-	private HashMap<String, Tuoteryhma> tuoteryhmat;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuotelistauksen konstruktori.
@@ -78,7 +73,6 @@ public class TuotelistausController implements IController {
 	 */
 	@FXML
 	private void initialize() {
-		
 		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
 				
 		List<TitledPaneWithTableView> listaus = new ArrayList<TitledPaneWithTableView>();
@@ -112,12 +106,10 @@ public class TuotelistausController implements IController {
 					(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
 			listaus.add(taulukko);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
-		
 		lisaaTooltipitKomponentteihin();
 	}
 
@@ -155,12 +147,8 @@ public class TuotelistausController implements IController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,11 +163,8 @@ public class TuotelistausController implements IController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -222,7 +207,11 @@ public class TuotelistausController implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
+		
+	}
+
+	@Override
+	public void init() {
 		
 	}
 	

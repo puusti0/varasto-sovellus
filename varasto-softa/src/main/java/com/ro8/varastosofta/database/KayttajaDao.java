@@ -63,19 +63,16 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 
 	@Override
 	public Kayttaja hae(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Kayttaja paivita(Kayttaja objekti) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void poista(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 

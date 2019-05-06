@@ -126,6 +126,7 @@ public class MainViewController implements INakymaController {
 			Parent nakyma = (Parent)loader.load();
 			IController kontrolleri = loader.getController();
 			kontrolleri.setKaannokset(this.kaannokset);
+			kontrolleri.init();
 			this.rootPane.setCenter(nakyma);	
 		} catch(Exception e) {
 			e.printStackTrace();

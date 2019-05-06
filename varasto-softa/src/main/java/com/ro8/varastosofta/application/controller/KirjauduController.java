@@ -2,8 +2,12 @@ package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.application.Istunto;
+import com.ro8.varastosofta.application.UTF8Control;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.database.Dao;
@@ -25,6 +29,12 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class KirjauduController implements INakymaController {
 	
+	private static int sessionID = 1;
+	private Istunto istunto;
+	private Dao<Kayttaja, Integer> kayttajadao;
+	private Ilmoitukset ilmoitukset;
+	private ResourceBundle kaannokset;
+	
 	@FXML
 	private TextField tunnusTextField;
 	@FXML
@@ -37,13 +47,10 @@ public class KirjauduController implements INakymaController {
 	private ImageView nimiImageView;
 	
 	public KirjauduController(Istunto istunto) {
+		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
-		this.sessionManager = istunto;
+		this.istunto = istunto;
 	}
-	
-	private static int sessionID = 1;
-	private Istunto sessionManager;
-	private Dao<Kayttaja, Integer> kayttajadao;
 	
 	/**
 	 * Kirjautumissivun konstruktori.
@@ -53,24 +60,22 @@ public class KirjauduController implements INakymaController {
 	}
 	
 	/**
-	 * Javafx komponenttien alustus.
+	 * Alustetaan kirjautumissivun Javafx komponentit.
 	 */
 	@FXML public void initialize() {
-		
 		lisaaTooltipitKomponentteihin();
 	}
 	
 	/**
 	 * Ulos kirjautumisen käsitteleminen.
-	 * 
 	 * @throws SQLException
 	 */
 	@FXML
 	private void handleKirjaudu() throws SQLException {
 		String sessionID = authorize();
         if (sessionID != null) {
-        	this.sessionManager.setSessionID(sessionID);
-          this.sessionManager.valitseNakyma();
+        	this.istunto.setSessionID(sessionID);
+          this.istunto.valitseNakyma();
         }
 	}
 	
@@ -79,12 +84,9 @@ public class KirjauduController implements INakymaController {
 	 */
 	@FXML
 	private void kasitteleLopeta() {
-		
-		//if(Ilmoitukset.ohjelmanLopetusVarmistus()) {
-			
-			this.sessionManager.lopeta();
-			
-		//}
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, this.kaannokset.getString("alert.exit"))) {
+			this.istunto.lopeta();
+		}
 		
 	}
 	
@@ -94,7 +96,6 @@ public class KirjauduController implements INakymaController {
 	 * @throws SQLException
 	 */
 	private String authorize() throws SQLException {
-		
 		List<Kayttaja> kayttajat = this.kayttajadao.listaa();
 		String sessionId = null;
 		
@@ -104,9 +105,7 @@ public class KirjauduController implements INakymaController {
 				sessionId = generateSessionID(kayttaja.getRooli().getNimi());
 			} 
 		}
-		
 		tarkistaSalasanaJaTunnus(sessionId);
-		
 		return sessionId;
 	}
 	
@@ -124,8 +123,7 @@ public class KirjauduController implements INakymaController {
 	 */
 	@Override
 	public void initSession(Istunto sessionManager, String sessionID) {
-		//this.sessionManager = sessionManager;
-
+		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", istunto.getKieli(), new UTF8Control());
 		this.nimiImageView.setImage(new Image("/Kuvat/Nimi.PNG"));
 	}
 	

@@ -1,6 +1,5 @@
 package com.ro8.varastosofta.application.controller;
 
-import com.ro8.varastosofta.application.IPopupController;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
@@ -10,6 +9,7 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
 import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.interfaces.IPopupController;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +29,13 @@ import javafx.scene.control.TextField;
  */
 public class LisaaTuoteController implements IPopupController, IController {
 	
+	private Dao<Tuote, Integer> tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Integer> tuoteryhmat;
+	private Ilmoitukset ilmoitukset;
+	private ResourceBundle kaannokset;
+	
 	@FXML
 	private TextField idTextField;
 	@FXML
@@ -43,13 +50,6 @@ public class LisaaTuoteController implements IPopupController, IController {
 	private Button poistaButton;
 	@FXML
 	private Button tyhjennaButton;
-		
-	private Dao<Tuote, Integer> tuotedao;
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	private List<Tuoteryhma> ryhmat;
-	private HashMap<String, Integer> tuoteryhmat;
-	private Ilmoitukset ilmoitukset;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuotteen lisäys konstruktori.
@@ -62,7 +62,6 @@ public class LisaaTuoteController implements IPopupController, IController {
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
@@ -201,6 +200,11 @@ public class LisaaTuoteController implements IPopupController, IController {
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
 		this.kaannokset = kaannokset;
+	}
+
+	@Override
+	public void init() {
+		
 	}
 }
 
