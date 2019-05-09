@@ -47,7 +47,7 @@ class ValidaattoriTest {
 	 * Testataan onko lisättävä tuoteryhmä sallittu.
 	 */
 	@Test
-	void testOnkoTuoterymavValidi() {
+	void testOnkoTuoteryhmaValidi() {
 		Validaattori validaattori = new Validaattori();
 		assertTrue(validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
 		assertFalse(validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");

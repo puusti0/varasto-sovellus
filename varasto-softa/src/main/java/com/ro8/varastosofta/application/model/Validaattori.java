@@ -24,7 +24,7 @@ public class Validaattori {
 		if(!onkoNumero(id) || !onkoNumero(lkm)) {
 			return false;
 		}
-		return nimi.length() > 20;
+		return nimi.length() <= 20;
 	}
 	
 	
@@ -34,7 +34,7 @@ public class Validaattori {
 	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
 	public boolean onkoPoistettavaIdValidi(String id) {
-		return id.length() == 0;
+		return id.length() != 0;
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class Validaattori {
 	 * @return, false jos tuoteryhmä ei validi, true muuten.
 	 */
 	public boolean onkoTuoteryhmaValidi(String tuoteryhma) {
-		return tuoteryhma.length() == 0 || tuoteryhma.length() > 20;
+		return tuoteryhma.length() != 0 && tuoteryhma.length() <= 20;
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class Validaattori {
 			return false;
 		} 
 		// Salasanan tarkastaminen
-		return salasana.contains(";");
+		return !salasana.contains(";");
 	}
 	
 }
