@@ -27,7 +27,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
@@ -49,7 +48,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("lisaa(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -73,7 +71,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("hae(Tuote):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
@@ -108,7 +105,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("paivita(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -142,7 +138,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("paivitaLukumaara(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -165,10 +160,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			Tuote tuote = istunto.get(Tuote.class, id);
 			if (tuote!= null){
 				istunto.delete(tuote);
-				System.out.println("Tuote id:llä " + id + " poistettu!");
-			}
-			else{
-				System.out.println("Ei löytynyt poistettavaa!");
 			}
 			transaktio.commit();
 		}
@@ -197,7 +188,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("listaa(Tuote):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
@@ -243,7 +233,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("listaa(Tuoteryhma):");
 			e.printStackTrace();
 		}
 	}
