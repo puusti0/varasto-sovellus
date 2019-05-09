@@ -54,7 +54,7 @@ public class TuoteryhmatController  implements IController {
 	 */
 	private Button luoPoistoNappi(Tuoteryhma tuoteryhma) {
 		Button removebutton = new Button();
-		removebutton.setText(kaannokset.getString("button.delete"));
+		removebutton.setText("POISTA");
 		removebutton.setOnAction(new EventHandler<ActionEvent>() {
 	      @Override 
 	      public void handle(ActionEvent event) {
@@ -112,7 +112,7 @@ public class TuoteryhmatController  implements IController {
 
 	@Override
 	public void init() {
-		
+		return;
 	}
 
 }

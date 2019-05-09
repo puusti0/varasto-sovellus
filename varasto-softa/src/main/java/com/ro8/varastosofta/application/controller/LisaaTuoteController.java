@@ -63,7 +63,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 		this.ilmoitukset = new Ilmoitukset();
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
-		this.tuoteryhmat = new HashMap<String, Integer>();
+		this.tuoteryhmat = new HashMap<>();
 		validaattori = new Validaattori();
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
@@ -140,10 +140,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 				try {
 					this.tuotedao.poista(Integer.parseInt(id));
 					this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.product.succesfulRemove"));
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
-					this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.product.failedRemove"));
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.product.failedRemove"));
 				}
@@ -213,7 +210,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 
 	@Override
 	public void init() {
-		
+		return;
 	}
 }
 
