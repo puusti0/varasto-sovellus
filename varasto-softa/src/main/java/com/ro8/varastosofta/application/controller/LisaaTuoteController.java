@@ -43,6 +43,8 @@ public class LisaaTuoteController implements IPopupController, IController {
 	@FXML
 	private TextField lkmTextField;
 	@FXML
+	private TextField prizeTextField;
+	@FXML
 	private ComboBox<String> tuoteryhmaComboBox;
 	@FXML 
 	private Button lisaaButton;
@@ -96,7 +98,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 			if(true) {
 				try {
 					Tuoteryhma tuoteryhma = this.tuoteryhmadao.hae(this.tuoteryhmat.get(this.tuoteryhmaComboBox.getValue()));
-					Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()), tuoteryhma);
+					Tuote uusi = new Tuote(Integer.parseInt(this.idTextField.getText().toString()), this.nimiTextField.getText().toString(), Integer.parseInt(this.lkmTextField.getText().toString()),  Double.parseDouble(this.prizeTextField.getText().toString()),  tuoteryhma);
 					this.tuotedao.lisaa(uusi);
 					this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.product.succesfulAdd"));
 				} catch (SQLException e1) {
@@ -161,6 +163,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 		this.idTextField.setText("");
 		this.nimiTextField.setText("");
 		this.lkmTextField.setText("");
+		this.prizeTextField.setText("");
 		this.tuoteryhmaComboBox.getSelectionModel().select("Choose");
 	}
 
@@ -170,6 +173,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 		this.idTextField.setText(tuoteX.getId() + "");
 		this.nimiTextField.setText(tuoteX.getNimi());
 		this.lkmTextField.setText(tuoteX.getLkm() + "");
+		this.prizeTextField.setText(tuoteX.getHinta() + "");
 		this.tuoteryhmaComboBox.getSelectionModel().select("Choose");			
 	}
 	
@@ -177,15 +181,14 @@ public class LisaaTuoteController implements IPopupController, IController {
 	 * Lisää Tooltipit komponentteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin() {
-		
 		Tooltipit.asetaTooltip(this.idTextField, "Set the ID for the product");
 		Tooltipit.asetaTooltip(this.nimiTextField, "Set the name for the product.");
 		Tooltipit.asetaTooltip(this.lkmTextField, "Set the quantity for the product.");
+		//Tooltipit.asetaTooltip(this.prizeTextField, "Set the prize for the product.");
 		Tooltipit.asetaTooltip(this.tuoteryhmaComboBox, "Set the group for the product.");
 		Tooltipit.asetaTooltip(this.lisaaButton, "Add the product to the database.");
 		Tooltipit.asetaTooltip(this.poistaButton, "Remove the product from the database.");
 		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
-		
 	}
 	
 	/* (non-Javadoc)

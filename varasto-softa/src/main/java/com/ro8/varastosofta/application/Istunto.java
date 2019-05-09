@@ -25,7 +25,7 @@ public class Istunto {
 	
 	/**
 	 * Istunnon kontrolleri.
-	 * @param scene 
+	 * @param scene istunnon näyttämö
 	 */
 	public Istunto(Scene scene) {
 		this.scene = scene;
@@ -121,15 +121,17 @@ public class Istunto {
 
 	/**
 	 * Näkymän näyttämiseen tarvittavat toimenpiteet.
+	 * @param istuntoID istunnon yksilöivä tunnus
+	 * @param näkymän nimi
 	 */
-	public void naytaNakyma(String sessionID, String view) {
+	public void naytaNakyma(String istuntoID, String nimi) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this.kontrolleri);
 			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.kieli, new UTF8Control()));
-			loader.setLocation(Paaohjelma.class.getResource("view/" + view));
+			loader.setLocation(Paaohjelma.class.getResource("view/" + nimi));
 			Parent nakyma = (Parent)loader.load();
-			this.kontrolleri.initSession(this, sessionID);
+			this.kontrolleri.initSession(this, istuntoID);
 			this.scene.setRoot(nakyma);
 		} catch(Exception e) {
 			e.printStackTrace();
