@@ -36,6 +36,10 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 		}
 	}
 	
+	/**
+	 * Palautetaan istuntotehdas.
+	 * @return istuntotehdas
+	 */
 	public SessionFactory getIstuntotehdas() {
 		return this.istuntotehdas;
 	}
@@ -79,7 +83,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	}
 	
 	/**
-	 * TODO: Päivitä tuoteryhmän tiedot
+	 * Päivitetään tuoteryhmän tiedot.
 	 * @param tuoteryhmä Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */
@@ -89,7 +93,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	}
 
 	/**
-	 * TODO: Poista tuoterymä tietokannasta
+	 * Poistetaan tuoteryhmä tietokannasta
 	 * @param avain Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */

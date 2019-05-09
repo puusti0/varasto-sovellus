@@ -81,7 +81,7 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 	 */
 	@Override
 	public List<Kayttaja> listaa() throws SQLException {
-		List<Kayttaja> lista = new ArrayList<Kayttaja>();
+		List<Kayttaja> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
