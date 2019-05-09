@@ -31,7 +31,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
@@ -55,7 +54,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("lisaa(Kayttaja):");
 			e.printStackTrace();
 		}
 	}
@@ -75,7 +73,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("hae(Tuote):");
 			e.printStackTrace();
 		}
 		return new Tuoteryhma(tuoteryhma.getId(), tuoteryhma.getNimi());
@@ -88,7 +85,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	 */
 	@Override
 	public Tuoteryhma paivita(Tuoteryhma tuoteryhmä) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -106,7 +102,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("poista(Tuoteryhma):");
 			e.printStackTrace();
 		}
 	}
@@ -127,7 +122,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("listaa(Tuoteryhma):");
 			e.printStackTrace();
 		}
 		return lista;
