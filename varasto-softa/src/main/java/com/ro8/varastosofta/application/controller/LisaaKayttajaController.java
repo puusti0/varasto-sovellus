@@ -59,7 +59,7 @@ public class LisaaKayttajaController implements IController {
 		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
-		this.rooliryhmat = new HashMap<String, Rooli>();
+		this.rooliryhmat = new HashMap<>();
 		try {
 			this.roolit = this.roolidao.listaa();
 		} catch (SQLException e) {
@@ -162,7 +162,7 @@ public class LisaaKayttajaController implements IController {
 
 	@Override
 	public void init() {
-		
+		return;
 	}
 	
 	

@@ -174,7 +174,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 */
 	@Override
 	public List<Tuote> listaa() throws SQLException {
-		List<Tuote> lista = new ArrayList<Tuote>();
+		List<Tuote> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
@@ -219,7 +219,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 * @throws SQLException
 	 */
 	public void poista(Tuoteryhma tuoteryhma) throws SQLException {
-		List<Tuote> lista = new ArrayList<Tuote>();
+		List<Tuote> lista = new ArrayList<>();
 		Transaction transaktio = null;
 		try (Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();

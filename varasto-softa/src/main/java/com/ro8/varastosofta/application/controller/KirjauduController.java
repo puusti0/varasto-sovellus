@@ -154,7 +154,7 @@ public class KirjauduController implements INakymaController {
 
 	@Override
 	public void setViewMenu(Menu menu) {
-		
+		return;
 	}
 	
 }

@@ -26,7 +26,6 @@ import javafx.scene.control.TextField;
  */
 public class TuoteryhmatController  implements IController {
 	
-	private ResourceBundle kaannokset;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	private TuoteDao tuotedao;
 	ObservableList<HBoxWithButton> listItems = FXCollections.observableArrayList(); 
@@ -107,7 +106,7 @@ public class TuoteryhmatController  implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
+		return;
 	}
 
 	@Override

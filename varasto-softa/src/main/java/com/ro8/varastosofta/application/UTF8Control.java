@@ -34,7 +34,7 @@ public class UTF8Control extends Control {
 							bundle = new PropertyResourceBundle(new InputStreamReader(stream, "UTF-8"));
 						}
 					} catch (Exception e) {
-						
+						return bundle;
 					}
 				}
 			}
@@ -44,7 +44,7 @@ public class UTF8Control extends Control {
 					bundle = new PropertyResourceBundle(new InputStreamReader(stream, "UTF-8"));
 				}
 			} catch (Exception e) {
-				
+				return bundle;
 			}
 		}
 		return bundle;
