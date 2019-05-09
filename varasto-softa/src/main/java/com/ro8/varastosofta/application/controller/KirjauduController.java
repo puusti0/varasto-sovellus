@@ -34,7 +34,6 @@ public class KirjauduController implements INakymaController {
 	private Dao<Kayttaja, Integer> kayttajadao;
 	private Ilmoitukset ilmoitukset;
 	private ResourceBundle kaannokset;
-	private Tooltipit tooltipit;
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -51,7 +50,6 @@ public class KirjauduController implements INakymaController {
 		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.istunto = istunto;
-		this.tooltipit = new Tooltipit();
 	}
 	
 	/**
@@ -147,6 +145,7 @@ public class KirjauduController implements INakymaController {
 	}
 	
 	public void lisaaTooltipitKomponentteihin() {	
+		Tooltipit tooltipit = new Tooltipit();;
 		tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
 		tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
 		tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");

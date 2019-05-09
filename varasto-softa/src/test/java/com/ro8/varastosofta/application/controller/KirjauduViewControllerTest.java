@@ -17,6 +17,8 @@ import com.ro8.varastosofta.application.Paaohjelma;
 /**
  * Testiluokka kirjautumissivulle.
  * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 class KirjauduViewControllerTest extends ApplicationTest {
 	
