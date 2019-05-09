@@ -88,7 +88,7 @@ public class RooliDao implements Dao<Rooli, Integer>{
 	 */
 	@Override
 	public List<Rooli> listaa() throws SQLException {
-		List<Rooli> lista = new ArrayList<Rooli>();
+		List<Rooli> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
