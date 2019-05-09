@@ -31,12 +31,15 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Palautetaan istuntotehdas.
+	 * @return istuntotehdas
+	 */
 	public SessionFactory getIstuntotehdas() {
 		return this.istuntotehdas;
 	}
@@ -55,7 +58,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("lisaa(Kayttaja):");
 			e.printStackTrace();
 		}
 	}
@@ -75,25 +77,23 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("hae(Tuote):");
 			e.printStackTrace();
 		}
 		return new Tuoteryhma(tuoteryhma.getId(), tuoteryhma.getNimi());
 	}
 	
 	/**
-	 * TODO: Päivitä tuoteryhmän tiedot
+	 * Päivitetään tuoteryhmän tiedot.
 	 * @param tuoteryhmä Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */
 	@Override
 	public Tuoteryhma paivita(Tuoteryhma tuoteryhmä) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * TODO: Poista tuoterymä tietokannasta
+	 * Poistetaan tuoteryhmä tietokannasta
 	 * @param avain Päivitettävä tuoteryhmä
 	 * @throws SQLException
 	 */
@@ -106,7 +106,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("poista(Tuoteryhma):");
 			e.printStackTrace();
 		}
 	}
@@ -117,7 +116,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	 */
 	@Override
 	public List<Tuoteryhma> listaa() throws SQLException {
-		List<Tuoteryhma> lista = new ArrayList<Tuoteryhma>();
+		List<Tuoteryhma> lista = new ArrayList<>();
 		Transaction transaktio = null;
 		try (Session istunto = getIstuntotehdas().openSession()) {
 			transaktio = istunto.beginTransaction();
@@ -127,7 +126,6 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("listaa(Tuoteryhma):");
 			e.printStackTrace();
 		}
 		return lista;

@@ -31,21 +31,22 @@ public class RooliDao implements Dao<Rooli, Integer>{
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Roolin lisääminen.
+	 */
 	@Override
 	public void lisaa(Rooli objekti) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	/**
 	 * Haetaan käyttäjän rooli tietokannasta.
-	 * @param id roolin id
+	 * @param avain roolin yksilöivä tunnus
 	 */
 	@Override
 	public Rooli hae(Integer avain) throws SQLException {
@@ -58,7 +59,6 @@ public class RooliDao implements Dao<Rooli, Integer>{
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("hae(Tuote):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
@@ -66,16 +66,20 @@ public class RooliDao implements Dao<Rooli, Integer>{
 		return new Rooli(rooli.getId(), rooli.getNimi());
 	}
 
+	/**
+	 * Roolin päivittäminen.
+	 */
 	@Override
 	public Rooli paivita(Rooli objekti) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Roolin poistaminen.
+	 */
 	@Override
 	public void poista(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	/**
@@ -84,7 +88,7 @@ public class RooliDao implements Dao<Rooli, Integer>{
 	 */
 	@Override
 	public List<Rooli> listaa() throws SQLException {
-		List<Rooli> lista = new ArrayList<Rooli>();
+		List<Rooli> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
@@ -93,7 +97,6 @@ public class RooliDao implements Dao<Rooli, Integer>{
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("listaa(Rooli):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
