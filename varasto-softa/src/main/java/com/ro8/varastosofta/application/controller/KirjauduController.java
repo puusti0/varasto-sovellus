@@ -114,7 +114,7 @@ public class KirjauduController implements INakymaController {
 	 * Luodaan sessiolle yksilöllinen id
 	 * @return session id
 	 */
-	private String generateSessionID(String rooli) {
+	private static String generateSessionID(String rooli) {
 		    sessionID++;
 		    return rooli + "-" + sessionID;
 	}

@@ -60,7 +60,7 @@ public class TuotelistausController implements IController {
 	public TuotelistausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
-		this.tuoteryhmat = new HashMap<String, Tuoteryhma>();
+		this.tuoteryhmat = new HashMap<>();
 		tooltipit = new Tooltipit();
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
@@ -79,7 +79,7 @@ public class TuotelistausController implements IController {
 	private void initialize() {
 		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
 				
-		List<TitledPaneWithTableView> listaus = new ArrayList<TitledPaneWithTableView>();
+		List<TitledPaneWithTableView> listaus = new ArrayList<>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			ObservableList<Tuote> items = FXCollections.observableArrayList();
 			// Haetaan tuoteryhmän tuotteet tietokannasta
@@ -212,12 +212,12 @@ public class TuotelistausController implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
-		
+		return;
 	}
 
 	@Override
 	public void init() {
-		
+		return;
 	}
 	
 }
