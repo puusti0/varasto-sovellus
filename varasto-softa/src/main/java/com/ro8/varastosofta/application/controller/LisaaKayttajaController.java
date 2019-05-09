@@ -26,6 +26,15 @@ import javafx.scene.control.Button;
  */
 public class LisaaKayttajaController implements IController {
 	
+	private Dao<Kayttaja, Integer> kayttajadao;
+	private Dao<Rooli, Integer> roolidao;
+	private List<Rooli> roolit;
+	private HashMap<String, Rooli> rooliryhmat;
+	private ResourceBundle kaannokset;
+	private Ilmoitukset ilmoitukset;
+	private Validaattori validaattori;
+	private Tooltipit tooltipit;
+	
 	@FXML
 	private TextField kayttajatunnusTextField;
 	@FXML
@@ -41,18 +50,12 @@ public class LisaaKayttajaController implements IController {
 	@FXML
 	private Button tyhjennaButton;
 	
-	
-	private Dao<Kayttaja, Integer> kayttajadao;
-	private Dao<Rooli, Integer> roolidao;
-	private List<Rooli> roolit;
-	private HashMap<String, Rooli> rooliryhmat;
-	private ResourceBundle kaannokset;
-	private Ilmoitukset ilmoitukset;
-	
 	/**
 	 * Käyttäjänlisäys lomakkeen konstruktori.
 	 */
 	public LisaaKayttajaController() {
+		this.tooltipit = new Tooltipit();
+		validaattori = new Validaattori();
 		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
@@ -92,7 +95,7 @@ public class LisaaKayttajaController implements IController {
 		String salasana = this.salasanaTextField.getText();
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
-		if (Validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
+		if (validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
 			
 			try {
 				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
@@ -143,13 +146,13 @@ public class LisaaKayttajaController implements IController {
 	 * Lisää Tooltipit komponennteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin(){
-		Tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
-		Tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
-		Tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
-		Tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
-		Tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
-		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
-		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
+		tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
+		tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
+		tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
+		tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
+		tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
+		tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
+		tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
 	}
 
 	@Override

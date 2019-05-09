@@ -37,6 +37,7 @@ public class TuotelistausController implements IController {
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	private List<Tuoteryhma> ryhmat;
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
+	private Tooltipit tooltipit;
 	
 	@FXML
 	private Accordion tuotelistausAccordion;
@@ -46,6 +47,8 @@ public class TuotelistausController implements IController {
 	private Label nimiLabel;
 	@FXML
 	private Label lkmLabel;
+	@FXML
+	private Label hintaLabel;
 	@FXML
 	private Label tuoteryhmaLabel;
 	@FXML
@@ -58,6 +61,7 @@ public class TuotelistausController implements IController {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuoteryhmat = new HashMap<String, Tuoteryhma>();
+		tooltipit = new Tooltipit();
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
 		} catch (SQLException e) {
@@ -179,6 +183,7 @@ public class TuotelistausController implements IController {
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
+		this.hintaLabel.setText(tuote.getHinta() + "");
 		if (tuote.getTuoteryhma() == null) {
 			this.tuoteryhmaLabel.setText("");
 		} else {
@@ -194,15 +199,15 @@ public class TuotelistausController implements IController {
 		this.idLabel.setText("");
 		this.nimiLabel.setText("");
 		this.lkmLabel.setText("");
+		this.hintaLabel.setText("");
 		this.tuoteryhmaLabel.setText("");
-		
 	}
 	
 	/**
 	 * Lisää Tooltipit komponentteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin() {
-		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
+		tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
 	}
 
 	@Override

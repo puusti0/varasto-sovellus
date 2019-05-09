@@ -34,6 +34,7 @@ public class KirjauduController implements INakymaController {
 	private Dao<Kayttaja, Integer> kayttajadao;
 	private Ilmoitukset ilmoitukset;
 	private ResourceBundle kaannokset;
+	private Tooltipit tooltipit;
 	
 	@FXML
 	private TextField tunnusTextField;
@@ -50,6 +51,7 @@ public class KirjauduController implements INakymaController {
 		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.istunto = istunto;
+		this.tooltipit = new Tooltipit();
 	}
 	
 	/**
@@ -92,7 +94,6 @@ public class KirjauduController implements INakymaController {
 	
 	/**
 	 * Tarkistetaan salasana ja käyttäjätunnus yhdistelmä.
-	 * TODO: tarkista tietokantataulun tietoja vasten.
 	 * @throws SQLException
 	 */
 	private String authorize() throws SQLException {
@@ -146,10 +147,10 @@ public class KirjauduController implements INakymaController {
 	}
 	
 	public void lisaaTooltipitKomponentteihin() {	
-		Tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
-		Tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
-		Tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
-		Tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");	
+		tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
+		tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
+		tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");
+		tooltipit.asetaTooltip(this.lopetaButton, "Press to exit the program");	
 	}
 
 	@Override

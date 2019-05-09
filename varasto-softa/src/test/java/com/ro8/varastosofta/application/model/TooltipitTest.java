@@ -29,9 +29,10 @@ class TooltipitTest {
 		Button button = new Button();
 		Button buttonTyhja = new Button();
 		String teksti = "testi";
+		Tooltipit tooltipit = new Tooltipit();
 		
-		Tooltipit.asetaTooltip(textField, teksti);
-		Tooltipit.asetaTooltip(button, teksti);
+		tooltipit.asetaTooltip(textField, teksti);
+		tooltipit.asetaTooltip(button, teksti);
 		
 		assertTrue(textField.getTooltip() instanceof Tooltip, "Oikein meni, TextField");
 		assertFalse(textFieldTyhja.getTooltip() instanceof Tooltip, "Ei tooltippia, TextField");
