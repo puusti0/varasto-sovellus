@@ -52,9 +52,9 @@ public class TuoteryhmatController  implements IController {
 	 * @param tuoteryhma poistettava tuoteryhma
 	 * @return nappi
 	 */
-	private Button luoPoistoNappi(String buttontext, Tuoteryhma tuoteryhma) {
+	private Button luoPoistoNappi(Tuoteryhma tuoteryhma) {
 		Button removebutton = new Button();
-		removebutton.setText("Poista");
+		removebutton.setText(kaannokset.getString("button.delete"));
 		removebutton.setOnAction(new EventHandler<ActionEvent>() {
 	      @Override 
 	      public void handle(ActionEvent event) {
@@ -80,7 +80,7 @@ public class TuoteryhmatController  implements IController {
 		try {
 			List<Tuoteryhma> tuoteryhmat = tuoteryhmadao.listaa();
 			for(Tuoteryhma tr : tuoteryhmat) {
-				listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi("Poistaa", tr)));
+				listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi(tr)));
 			}
 			tuoteryhmaList.setItems(listItems);
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class TuoteryhmatController  implements IController {
 		tr.setNimi(tuoteryhma);
 		try {
 			this.tuoteryhmadao.lisaa(tr);
-			listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi("Poistaa", tr)));
+			listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi(tr)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

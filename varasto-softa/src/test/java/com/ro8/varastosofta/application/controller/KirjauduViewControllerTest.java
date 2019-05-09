@@ -3,7 +3,6 @@ package com.ro8.varastosofta.application.controller;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;

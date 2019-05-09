@@ -32,6 +32,7 @@
                   <Label text="%product.id" />
                   <Label text="%product.name" GridPane.rowIndex="1" />
                   <Label text="%product.count" GridPane.rowIndex="2" />
+                  <Label text="%product.prize" GridPane.rowIndex="4" />
                   <Label text="%product.group" GridPane.rowIndex="3" />
                   <Label fx:id="idLabel" GridPane.columnIndex="1" />
                   <Label fx:id="nimiLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -51,7 +52,7 @@
                      </children>
                   </HBox>
                   <Label fx:id="tuoteryhmaLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="%product.prize" GridPane.rowIndex="4" />
+                  <Label fx:id="hintaLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
