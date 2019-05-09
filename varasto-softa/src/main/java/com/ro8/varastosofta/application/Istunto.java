@@ -95,7 +95,7 @@ public class Istunto {
 			case "Suomi":
 				this.setKieli(new Locale("fi", "FI"));
 				break;
-			case "Malesia":
+			case "Malaysia":
 				this.setKieli(new Locale("zsm", "MY"));
 				break;
 			default:

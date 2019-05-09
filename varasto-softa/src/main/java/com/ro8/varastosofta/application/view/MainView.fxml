@@ -42,6 +42,11 @@
                   <ImageView fx:id="englishImageView" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
+            <Button mnemonicParsing="false" onAction="#kasitteleMalaysia">
+               <graphic>
+                  <ImageView fx:id="malaysiaImageView" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
          </children>
       </HBox>
    </top>

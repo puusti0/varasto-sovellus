@@ -37,6 +37,8 @@ public class MainViewController implements INakymaController {
 	private ImageView suomiImageView;
 	@FXML
 	private ImageView englishImageView;
+	@FXML
+	private ImageView malaysiaImageView;
 	
 	/**
 	 * Päänäkymän kontrolleri.
@@ -72,6 +74,7 @@ public class MainViewController implements INakymaController {
 	public void initSession(Istunto istunto, String istuntoID) {
 		this.suomiImageView.setImage(new Image("/Kuvat/Suomi.png"));
 		this.englishImageView.setImage(new Image("/Kuvat/England.png"));
+		this.malaysiaImageView.setImage(new Image("/Kuvat/Malaysia.png"));
 		this.sessionManager = istunto;
 		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", istunto.getKieli(), new UTF8Control());
 		this.viewMenu.getItems().addAll(this.getValikkoTehdas().luoViewValikko(this, this.kaannokset).getMenu().getItems());
@@ -79,7 +82,7 @@ public class MainViewController implements INakymaController {
 	}
 	
 	/**
-	 * Käsitellään valikon "Suomi"-valinta.
+	 * Käsitellään kielenvaihtaminen, kun painetaan Suomen lippua.
 	 */
 	@FXML
 	protected void kasitteleSuomi() {
@@ -87,11 +90,19 @@ public class MainViewController implements INakymaController {
 	}
 	
 	/**
-	 * Käsitellään valikon "English"valinta.
+	 * Käsitellään kielenvaihtaminen, kun painetaan Eglannin lippua.
 	 */
 	@FXML
 	protected void kasitteleEnglish() {
 		this.sessionManager.valitseKieli("English");
+	}
+	
+	/**
+	 *  Käsitellään kielenvaihtaminen, kun painetaan Malesian lippua.
+	 */
+	@FXML
+	protected void kasitteleMalaysia() {
+		this.sessionManager.valitseKieli("Malaysia");
 	}
 	
 	/**
