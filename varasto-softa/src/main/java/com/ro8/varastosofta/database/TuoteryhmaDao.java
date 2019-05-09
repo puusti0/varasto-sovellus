@@ -116,7 +116,7 @@ public class TuoteryhmaDao implements Dao<Tuoteryhma, Integer> {
 	 */
 	@Override
 	public List<Tuoteryhma> listaa() throws SQLException {
-		List<Tuoteryhma> lista = new ArrayList<Tuoteryhma>();
+		List<Tuoteryhma> lista = new ArrayList<>();
 		Transaction transaktio = null;
 		try (Session istunto = getIstuntotehdas().openSession()) {
 			transaktio = istunto.beginTransaction();

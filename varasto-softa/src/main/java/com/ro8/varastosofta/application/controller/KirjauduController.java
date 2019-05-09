@@ -145,7 +145,7 @@ public class KirjauduController implements INakymaController {
 	}
 	
 	public void lisaaTooltipitKomponentteihin() {	
-		Tooltipit tooltipit = new Tooltipit();;
+		Tooltipit tooltipit = new Tooltipit();
 		tooltipit.asetaTooltip(this.tunnusTextField, "Insert your username here, please.");
 		tooltipit.asetaTooltip(this.salasanaTextField, "Insert your password here, please");
 		tooltipit.asetaTooltip(this.kirjauduButton, "Press to log in.");

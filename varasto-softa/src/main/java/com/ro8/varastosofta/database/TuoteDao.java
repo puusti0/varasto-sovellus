@@ -219,7 +219,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 * @throws SQLException
 	 */
 	public void poista(Tuoteryhma tuoteryhma) throws SQLException {
-		List<Tuote> lista = new ArrayList<>();
 		Transaction transaktio = null;
 		try (Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
