@@ -23,11 +23,25 @@ class ValidaattoriTest {
 	
 	/**
 	 * Testataan onko lisättävä tuote validi.
+	 * @param id tuotteen id
+	 * @param nimi tuotteen nimi
+	 * @param lkm tuotteen lukumäärä
+	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
 	 */
 	void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
 		Validaattori validaattori = new Validaattori();
-		assertEquals(validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
-		
+		assertEquals(validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);	
+	}
+	
+	/**
+	 * Testataan on poistettava tuote validi.
+	 */
+	@Test
+	void testOnkoPoistettavaIdValidi() {
+		Validaattori validaattori = new Validaattori();
+		assertFalse(validaattori.onkoPoistettavaIdValidi(""), "Ei ole tyhjä");
+		assertFalse(validaattori.onkoPoistettavaIdValidi("ei numero"), "Ei ole numero");
+		assertTrue(validaattori.onkoPoistettavaIdValidi("12"), "On numero");
 	}
 
 	/**
@@ -38,7 +52,6 @@ class ValidaattoriTest {
 		Validaattori validaattori = new Validaattori();
 		assertFalse(validaattori.onkoNumero("ei numero"), "Ei ole numero");
 		assertTrue(validaattori.onkoNumero("12"), "On numero");
-		
 	}
 	
 	/**
@@ -50,7 +63,6 @@ class ValidaattoriTest {
 		assertTrue(validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
 		assertFalse(validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
 		assertFalse(validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeqiyfyfkuf"), "Liian pitkä");
-		
 	}
 
 	/**
