@@ -1,8 +1,12 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
 import com.ro8.varastosofta.application.model.Rooli;
@@ -11,10 +15,13 @@ import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
+import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.application.PasswordEncryptionService;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+
 
 /**
  * Käyttäjän lisäys lomakkeen kontrolleri.
@@ -22,7 +29,16 @@ import javafx.scene.control.Button;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class LisaaKayttajaController {
+public class LisaaKayttajaController implements IController {
+	
+	private Dao<Kayttaja, Integer> kayttajadao;
+	private Dao<Rooli, Integer> roolidao;
+	private List<Rooli> roolit;
+	private HashMap<String, Rooli> rooliryhmat;
+	private ResourceBundle kaannokset;
+	private Ilmoitukset ilmoitukset;
+	private Validaattori validaattori;
+	private Tooltipit tooltipit;
 	
 	@FXML
 	private TextField kayttajatunnusTextField;
@@ -39,19 +55,16 @@ public class LisaaKayttajaController {
 	@FXML
 	private Button tyhjennaButton;
 	
-	
-	private Dao kayttajadao;
-	private Dao roolidao;
-	private List<Rooli> roolit;
-	private HashMap<String, Rooli> rooliryhmat;
-	
 	/**
 	 * Käyttäjänlisäys lomakkeen konstruktori.
 	 */
 	public LisaaKayttajaController() {
+		this.tooltipit = new Tooltipit();
+		validaattori = new Validaattori();
+		this.ilmoitukset = new Ilmoitukset();
 		this.kayttajadao = new KayttajaDao();
 		this.roolidao = new RooliDao();
-		this.rooliryhmat = new HashMap<String, Rooli>();
+		this.rooliryhmat = new HashMap<>();
 		try {
 			this.roolit = this.roolidao.listaa();
 		} catch (SQLException e) {
@@ -80,28 +93,28 @@ public class LisaaKayttajaController {
 	
 	/**
 	 * Uuden käyttäjän lisääminen tietokantaan.
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidKeySpecException 
 	 */
 	@FXML
-	private void kasitteleLisaa() {
+	private void kasitteleLisaa() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		String kayttajatunnus = this.kayttajatunnusTextField.getText();
 		String salasana = this.salasanaTextField.getText();
+		byte[] suola = PasswordEncryptionService.generateSalt();
+		byte[] salattu = PasswordEncryptionService.getEncryptedPassword(salasana, suola);
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
-		if (Validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
+		if (validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
 			
 			try {
-				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
+				Kayttaja uusi = new Kayttaja(kayttajatunnus, Base64.getEncoder().encodeToString(salattu),  Base64.getEncoder().encodeToString(suola), rooli);
 				this.kayttajadao.lisaa(uusi);
-				
-				Ilmoitukset.kayttajaLisattyOnnistuneestiIlmo();
-				
+				this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulAdd"));
 			} catch (SQLException e1) {
-				
 				e1.printStackTrace();
 			}
 		} else {
-			Ilmoitukset.kayttajaLisaysEiOnnistunutIlmo();
-
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.failedAdd"));
 		}
 			
 		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
@@ -123,8 +136,7 @@ public class LisaaKayttajaController {
 	@FXML
 	private void tyhjennaButtonPainettu() {
 		tyhjennaKentat(this.kayttajatunnusTextField, this.salasanaTextField, this.salasanaUudelleenTextField);
-		this.rooliComboBox.getSelectionModel().select("Valitse");
-
+		this.rooliComboBox.getSelectionModel().select(this.kaannokset.getString("button.choose"));
 	}
 	
 	/**
@@ -132,39 +144,35 @@ public class LisaaKayttajaController {
 	 */
 	@FXML
 	private void poistaButtonPainettu() {
-		
-		if(Ilmoitukset.kayttajanPoistonVarmistus()) {
-			
-			//TODO: tähän käyttäjän poistamisen toiminnallisuus.
-			
-			Ilmoitukset.kayttajaPoistettuOnnistuneesti();
-			
+		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, this.kaannokset.getString("alert.user.deleteUser"))) {
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulRemove"));		
 		} else {
-			
-			//TODO: ja tähän myös käyttäjän poistamisen toiminnallisuus.
-			Ilmoitukset.kayttajaPoistettuEiOnnistunut();
-			
+			this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.failedRemove"));	
 		}
-		
-		
 	}
 	
 	/**
 	 * Lisää Tooltipit komponennteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin(){
-		
-		Tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
-		Tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
-		Tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
-		Tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
-		Tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
-		Tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
-		Tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
-		
+		tooltipit.asetaTooltip(this.kayttajatunnusTextField, "Set the username.");
+		tooltipit.asetaTooltip(this.salasanaTextField, "Set the password");
+		tooltipit.asetaTooltip(this.salasanaUudelleenTextField, "Set the password again");
+		tooltipit.asetaTooltip(this.rooliComboBox, "Set the usergroup.");
+		tooltipit.asetaTooltip(this.lisaaButton, "Add a user to the database.");
+		tooltipit.asetaTooltip(this.poistaButton, "Remove a user from the database.");
+		tooltipit.asetaTooltip(this.tyhjennaButton, "Clear the input fields.");
 	}
-	
-	
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		this.kaannokset = kaannokset;
+	}
+
+	@Override
+	public void init() {
+		return;
+	}
 }
 
 

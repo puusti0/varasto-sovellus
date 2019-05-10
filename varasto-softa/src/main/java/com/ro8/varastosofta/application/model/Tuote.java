@@ -57,10 +57,11 @@ public class Tuote {
 		 * @param lukumaara uuden tuotteen varastosaldo
 		 * @param tr uuden tuotteen tuoteryhmä
 		 */
-		public Tuote(int tuoteid, String nimi, int lukumaara, Tuoteryhma tr) {
+		public Tuote(int tuoteid, String nimi, int lukumaara, double hinta, Tuoteryhma tr) {
 			this.id = tuoteid;
 			this.nimi = nimi;
 			this.lkm = lukumaara;
+			this.hinta = hinta;
 			this.tuoteryhma = tr;
 		}
 

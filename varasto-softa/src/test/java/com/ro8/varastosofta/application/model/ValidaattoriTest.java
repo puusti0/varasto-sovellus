@@ -1,11 +1,9 @@
 package com.ro8.varastosofta.application.model;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.CsvSource;
-
 import com.ro8.varastosofta.application.model.Validaattori;
 
 /**
@@ -27,8 +25,8 @@ class ValidaattoriTest {
 	 * Testataan onko lisättävä tuote validi.
 	 */
 	void testOnkoLisattavaTuoteValidi(String id, String nimi, String lkm, boolean tulos) {
-		
-		assertEquals(Validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
+		Validaattori validaattori = new Validaattori();
+		assertEquals(validaattori.onkoLisattavaTuoteValidi(id, nimi, lkm), tulos);
 		
 	}
 
@@ -37,9 +35,9 @@ class ValidaattoriTest {
 	 */
 	@Test
 	void testOnkoNumero() {
-		
-		assertFalse(Validaattori.onkoNumero("ei numero"), "Ei ole numero");
-		assertTrue(Validaattori.onkoNumero("12"), "On numero");
+		Validaattori validaattori = new Validaattori();
+		assertFalse(validaattori.onkoNumero("ei numero"), "Ei ole numero");
+		assertTrue(validaattori.onkoNumero("12"), "On numero");
 		
 	}
 	
@@ -47,17 +45,16 @@ class ValidaattoriTest {
 	 * Testataan onko lisättävä tuoteryhmä sallittu.
 	 */
 	@Test
-	void testOnkoTuoterymavValidi() {
-		
-		assertTrue(Validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
-		assertFalse(Validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
-		assertFalse(Validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeqiyfyfkuf"), "Liian pitkä");
+	void testOnkoTuoteryhmaValidi() {
+		Validaattori validaattori = new Validaattori();
+		assertTrue(validaattori.onkoTuoteryhmaValidi("vihannekset"), "On oikein");
+		assertFalse(validaattori.onkoTuoteryhmaValidi(""), "Ei syötettä");
+		assertFalse(validaattori.onkoTuoteryhmaValidi("rewqrewrqrqewrqqreqwrerqwqrqrqqeqiyfyfkuf"), "Liian pitkä");
 		
 	}
 
 	/**
 	 * Testataan on lisättävä käyttäjä validi.
-	 * 
 	 * @param tunnus, ehdotettu käyttäjätunnus.
 	 * @param salasana, ehdotettu salasana.
 	 * @param tulos, testin tulos.
@@ -67,6 +64,7 @@ class ValidaattoriTest {
 				"testi, salasana;, false",
 				"testi, salasana, true"})
 	void testaaOnkoLisattavaKayttajaValidi(String tunnus, String salasana, boolean tulos) {
-		assertEquals(Validaattori.onkoLisattavaKayttajaValidi(tunnus, salasana), tulos);
+		Validaattori validaattori = new Validaattori();
+		assertEquals(validaattori.onkoLisattavaKayttajaValidi(tunnus, salasana), tulos);
 	}
 }

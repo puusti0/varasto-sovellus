@@ -1,7 +1,9 @@
 package com.ro8.varastosofta.application;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import com.ro8.varastosofta.interfaces.IPopupController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,8 +19,6 @@ import javafx.stage.Stage;
 public class Popup {
 	
 	private Stage popupStage;
-	private Parent root;
-	
 	
 	/**
 	 * Popup konstruktori.
@@ -39,10 +39,10 @@ public class Popup {
 	 */
 	public void avaa(String view, int leveys, int korkeus, Object objekti) {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setResources(ResourceBundle.getBundle("MessagesBundle", Lokaali.getLocale()));
-		loader.setLocation(Main.class.getResource("view/" + view));
+		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));
+		loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 		try {
-			this.root = (Parent)loader.load();
+			Parent root = (Parent)loader.load();
 			IPopupController controller = loader.<IPopupController>getController();
 			controller.setObject(objekti);
 			controller.asetaTeksti();

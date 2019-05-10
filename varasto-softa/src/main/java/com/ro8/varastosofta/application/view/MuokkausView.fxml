@@ -20,6 +20,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -34,15 +35,17 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="%product.productGroupId" GridPane.rowIndex="3">
+            <Label text="%product.productGroupId" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
+            <Label text="%product.prize" GridPane.rowIndex="3" />
             <TextField fx:id="idTextField" GridPane.columnIndex="1" />
             <TextField fx:id="nimiTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lkmTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ChoiceBox prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <ChoiceBox prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <TextField fx:id="prizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </content>

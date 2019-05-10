@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
 import com.ro8.varastosofta.application.model.Tooltipit;
@@ -12,6 +13,7 @@ import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
+import com.ro8.varastosofta.interfaces.IController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,7 +31,13 @@ import javafx.scene.control.TableView;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuoteListausController {
+public class TuotelistausController implements IController {
+	
+	private TuoteDao tuotedao;
+	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
+	private List<Tuoteryhma> ryhmat;
+	private HashMap<String, Tuoteryhma> tuoteryhmat;
+	private Tooltipit tooltipit;
 	
 	@FXML
 	private Accordion tuotelistausAccordion;
@@ -40,23 +48,20 @@ public class TuoteListausController {
 	@FXML
 	private Label lkmLabel;
 	@FXML
+	private Label hintaLabel;
+	@FXML
 	private Label tuoteryhmaLabel;
 	@FXML
 	private Button muokkaaButton;
 	
-	private TuoteDao tuotedao;
-	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
-	
-	private List<Tuoteryhma> ryhmat;
-	private HashMap<String, Tuoteryhma> tuoteryhmat;
-	
 	/**
 	 * Tuotelistauksen konstruktori.
 	 */
-	public TuoteListausController() {
+	public TuotelistausController() {
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
-		this.tuoteryhmat = new HashMap<String, Tuoteryhma>();
+		this.tuoteryhmat = new HashMap<>();
+		tooltipit = new Tooltipit();
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
 		} catch (SQLException e) {
@@ -72,10 +77,9 @@ public class TuoteListausController {
 	 */
 	@FXML
 	private void initialize() {
-		
 		this.tuotelistausAccordion.getPanes().clear(); // Tyhjennetään Accordion aluksi.
 				
-		List<TitledPaneWithTableView> listaus = new ArrayList<TitledPaneWithTableView>();
+		List<TitledPaneWithTableView> listaus = new ArrayList<>();
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			ObservableList<Tuote> items = FXCollections.observableArrayList();
 			// Haetaan tuoteryhmän tuotteet tietokannasta
@@ -106,12 +110,10 @@ public class TuoteListausController {
 					(observable, oldValue, newValue) -> naytaTuotteenTiedot(newValue));
 			listaus.add(taulukko);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
-		
 		lisaaTooltipitKomponentteihin();
 	}
 
@@ -128,7 +130,7 @@ public class TuoteListausController {
 			Tuote tuote = new Tuote(id, nimi, lkm);
 			
 			Popup muokkausPopup = new Popup("Muokkaa");
-			muokkausPopup.avaa("LisaaTuoteView.fxml", 300, 250, tuote);
+			muokkausPopup.avaa("LisaaTuote.fxml", 300, 250, tuote);
 			
 			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 			initialize();
@@ -149,12 +151,8 @@ public class TuoteListausController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) - 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			//this.tpData.getSelectionModel().selectedItemProperty().getValue().setLkm(uusi);
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -169,11 +167,8 @@ public class TuoteListausController {
 			int id = Integer.parseInt(this.idLabel.getText());
 			int lkm = Integer.parseInt(this.lkmLabel.getText()) + 1;
 			int uusi = this.tuotedao.paivitaLukumaara(id, lkm);
-			this.lkmLabel.setText(uusi+"");
-			
-			// Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
-			initialize();
-			
+			this.lkmLabel.setText(uusi + "");
+			initialize(); // Alustetaan tuotelistaus uudestaan jotta muutokset näkyvät.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -188,6 +183,7 @@ public class TuoteListausController {
 		this.idLabel.setText(tuote.getId() + "");
 		this.nimiLabel.setText(tuote.getNimi() + "");
 		this.lkmLabel.setText(tuote.getLkm() + "");
+		this.hintaLabel.setText(tuote.getHinta() + "");
 		if (tuote.getTuoteryhma() == null) {
 			this.tuoteryhmaLabel.setText("");
 		} else {
@@ -203,15 +199,25 @@ public class TuoteListausController {
 		this.idLabel.setText("");
 		this.nimiLabel.setText("");
 		this.lkmLabel.setText("");
+		this.hintaLabel.setText("");
 		this.tuoteryhmaLabel.setText("");
-		
 	}
 	
 	/**
 	 * Lisää Tooltipit komponentteihin.
 	 */
 	public void lisaaTooltipitKomponentteihin() {
-		Tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
+		tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
+	}
+
+	@Override
+	public void setKaannokset(ResourceBundle kaannokset) {
+		return;
+	}
+
+	@Override
+	public void init() {
+		return;
 	}
 	
 }

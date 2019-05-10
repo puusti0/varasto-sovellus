@@ -27,7 +27,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
@@ -49,7 +48,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("lisaa(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -73,7 +71,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("hae(Tuote):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
@@ -98,9 +95,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 				tietokanta.setNimi(tuote.getNimi());
 				tietokanta.setLkm(tuote.getLkm());
 				tietokanta.setHinta(tuote.getHinta());
-			}
-			else{
-				System.out.println("Ei löytynyt päivitettävää!");
+			} else {
 				return null;
 			}
 			transaktio.commit();
@@ -108,7 +103,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("paivita(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -132,9 +126,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			Tuote tietokanta = istunto.get(Tuote.class, id);
 			if (tietokanta!= null){
 				tietokanta.setLkm(lkm);
-			}
-			else{
-				System.out.println("Ei löytynyt päivitettävää!");
+			} else {
 				return -1;
 			}
 			transaktio.commit();
@@ -142,7 +134,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("paivitaLukumaara(Tuote):");
 			e.printStackTrace();
 		}
 		finally{
@@ -165,16 +156,11 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			Tuote tuote = istunto.get(Tuote.class, id);
 			if (tuote!= null){
 				istunto.delete(tuote);
-				System.out.println("Tuote id:llä " + id + " poistettu!");
-			}
-			else{
-				System.out.println("Ei löytynyt poistettavaa!");
 			}
 			transaktio.commit();
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("createValuutta:");
 			e.printStackTrace();
 		}
 		finally{
@@ -188,7 +174,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 */
 	@Override
 	public List<Tuote> listaa() throws SQLException {
-		List<Tuote> lista = new ArrayList<Tuote>();
+		List<Tuote> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
@@ -197,7 +183,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("listaa(Tuote):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
@@ -211,7 +196,7 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 * @throws SQLException
 	 */
 	public List<Tuote> hae(Tuoteryhma tuoteryhma) throws SQLException {
-		List<Tuote> lista = new ArrayList<Tuote>();
+		List<Tuote> lista = new ArrayList<>();
 		try (Session istunto = istuntotehdas.openSession()) {
 			Transaction transaktio = istunto.beginTransaction();
 			String sql;
@@ -234,7 +219,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 	 * @throws SQLException
 	 */
 	public void poista(Tuoteryhma tuoteryhma) throws SQLException {
-		List<Tuote> lista = new ArrayList<Tuote>();
 		Transaction transaktio = null;
 		try (Session istunto = istuntotehdas.openSession()) {
 			transaktio = istunto.beginTransaction();
@@ -243,7 +227,6 @@ public class TuoteDao implements Dao<Tuote, Integer> {
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio != null) transaktio.rollback();
-			System.err.println("listaa(Tuoteryhma):");
 			e.printStackTrace();
 		}
 	}

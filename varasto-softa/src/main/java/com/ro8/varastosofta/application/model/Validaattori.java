@@ -12,29 +12,19 @@ public class Validaattori {
 	 * Testaa onko parametreina annetut merkkijonot valideja eli eivät ole tyhjia,
 	 * id ja lkm ovat numeroita ja nimi ei saa olla yli 20 merkkiä pitkä. Palauttaa
 	 * true jos parametrit valideja muuten false.
-	 * 
 	 * @param id tuotteen id
 	 * @param nimi tuotteen nimi
 	 * @param lkm tuotteen lukumäärä
 	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
 	 */
-	public static boolean onkoLisattavaTuoteValidi(String id, String nimi, String lkm) {
-		
-		boolean result = true;
-		
+	public boolean onkoLisattavaTuoteValidi(String id, String nimi, String lkm) {
 		if(id.length() == 0 || nimi.length() == 0 || lkm.length() == 0) {
-			result = false;
+			return false;
 		} 
-		
 		if(!onkoNumero(id) || !onkoNumero(lkm)) {
-			result = false;
+			return false;
 		}
-		
-		if(nimi.length() > 20) {
-			result = false;
-		}
-		
-		return result;
+		return nimi.length() <= 20;
 	}
 	
 	
@@ -43,58 +33,32 @@ public class Validaattori {
 	 * @param id tuotteen id.
 	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
-	public static boolean onkoPoistettavaIdValidi(String id) {
-		
-		boolean result = true;
-		
-		if(id.length() == 0) {
-			result = false;
-		}
-		
-		return result;
+	public boolean onkoPoistettavaIdValidi(String id) {
+		return id.length() != 0;
 	}
 	
 	/**
 	 * Testaa onko parametri muunnettavissa numeroksi. Palauttaa true jos on
 	 * muuten false.
-	 * 
 	 * @param strNum numero String muodossa-
 	 * @return true jos on numero ja false muuten.
 	 */
-	public static boolean onkoNumero(String strNum) {
-		
-		boolean result = true;
-	    
+	public boolean onkoNumero(String strNum) {
 		try {
-			
-	        int i = Integer.parseInt(strNum);
-	        
+	        Integer.parseInt(strNum);
 	    } catch (NumberFormatException nfe) {
-	    	
-	    	result = false;
-	    	
-	        return result;
+	    	return false;
 	    }
-		
-	    return result;
+	    return true;
 	}
 	
 	/**
 	 * Testaa onko annettu tuoteryhmä validi.
-	 * 
 	 * @param tuoteryhma, annettu tuoteryhmä String muodossa.
 	 * @return, false jos tuoteryhmä ei validi, true muuten.
 	 */
-	public static boolean onkoTuoteryhmaValidi(String tuoteryhma) {
-		
-		boolean result = true;
-		
-		if(tuoteryhma.length() == 0 || tuoteryhma.length() > 20) {
-			return result = false;
-		}
-		
-		return result;
-		
+	public boolean onkoTuoteryhmaValidi(String tuoteryhma) {
+		return tuoteryhma.length() != 0 && tuoteryhma.length() <= 20;
 	}
 	
 	/**
@@ -103,24 +67,15 @@ public class Validaattori {
 	 * @param salasana käyttäjän salasana
 	 * @return true jos tuotteen tiedot oikean muotoiset ja false muuten.
 	 */
-	public static boolean onkoLisattavaKayttajaValidi(String tunnus, String salasana) {
-		
-		boolean result = true;
-		
+	public boolean onkoLisattavaKayttajaValidi(String tunnus, String salasana) {
 		// Tunnuksen tarkastaminen
 		if(tunnus.contains(";") || tunnus.length() == 0) {
-			result = false;
+			return false;
 		} 
-		
 		// Salasanan tarkastaminen
-		if(salasana.contains(";")) {
-			result = false;
-		}
-		
-		return result;
+		return !salasana.contains(";");
 	}
 	
-
 }
 
 

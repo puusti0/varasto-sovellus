@@ -5,27 +5,20 @@ import javafx.scene.control.Tooltip;
 
 /**
  * Apuluokka "Tooltippien" asettamiseen eri komponentteihin.
- * 
- * @author Riina Antikainen, Tuukka Mytty, Janne Valle.
- * 
- *
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle
  */
 public class Tooltipit {
 	
 	/**
 	 * Asettaa "Tooltipin" komponenttiin ja siihen tekstin.
-	 * 
-	 * @param control, JavaFx komponentti johon Tooltip asetetaan.
-	 * @param viesti, viesti joka lisätään Tooltippiin.
+	 * @param control JavaFx komponentti, johon tooltip asetetaan.
+	 * @param viesti tooltipiin lisättävä viesti
 	 */
-	public static void asetaTooltip(Control control, String viesti) {
-		
+	public void asetaTooltip(Control control, String viesti) {
 		Tooltip tooltip = new Tooltip(viesti);
-		
 		control.setTooltip(tooltip);
-		
 	}
-	
-	
 
 }

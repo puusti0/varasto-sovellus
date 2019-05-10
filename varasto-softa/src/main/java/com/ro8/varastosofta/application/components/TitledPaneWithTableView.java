@@ -26,20 +26,21 @@ public class TitledPaneWithTableView extends TitledPane {
 	 * @return taulukko
 	 */
 	public TableView<Tuote> luoTaulukko(ObservableList<Tuote> items) {
-		TableView<Tuote> tuotelistaus = new TableView<Tuote>();
-		TableColumn<Tuote, Integer> tuoteId = new TableColumn<Tuote, Integer>("Id");
-		TableColumn<Tuote, String> tuoteNimi = new TableColumn<Tuote, String>("Nimi");
-		TableColumn<Tuote, Integer> tuoteLkm = new TableColumn<Tuote, Integer>("Lukumäärä");
-		tuotelistaus.getColumns().addAll(tuoteId, tuoteNimi, tuoteLkm);
+		TableColumn<Tuote, Integer> tuoteId = new TableColumn<>("Id");
+		TableColumn<Tuote, String> tuoteNimi = new TableColumn<>("Nimi");
+		TableColumn<Tuote, Integer> tuoteLkm = new TableColumn<>("Lukumäärä");
+		TableColumn<Tuote, Double> tuoteHinta = new TableColumn<>("Hinta");
+		TableView<Tuote> tuotelistaus = new TableView<>();
+		tuotelistaus.getColumns().addAll(tuoteId, tuoteNimi, tuoteLkm, tuoteHinta);
 		
 		//Yhdistetään sarakkeet niitä vastaaviin luokan tietoihin.
 		tuoteId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tuoteNimi.setCellValueFactory(new PropertyValueFactory<>("nimi"));
 		tuoteLkm.setCellValueFactory(new PropertyValueFactory<>("lkm"));
+		tuoteHinta.setCellValueFactory(new PropertyValueFactory<>("hinta"));
 		
 		tuotelistaus.setItems(items);
 		this.setContent(tuotelistaus);
-		
 		return tuotelistaus;
 	}
 

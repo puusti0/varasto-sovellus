@@ -31,7 +31,6 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 			istuntotehdas = new MetadataSources(rekisteri).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e){
-			System.err.println("Istuntootehtaan luonti epäonnistui.");
 			StandardServiceRegistryBuilder.destroy( rekisteri );
 			e.printStackTrace();
 		}
@@ -52,7 +51,6 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 		}
 		catch(Exception e){
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("lisaa(Kayttaja):");
 			e.printStackTrace();
 		}
 		finally{
@@ -63,20 +61,17 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 
 	@Override
 	public Kayttaja hae(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Kayttaja paivita(Kayttaja objekti) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void poista(Integer avain) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 
 	/**
@@ -86,7 +81,7 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 	 */
 	@Override
 	public List<Kayttaja> listaa() throws SQLException {
-		List<Kayttaja> lista = new ArrayList<Kayttaja>();
+		List<Kayttaja> lista = new ArrayList<>();
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
 		try {
@@ -95,7 +90,6 @@ public class KayttajaDao implements Dao<Kayttaja, Integer>{
 			transaktio.commit();
 		} catch(Exception e) {
 			if (transaktio!=null) transaktio.rollback();
-			System.err.println("listaa(Kayttaja):");
 			e.printStackTrace();
 		} finally {
 			istunto.close();
