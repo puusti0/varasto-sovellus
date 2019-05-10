@@ -173,8 +173,6 @@ public class LisaaKayttajaController implements IController {
 	public void init() {
 		return;
 	}
-	
-	
 }
 
 

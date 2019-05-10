@@ -3,12 +3,19 @@ package com.ro8.varastosofta.application.controller;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import com.ro8.varastosofta.application.model.Ilmoitukset;
+import com.ro8.varastosofta.application.model.Kayttaja;
+import com.ro8.varastosofta.application.model.Rooli;
+import com.ro8.varastosofta.application.model.Tooltipit;
+import com.ro8.varastosofta.application.model.Validaattori;
+import com.ro8.varastosofta.database.Dao;
+import com.ro8.varastosofta.database.KayttajaDao;
+import com.ro8.varastosofta.database.RooliDao;
+import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.application.components.HBoxWithButton;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
-import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
-import com.ro8.varastosofta.interfaces.IController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +43,7 @@ public class TuoteryhmatController  implements IController {
 	private ListView<HBoxWithButton> tuoteryhmaList;
 	@FXML
 	private TextField nimiTextField;
+	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuoteryhmat kontrolleri.
@@ -53,7 +61,7 @@ public class TuoteryhmatController  implements IController {
 	 */
 	private Button luoPoistoNappi(Tuoteryhma tuoteryhma) {
 		Button removebutton = new Button();
-		removebutton.setText("POISTA");
+		removebutton.setText("Poista");
 		removebutton.setOnAction(new EventHandler<ActionEvent>() {
 	      @Override 
 	      public void handle(ActionEvent event) {
@@ -106,7 +114,7 @@ public class TuoteryhmatController  implements IController {
 
 	@Override
 	public void setKaannokset(ResourceBundle kaannokset) {
-		return;
+		this.kaannokset = kaannokset;
 	}
 
 	@Override
