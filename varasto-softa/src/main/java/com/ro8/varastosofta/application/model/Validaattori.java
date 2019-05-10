@@ -34,7 +34,8 @@ public class Validaattori {
 	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
 	public boolean onkoPoistettavaIdValidi(String id) {
-		return id.length() != 0;
+		String regex = "[0-9]+";
+		return id.matches(regex);
 	}
 	
 	/**
@@ -43,13 +44,9 @@ public class Validaattori {
 	 * @param strNum numero String muodossa-
 	 * @return true jos on numero ja false muuten.
 	 */
-	public boolean onkoNumero(String strNum) {
-		try {
-	        Integer.parseInt(strNum);
-	    } catch (NumberFormatException nfe) {
-	    	return false;
-	    }
-	    return true;
+	public boolean onkoNumero(String numero) {
+		String regex = "[0-9]+";
+		return numero.matches(regex);
 	}
 	
 	/**

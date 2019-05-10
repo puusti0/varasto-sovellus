@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -42,11 +41,11 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	}
 	
 	 @BeforeAll
-	 public static void setUp () throws Exception {
+	 public static void setUp() throws Exception {
 	 }
 
 	 @AfterAll
-	 public static void tearDown () throws Exception {
+	 public static void tearDown() throws Exception {
 	   FxToolkit.hideStage();
 	 }
 	
