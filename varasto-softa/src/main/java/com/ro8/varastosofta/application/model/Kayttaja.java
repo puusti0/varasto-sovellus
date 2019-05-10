@@ -11,45 +11,51 @@ import javax.persistence.Table;
 
 /**
  * Kayttaja tietokantataulu.
+ * 
  * @author Riina Antikainen
  * @author Tuukka Mytty
  * @author Janne Valle
  */
 @Entity
-@Table(name="Kayttaja")
+@Table(name = "Kayttaja")
 public class Kayttaja {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
+	@Column(name = "id")
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="rooli_Id")
+	@JoinColumn(name = "rooli_Id")
 	private Rooli rooli;
-	
-	@Column(name ="kayttajatunnus")
+
+	@Column(name = "kayttajatunnus")
 	private String kayttajatunnus;
-	
-	@Column(name ="salasana")
+
+	@Column(name = "salasana")
 	private String salasana;
-	
+
+	@Column(name = "suola")
+	private String suola;
+
 	/**
 	 * Luokan Kayttaja konstruktori ilman parametreja
 	 */
 	public Kayttaja() {
-		
+
 	}
-	
+
 	/**
 	 * Luokan Kayttaja konstruktori parametreilla
+	 * 
 	 * @param kayttajatunnus kayttajan kayttajatunnus
-	 * @param salasana kayttajan salasana
-	 * @param rooli kayttjan rooli
+	 * @param salasana       kayttajan salasana
+	 * @param rooli          kayttjan rooli
 	 */
-	public Kayttaja(String kayttajatunnus, String salasana, Rooli rooli) {
+	public Kayttaja(String kayttajatunnus, String salasana, String suola, Rooli rooli) {
 		this.kayttajatunnus = kayttajatunnus;
 		this.salasana = salasana;
+		this.suola = suola;
 		this.rooli = rooli;
 	}
 
@@ -84,5 +90,12 @@ public class Kayttaja {
 	public void setSalasana(String salasana) {
 		this.salasana = salasana;
 	}
-	
+
+	public String getSuola() {
+		return suola;
+	}
+
+	public void setSuola(String suola) {
+		this.suola = suola;
+	}
 }
