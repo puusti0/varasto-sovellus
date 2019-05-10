@@ -23,7 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 /**
- * Käyttöliittymä tuotelistaukselle.
+ * Käyttöliittymä tuotelistaukselle .
  * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
  * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
  * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
