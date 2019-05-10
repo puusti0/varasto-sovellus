@@ -196,7 +196,7 @@ public class LisaaTuoteController implements IPopupController, IController {
 	 */
 	public void asetaTeksti() {
 		
-		this.lisaaButton.setText(this.kaannokset.getString("button.update"));
+		this.lisaaButton.setText("Update");
 		
 	}
 
