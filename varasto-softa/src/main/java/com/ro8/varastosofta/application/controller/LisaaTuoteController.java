@@ -115,11 +115,9 @@ public class LisaaTuoteController implements IPopupController, IController {
 			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error alert");
+			alert.setTitle(this.kaannokset.getString("alert.product.addError.title"));
 			alert.setHeaderText(null);
-			alert.setContentText("Please check that none of the fields are empty."
-					+ "\nId-field and number-field contain only numbers."
-					+ "\nName-fied can be at most 20 characters long.");
+			alert.setContentText(this.kaannokset.getString("alert.product.addError"));
 
 			alert.showAndWait();
 		}	
@@ -147,10 +145,9 @@ public class LisaaTuoteController implements IPopupController, IController {
 			} else {
 				
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error Alert");
+				alert.setTitle(this.kaannokset.getString("alert.product.addError.title"));
 				alert.setHeaderText(null);
-				alert.setContentText("Please, check that the id-field is not empty."
-						+ "\nId-field contains only numbers.");
+				alert.setContentText(this.kaannokset.getString("alert.product.deleteError"));
 
 				alert.showAndWait();	
 			}

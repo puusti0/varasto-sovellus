@@ -1,11 +1,15 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.application.Istunto;
+import com.ro8.varastosofta.application.PasswordEncryptionService;
 import com.ro8.varastosofta.application.UTF8Control;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Kayttaja;
@@ -69,9 +73,11 @@ public class KirjauduController implements INakymaController {
 	/**
 	 * Ulos kirjautumisen käsitteleminen.
 	 * @throws SQLException
+	 * @throws InvalidKeySpecException 
+	 * @throws NoSuchAlgorithmException 
 	 */
 	@FXML
-	private void handleKirjaudu() throws SQLException {
+	private void handleKirjaudu() throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
 		String sessionID = authorize();
         if (sessionID != null) {
         	this.istunto.setSessionID(sessionID);
@@ -93,14 +99,19 @@ public class KirjauduController implements INakymaController {
 	/**
 	 * Tarkistetaan salasana ja käyttäjätunnus yhdistelmä.
 	 * @throws SQLException
+	 * @throws InvalidKeySpecException 
+	 * @throws NoSuchAlgorithmException 
 	 */
-	private String authorize() throws SQLException {
+	private String authorize() throws SQLException, NoSuchAlgorithmException, InvalidKeySpecException {
 		List<Kayttaja> kayttajat = this.kayttajadao.listaa();
 		String sessionId = null;
+		String tunnus = this.tunnusTextField.getText();
+		String salasana = this.salasanaTextField.getText();
 		
 		for (Kayttaja kayttaja : kayttajat) {
-			if ((this.tunnusTextField.getText()).equals(kayttaja.getKayttajatunnus()) 
-					&& (this.salasanaTextField.getText()).equals(kayttaja.getSalasana())) {
+			if (tunnus.equals(kayttaja.getKayttajatunnus()) 
+					&& PasswordEncryptionService.authenticate(salasana, Base64.getDecoder().decode(kayttaja.getSalasana()), Base64.getDecoder().decode(kayttaja.getSuola()))) {
+				//&& salasana.equals(kayttaja.getSalasana()))
 				sessionId = generateSessionID(kayttaja.getRooli().getNimi());
 			} 
 		}
@@ -136,9 +147,9 @@ public class KirjauduController implements INakymaController {
 		
 		if (sessionId == null) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error in Input");
+			alert.setTitle(this.kaannokset.getString("alert.user.failedLogon.tittle"));
 			alert.setHeaderText(null);
-			alert.setContentText("Please, check that the username and the password are correct.");
+			alert.setContentText(this.kaannokset.getString("alert.user.failedLogon"));
 			alert.showAndWait();
 		}
 		

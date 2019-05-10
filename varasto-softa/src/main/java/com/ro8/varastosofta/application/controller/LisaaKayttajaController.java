@@ -1,6 +1,9 @@
 package com.ro8.varastosofta.application.controller;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,10 +16,12 @@ import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.KayttajaDao;
 import com.ro8.varastosofta.database.RooliDao;
 import com.ro8.varastosofta.interfaces.IController;
+import com.ro8.varastosofta.application.PasswordEncryptionService;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+
 
 /**
  * Käyttäjän lisäys lomakkeen kontrolleri.
@@ -88,17 +93,21 @@ public class LisaaKayttajaController implements IController {
 	
 	/**
 	 * Uuden käyttäjän lisääminen tietokantaan.
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidKeySpecException 
 	 */
 	@FXML
-	private void kasitteleLisaa() {
+	private void kasitteleLisaa() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		String kayttajatunnus = this.kayttajatunnusTextField.getText();
 		String salasana = this.salasanaTextField.getText();
+		byte[] suola = PasswordEncryptionService.generateSalt();
+		byte[] salattu = PasswordEncryptionService.getEncryptedPassword(salasana, suola);
 		Rooli rooli = this.rooliryhmat.get(this.rooliComboBox.getValue());
 		
 		if (validaattori.onkoLisattavaKayttajaValidi(kayttajatunnus, salasana)) {
 			
 			try {
-				Kayttaja uusi = new Kayttaja(kayttajatunnus, salasana, rooli);
+				Kayttaja uusi = new Kayttaja(kayttajatunnus, Base64.getEncoder().encodeToString(salattu),  Base64.getEncoder().encodeToString(suola), rooli);
 				this.kayttajadao.lisaa(uusi);
 				this.ilmoitukset.informaatioAlertti("Information Dialog", null, this.kaannokset.getString("alert.user.succesfulAdd"));
 			} catch (SQLException e1) {
@@ -164,8 +173,6 @@ public class LisaaKayttajaController implements IController {
 	public void init() {
 		return;
 	}
-	
-	
 }
 
 
