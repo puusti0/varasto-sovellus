@@ -3,7 +3,6 @@ package com.ro8.varastosofta.application.controller;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.testfx.api.FxAssert;
