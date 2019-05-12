@@ -1,26 +1,29 @@
 package com.ro8.varastosofta.application.controller;
 
-import java.util.ResourceBundle;
-import com.ro8.varastosofta.interfaces.IController;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class TervehdysViewController implements IController {
-	
-	private ResourceBundle kaannokset;
+/**
+ * Tervetuloasivun hallinnointi.
+ * @author Riina Antikainen
+ * @author Tuukka Mytty
+ * @author Janne Valle.
+ */
+public class TervehdysViewController extends Controller {
 	
 	@FXML
 	private Label welcomeLabel;
-
+	
+	/**
+	 * Lisätään vihjeet komponentteihin.
+	 */
 	@Override
-	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
+	public void lisaaVihjeetKomponentteihin() {
+		return;
 	}
-
 	
 	public void init() {
-		this.welcomeLabel.setText(this.kaannokset.getString("welcome.hello"));
+		this.welcomeLabel.setText(this.getKaannokset().kaanna("welcome.hello"));
 	}
-
+	
 }

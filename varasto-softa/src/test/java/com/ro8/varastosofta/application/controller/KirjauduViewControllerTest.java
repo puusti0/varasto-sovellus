@@ -30,7 +30,7 @@ class KirjauduViewControllerTest extends ApplicationTest {
 	@Override
 	public void start(Stage stage) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setController(new KirjauduController());
+		loader.setController(new KirjauduController(stage));
 		loader.setResources(ResourceBundle.getBundle("MessagesBundle", new Locale("en","GB")));
 		loader.setLocation(Paaohjelma.class.getResource("view/Kirjaudu.fxml"));
 		Parent kirjauduNode = (Parent)loader.load();

@@ -1,9 +1,11 @@
 package com.ro8.varastosofta.application;
 
+import com.ro8.varastosofta.application.controller.KirjauduController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -15,17 +17,26 @@ import javafx.stage.Stage;
 public class Paaohjelma extends Application {
 	
 	/**
-	 * Näytetään käyttöliittymä.
+	 * Avataan kirjautumisikkuna.
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		Scene scene = new Scene(new StackPane()); 
-	    Istunto istunto = new Istunto(scene);
-	    istunto.valitseNakyma();
-	    primaryStage.getIcons().add(new Image("/Kuvat/Logo.PNG"));
-	    primaryStage.setTitle("Procu");
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
+		try {
+			Kaannokset kaannokset = Kaannokset.getInstance();
+			KirjauduController kontrolleri = new KirjauduController(primaryStage);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setController(kontrolleri);
+			loader.setResources(kaannokset.haeKielitiedosto());
+			loader.setLocation(Paaohjelma.class.getResource("view/Kirjaudu.fxml"));
+			Parent nakyma = loader.load();
+			Scene scene = new Scene(nakyma);
+			primaryStage.getIcons().add(new Image("/Kuvat/Logo.PNG"));
+			primaryStage.setTitle("Procu");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

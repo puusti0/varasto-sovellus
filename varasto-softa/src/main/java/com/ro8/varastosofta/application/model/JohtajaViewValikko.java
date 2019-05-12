@@ -1,9 +1,8 @@
 package com.ro8.varastosofta.application.model;
 
-import java.util.ResourceBundle;
-
+import com.ro8.varastosofta.application.Kaannokset;
+import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.controller.MainViewController;
-import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IViewValikko;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,18 +19,18 @@ public class JohtajaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
-	private ResourceBundle kaannokset;
+	private Kaannokset kaannokset;
 	
 	/**
 	 * Johtajan näkymävalikon kontrolleri.
 	 * @param kontrolleri
 	 */
-	public JohtajaViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
+	public JohtajaViewValikko(Controller kontrolleri) {
 		this.kontrolleri = (MainViewController)kontrolleri;
-		this.kaannokset = kaannokset;
-		MenuItem kayttajat = new MenuItem(this.kaannokset.getString("navigation.users"));
+		this.kaannokset = Kaannokset.getInstance();
+		MenuItem kayttajat = new MenuItem(this.kaannokset.kaanna("navigation.users"));
 		kayttajat.setOnAction(kayttajaNakyma);
-		MenuItem tuoteryhmat = new MenuItem(this.kaannokset.getString("navigation.categories"));
+		MenuItem tuoteryhmat = new MenuItem(this.kaannokset.kaanna("navigation.categories"));
 		tuoteryhmat.setOnAction(tuoteryhmaNakyma);
 		this.valikko = new Menu();
 		this.valikko.getItems().add(kayttajat);

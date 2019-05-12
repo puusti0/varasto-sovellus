@@ -16,7 +16,7 @@ public class Tooltipit {
 	 * @param control JavaFx komponentti, johon tooltip asetetaan.
 	 * @param viesti tooltipiin lisättävä viesti
 	 */
-	public void asetaTooltip(Control control, String viesti) {
+	public void aseta(Control control, String viesti) {
 		Tooltip tooltip = new Tooltip(viesti);
 		control.setTooltip(tooltip);
 	}

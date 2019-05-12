@@ -2,16 +2,7 @@ package com.ro8.varastosofta.application.controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ResourceBundle;
-import com.ro8.varastosofta.application.model.Ilmoitukset;
-import com.ro8.varastosofta.application.model.Kayttaja;
-import com.ro8.varastosofta.application.model.Rooli;
-import com.ro8.varastosofta.application.model.Tooltipit;
-import com.ro8.varastosofta.application.model.Validaattori;
 import com.ro8.varastosofta.database.Dao;
-import com.ro8.varastosofta.database.KayttajaDao;
-import com.ro8.varastosofta.database.RooliDao;
-import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.application.components.HBoxWithButton;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.TuoteDao;
@@ -31,7 +22,7 @@ import javafx.scene.control.TextField;
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuoteryhmatController  implements IController {
+public class TuoteryhmatController extends Controller {
 	
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	private TuoteDao tuotedao;
@@ -43,14 +34,39 @@ public class TuoteryhmatController  implements IController {
 	private ListView<HBoxWithButton> tuoteryhmaList;
 	@FXML
 	private TextField nimiTextField;
-	private ResourceBundle kaannokset;
 	
 	/**
 	 * Tuoteryhmat kontrolleri.
 	 */
 	public TuoteryhmatController() {
+		super();
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuotedao = new TuoteDao();
+	}
+	
+	/**
+	 * Alustetaan näkymän JavaFX komponentit.
+	 */
+	@FXML
+	private void initialize() {
+		try {
+			List<Tuoteryhma> tuoteryhmat = tuoteryhmadao.listaa();
+			for(Tuoteryhma tr : tuoteryhmat) {
+				listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi(tr)));
+			}
+			tuoteryhmaList.setItems(listItems);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Lisätään vihjeet komponentteihin.
+	 */
+	@Override
+	public void lisaaVihjeetKomponentteihin() {
+		return;
 	}
 	
 	/**
@@ -78,24 +94,6 @@ public class TuoteryhmatController  implements IController {
 		return removebutton;
 	}
 	
-	
-	/**
-	 * Alustetaan tuoteryhmä näkymän JavaFX komponentit.
-	 */
-	@FXML
-	private void initialize() {
-		try {
-			List<Tuoteryhma> tuoteryhmat = tuoteryhmadao.listaa();
-			for(Tuoteryhma tr : tuoteryhmat) {
-				listItems.add(new HBoxWithButton(tr.toString(), luoPoistoNappi(tr)));
-			}
-			tuoteryhmaList.setItems(listItems);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
 	/**
 	 * Tyhjentää tekstikentät.
 	 */
@@ -110,16 +108,6 @@ public class TuoteryhmatController  implements IController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void setKaannokset(ResourceBundle kaannokset) {
-		this.kaannokset = kaannokset;
-	}
-
-	@Override
-	public void init() {
-		return;
 	}
 
 }

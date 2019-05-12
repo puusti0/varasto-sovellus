@@ -2,12 +2,7 @@ package com.ro8.varastosofta.application.controller;
 
 import com.ro8.varastosofta.application.Paaohjelma;
 import com.ro8.varastosofta.application.Istunto;
-import com.ro8.varastosofta.application.UTF8Control;
-import com.ro8.varastosofta.application.model.Ilmoitukset;
-import com.ro8.varastosofta.interfaces.INakymaController;
-import com.ro8.varastosofta.interfaces.IController;
 import com.ro8.varastosofta.interfaces.IMenuValikkoTehdas;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,17 +12,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Päänäkymän hallinnonti.
+ * Päänäkymän hallinnointi.
  * @author Riina Antikainen
  * @author Tuukka Mytty
  * @author Janne Valle.
  */
-public class MainViewController implements INakymaController {
+public class MainViewController extends Controller {
 	
-	private Istunto sessionManager;
+	private Istunto istunto;
 	private IMenuValikkoTehdas valikkotehdas;
-	private ResourceBundle kaannokset;
-	private Ilmoitukset ilmoitukset;
 	
 	@FXML
 	private BorderPane rootPane;
@@ -44,41 +37,29 @@ public class MainViewController implements INakymaController {
 	 * Päänäkymän kontrolleri.
 	 * @param valikkotehdas nakymavalikon tehdas
 	 */
-	public MainViewController(IMenuValikkoTehdas valikkotehdas) {
+	public MainViewController(Istunto istunto, IMenuValikkoTehdas valikkotehdas) {
+		super();
+		this.istunto = istunto;
 		this.valikkotehdas = valikkotehdas;
-		this.ilmoitukset = new Ilmoitukset();
 	}
 	
 	/**
-	 * Saadaan tehdas, jolla voidaan luoda nakymavalikko.
-	 * @return nakymavalikon tehdas
+	 * Alustetaan JavaFX komponentit.
 	 */
-	public IMenuValikkoTehdas getValikkoTehdas() {
-		return valikkotehdas;
-	}
-
-	/**
-	 * Asetetaan käyttäjän näkymävalikko.
-	 * @param menu näkymävalikko
-	 */
-	public void setViewMenu(Menu menu) {
-		this.viewMenu.getItems().addAll(menu.getItems());
-	}
-
-	/**
-	 * Alustetaan istunto.
-	 * @param istunto istunto
-	 * @param istuntoID istunnon ID
-	 */
-	@Override
-	public void initSession(Istunto istunto, String istuntoID) {
+	@FXML
+    public void initialize() {
 		this.suomiImageView.setImage(new Image("/Kuvat/Suomi.png"));
 		this.englishImageView.setImage(new Image("/Kuvat/England.png"));
 		this.malaysiaImageView.setImage(new Image("/Kuvat/Malaysia.png"));
-		this.sessionManager = istunto;
-		this.kaannokset = ResourceBundle.getBundle("MessagesBundle", istunto.getKieli(), new UTF8Control());
-		this.viewMenu.getItems().addAll(this.getValikkoTehdas().luoViewValikko(this, this.kaannokset).getMenu().getItems());
-		aktivoiNakyma("TervehdysView.fxml");
+		this.viewMenu.getItems().addAll(this.valikkotehdas.luoViewValikko(this).getMenu().getItems());
+    }
+	
+	/**
+	 * Lisätään vihjeet komponentteihin.
+	 */
+	@Override
+	public void lisaaVihjeetKomponentteihin() {	
+		return;
 	}
 	
 	/**
@@ -86,7 +67,7 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	protected void kasitteleSuomi() {
-		this.sessionManager.valitseKieli("Suomi");
+		this.istunto.valitseKieli("Suomi");
 	}
 	
 	/**
@@ -94,7 +75,7 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	protected void kasitteleEnglish() {
-		this.sessionManager.valitseKieli("English");
+		this.istunto.valitseKieli("English");
 	}
 	
 	/**
@@ -102,7 +83,7 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	protected void kasitteleMalaysia() {
-		this.sessionManager.valitseKieli("Malaysia");
+		this.istunto.valitseKieli("Malaysia");
 	}
 	
 	/**
@@ -110,8 +91,8 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	protected void kasitteleKirjauduUlos() {
-		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, kaannokset.getString("alert.logout"))) {
-			this.sessionManager.kirjauduUlos();
+		if(this.getIlmoitukset().confirmaatioAlertti(null, "alert.logout")) {
+			this.istunto.kirjauduUlos();
 		}
 	}
 
@@ -120,8 +101,8 @@ public class MainViewController implements INakymaController {
 	 */
 	@FXML
 	private void kasitteleLopeta() {
-		if(this.ilmoitukset.confirmaatioAlertti("Confirmation Dialog", null, kaannokset.getString("alert.exit"))) {
-			this.sessionManager.lopeta();
+		if(this.getIlmoitukset().confirmaatioAlertti(null,"alert.exit")) {
+			this.istunto.lopeta();
 		}
 	}
 	
@@ -132,12 +113,11 @@ public class MainViewController implements INakymaController {
 	public void aktivoiNakyma(String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setResources(kaannokset);
+			loader.setResources(this.getKaannokset().haeKielitiedosto());
 			loader.setLocation(Paaohjelma.class.getResource("view/" + view));
 			Parent nakyma = (Parent)loader.load();
-			IController kontrolleri = loader.getController();
-			kontrolleri.setKaannokset(this.kaannokset);
-			kontrolleri.init();
+			Controller kontrolleri = loader.getController();
+			kontrolleri.lisaaVihjeetKomponentteihin();
 			this.rootPane.setCenter(nakyma);	
 		} catch(Exception e) {
 			e.printStackTrace();
