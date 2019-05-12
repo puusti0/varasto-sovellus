@@ -28,8 +28,11 @@ public class HBoxWithButton extends HBox {
     	this.getChildren().addAll(label, removebutton);
     }
     
-    
-   public String getTeksti() {
-	   return this.label.getText();
-   }
+    /**
+     * Palautetaan teksti.
+     * @return teksti
+     */
+    public String getTeksti() {
+    	return this.label.getText();
+    }
 }

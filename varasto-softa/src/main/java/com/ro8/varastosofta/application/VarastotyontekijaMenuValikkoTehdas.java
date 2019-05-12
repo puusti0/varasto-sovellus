@@ -1,9 +1,7 @@
 package com.ro8.varastosofta.application;
 
-import java.util.ResourceBundle;
-
+import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.model.VarastotyontekijaViewValikko;
-import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IMenuValikkoTehdas;
 import com.ro8.varastosofta.interfaces.IViewValikko;
 
@@ -20,8 +18,8 @@ public class VarastotyontekijaMenuValikkoTehdas implements IMenuValikkoTehdas {
 	 * @param valikkoa käyttävän näkymän kontrolleri
 	 */
 	@Override
-	public IViewValikko luoViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
-		return new VarastotyontekijaViewValikko(kontrolleri, kaannokset);
+	public IViewValikko luoViewValikko(Controller kontrolleri) {
+		return new VarastotyontekijaViewValikko(kontrolleri);
 	}
 
 }

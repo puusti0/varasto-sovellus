@@ -1,6 +1,7 @@
 package com.ro8.varastosofta.application.model;
 
 import java.util.Optional;
+import com.ro8.varastosofta.application.Kaannokset;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -13,36 +14,55 @@ import javafx.scene.control.ButtonType;
  */
 public class Ilmoitukset {
 	
+	private Kaannokset kaannokset;
+	
+	/**
+	 * Ilmoitukset konstruktori.
+	 */
+	public Ilmoitukset() {
+		this.kaannokset = Kaannokset.getInstance();
+	}
+	
 	/**
 	 * Tuottaa toiminnon varmistamis/hylkäys dialogin.
-	 * @param titteli, dialogin titteli.
 	 * @param headeri, dialogin otsake.
 	 * @param contentti, dialogin kuvaava sisältöteksti.
 	 * @return
 	 */
-	public boolean confirmaatioAlertti(String titteli, String headeri, String contentti) {
+	public boolean confirmaatioAlertti(String headeri, String sisalto) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle(titteli);
+		alert.setTitle(this.kaannokset.kaanna("alert.confirmationDialog"));
 		alert.setHeaderText(headeri);
-		alert.setContentText(contentti);
+		alert.setContentText(this.kaannokset.kaanna(sisalto));
 		Optional<ButtonType> result = alert.showAndWait();
 		return result.isPresent() && result.get() == ButtonType.OK;
 	}
 	
 	/**
 	 * Tuottaa ilmoituksen siitä kun käyttäjän suorittama toiminto on saatu loppuun.
-	 * @param titteli, dialogin titteli.
 	 * @param headeri, dialogin otsake.
 	 * @param contentti, dialogin kuvaava sisältö.
 	 */
-	public void informaatioAlertti(String titteli, String headeri, String contentti) {
+	public void informaatioAlertti(String headeri, String sisalto) {
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(titteli);
+		alert.setTitle(this.kaannokset.kaanna("alert.informationDialog"));
 		alert.setHeaderText(headeri);
-		alert.setContentText(contentti);
+		alert.setContentText(this.kaannokset.kaanna(sisalto));
 		alert.showAndWait();
 	}
 	
+	/**
+	 * Tuottaa ilmoituksen siitä kun käyttäjän suorittama toiminto on saatu loppuun.
+	 * @param headeri, dialogin otsake.
+	 * @param contentti, dialogin kuvaava sisältö.
+	 */
+	public void errorAlertti(String headeri, String sisalto) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(this.kaannokset.kaanna("alert.user.failedLogon.tittle"));
+		alert.setHeaderText(headeri);
+		alert.setContentText(this.kaannokset.kaanna(sisalto));
+		alert.showAndWait();
+	}
 }
 
 

@@ -34,22 +34,8 @@ public class Validaattori {
 	 * @return palauttaa true jos tuotteen id on validi ja false muuten.
 	 */
 	public boolean onkoPoistettavaIdValidi(String id) {
-		return id.length() != 0;
-	}
-	
-	/**
-	 * Testaa onko parametri muunnettavissa numeroksi. Palauttaa true jos on
-	 * muuten false.
-	 * @param strNum numero String muodossa-
-	 * @return true jos on numero ja false muuten.
-	 */
-	public boolean onkoNumero(String strNum) {
-		try {
-	        Integer.parseInt(strNum);
-	    } catch (NumberFormatException nfe) {
-	    	return false;
-	    }
-	    return true;
+		String regex = "[0-9]+";
+		return id.matches(regex);
 	}
 	
 	/**
@@ -76,6 +62,26 @@ public class Validaattori {
 		return !salasana.contains(";");
 	}
 	
+	/**
+	 * Tarkistetaan, onko parametri muunnettavissa numeroksi.
+	 * @param numero luku String muodossa
+	 * @return true jos on numero ja false muuten.
+	 */
+	public boolean onkoNumero(String numero) {
+		String regex = "[0-9]+";
+		return numero.matches(regex);
+	}
+	
+	/**
+	 * Tarkistetaan, sisältääkö teksti ainoastaan sallittuja merkkejä.
+	 * Sallitut merkit: pikkuaakkoset, isotaakkoset ja numerot.
+	 * @param teksti tarkistettava teksti
+	 * @return true jos on sallittu ja false muuten.
+	 */
+	public boolean onkoSallittu(String teksti) {
+		String regex = "^[a-zA-Z0-9]+$";
+		return teksti.matches(regex);
+	}
 }
 
 

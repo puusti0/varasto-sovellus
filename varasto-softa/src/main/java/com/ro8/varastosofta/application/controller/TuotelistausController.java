@@ -4,16 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ResourceBundle;
 import com.ro8.varastosofta.application.Popup;
 import com.ro8.varastosofta.application.components.TitledPaneWithTableView;
-import com.ro8.varastosofta.application.model.Tooltipit;
 import com.ro8.varastosofta.application.model.Tuote;
 import com.ro8.varastosofta.application.model.Tuoteryhma;
 import com.ro8.varastosofta.database.Dao;
 import com.ro8.varastosofta.database.TuoteDao;
 import com.ro8.varastosofta.database.TuoteryhmaDao;
-import com.ro8.varastosofta.interfaces.IController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,20 +21,16 @@ import javafx.scene.control.TableView;
 
 /**
  * Käyttöliittymä tuotelistaukselle .
- * https://docs.oracle.com/javafx/2/ui_controls/accordion-titledpane.htm
- * https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
- * https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
  * @author Riina Antikainen
  * @author Tuukka Mytty
  * @author Janne Valle
  */
-public class TuotelistausController implements IController {
+public class TuotelistausController extends Controller {
 	
 	private TuoteDao tuotedao;
 	private Dao<Tuoteryhma, Integer> tuoteryhmadao;
 	private List<Tuoteryhma> ryhmat;
 	private HashMap<String, Tuoteryhma> tuoteryhmat;
-	private Tooltipit tooltipit;
 	
 	@FXML
 	private Accordion tuotelistausAccordion;
@@ -58,10 +51,10 @@ public class TuotelistausController implements IController {
 	 * Tuotelistauksen konstruktori.
 	 */
 	public TuotelistausController() {
+		super();
 		this.tuotedao = new TuoteDao();
 		this.tuoteryhmadao = new TuoteryhmaDao();
 		this.tuoteryhmat = new HashMap<>();
-		tooltipit = new Tooltipit();
 		try {
 			this.ryhmat = this.tuoteryhmadao.listaa();
 		} catch (SQLException e) {
@@ -70,6 +63,14 @@ public class TuotelistausController implements IController {
 		for(Tuoteryhma tuoteryhma : this.ryhmat) {
 			this.tuoteryhmat.put(tuoteryhma.getNimi(), tuoteryhma);
 		}
+	}
+	
+	/**
+	 * Lisätään vihjeet komponentteihin.
+	 */
+	@Override
+	public void lisaaVihjeetKomponentteihin() {
+		this.getVihjeet().aseta(this.muokkaaButton, "Update the product information.");
 	}
 	
 	/**
@@ -114,8 +115,11 @@ public class TuotelistausController implements IController {
 		}
 		
 		this.tuotelistausAccordion.getPanes().addAll(listaus);
-		lisaaTooltipitKomponentteihin();
 	}
+	
+	
+	
+	
 
 	
 	/**
@@ -195,29 +199,11 @@ public class TuotelistausController implements IController {
 	 * Asettaa tuotteen yksityiskohtaisen näkymän tyhjäksi.
 	 */
 	private void naytaTyhjatTiedot() {
-		
 		this.idLabel.setText("");
 		this.nimiLabel.setText("");
 		this.lkmLabel.setText("");
 		this.hintaLabel.setText("");
 		this.tuoteryhmaLabel.setText("");
-	}
-	
-	/**
-	 * Lisää Tooltipit komponentteihin.
-	 */
-	public void lisaaTooltipitKomponentteihin() {
-		tooltipit.asetaTooltip(this.muokkaaButton, "Update the product information.");
-	}
-
-	@Override
-	public void setKaannokset(ResourceBundle kaannokset) {
-		return;
-	}
-
-	@Override
-	public void init() {
-		return;
 	}
 	
 }
