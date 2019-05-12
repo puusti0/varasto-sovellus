@@ -22,7 +22,11 @@ public class TervehdysViewController extends Controller {
 		return;
 	}
 	
-	public void init() {
+	/**
+	 * Alustetaan JavaFX komponentit.
+	 */
+	@FXML
+    public void initialize() {
 		this.welcomeLabel.setText(this.getKaannokset().kaanna("welcome.hello"));
 	}
 	

@@ -15,6 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class TitledPaneWithTableView extends TitledPane {
 
+	/**
+	 * Konsruktoru
+	 * @param nimi paneelin nimi
+	 */
 	public TitledPaneWithTableView(String nimi) {
 		super();
 		this.setText(nimi);

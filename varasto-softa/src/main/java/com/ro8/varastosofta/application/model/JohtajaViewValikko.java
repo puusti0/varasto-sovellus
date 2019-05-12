@@ -37,15 +37,26 @@ public class JohtajaViewValikko implements IViewValikko {
 		this.valikko.getItems().add(tuoteryhmat);
 	}
 	
+	/**
+	 * Palautetaan kontrolleri
+	 * @return Päänakymän kontrolleri
+	 */
 	public MainViewController getKontrolleri() {
 		return kontrolleri;
 	}
 
+	/**
+	 * Palautetaan luotu valikko.
+	 * @return valikko
+	 */
 	@Override
 	public Menu getMenu() {
 		return this.valikko;
 	}
 	
+	/**
+	 * Käsitellään käyttäjän lisääminen.
+	 */
 	EventHandler<ActionEvent> kayttajaNakyma = new EventHandler<ActionEvent>() { 
 		@Override 
         public void handle(ActionEvent e) 
@@ -54,6 +65,9 @@ public class JohtajaViewValikko implements IViewValikko {
         } 
     };
     
+    /**
+	 * Käsitellään tuoteryhmät.
+	 */
     EventHandler<ActionEvent> tuoteryhmaNakyma = new EventHandler<ActionEvent>() {
     	@Override 
         public void handle(ActionEvent e) 

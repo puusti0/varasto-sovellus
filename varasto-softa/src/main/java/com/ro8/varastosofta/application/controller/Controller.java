@@ -1,7 +1,5 @@
 package com.ro8.varastosofta.application.controller;
 
-import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.Kaannokset;
 import com.ro8.varastosofta.application.model.Ilmoitukset;
 import com.ro8.varastosofta.application.model.Tooltipit;

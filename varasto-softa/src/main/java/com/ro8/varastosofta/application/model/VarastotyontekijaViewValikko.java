@@ -1,7 +1,5 @@
 package com.ro8.varastosofta.application.model;
 
-import java.util.ResourceBundle;
-
 import com.ro8.varastosofta.application.Kaannokset;
 import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.controller.MainViewController;
@@ -24,7 +22,7 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
 	private Kaannokset kaannokset;
 	
 	/**
-	 * Varastotyöntekijän kontrolleri.
+	 * Varastotyöntekijän valikon konstruktori.
 	 * @param kontrolleri
 	 */
 	public VarastotyontekijaViewValikko(Controller kontrolleri) {
@@ -39,15 +37,26 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
 		this.valikko.getItems().add(tuotteet);
 	}
 	
+	/**
+	 * Palautetaan kontrolleri
+	 * @return Päänakymän kontrolleri
+	 */
 	public MainViewController getKontrolleri() {
 		return kontrolleri;
 	}
 
+	/**
+	 * Palautetaan luotu valikko.
+	 * @return valikko
+	 */
 	@Override
 	public Menu getMenu() {
 		return this.valikko;
 	}
     
+	/**
+	 * Käsitellään tuotteen näyttäminen.
+	 */
     EventHandler<ActionEvent> tuoteLisays = new EventHandler<ActionEvent>() { 
 		@Override 
         public void handle(ActionEvent e) 
@@ -56,6 +65,9 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
         } 
     };
     
+    /**
+     * Käsitellään tuotelistaus.
+     */
     EventHandler<ActionEvent> tuotelistaus = new EventHandler<ActionEvent>() {
     	@Override 
         public void handle(ActionEvent e) 

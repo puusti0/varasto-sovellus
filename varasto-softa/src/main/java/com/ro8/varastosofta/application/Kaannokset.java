@@ -38,21 +38,13 @@ public class Kaannokset {
 	public void setKieli(Locale kieli) {
 		this.kieli = kieli;
 	}
-
-	/**
-	 * Palautetaan käytössä oleva kieli.
-	 * @return valittu kieli
-	 */
-	public Locale getKieli() {
-		return kieli;
-	}
-
+	
 	/**
 	 * Palautetaan käytössä oleva kielitiedosto.
 	 * @return kielitiedosto
 	 */
 	public ResourceBundle haeKielitiedosto() {
-		return ResourceBundle.getBundle("MessagesBundle", getKieli(), new UTF8Control());
+		return ResourceBundle.getBundle("MessagesBundle", this.kieli, new UTF8Control());
 	}
 	
 	/**
