@@ -1,8 +1,5 @@
 package com.ro8.varastosofta.application.model;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Luokka syötteiden validointia varten.
  * @author Riina Antikainen

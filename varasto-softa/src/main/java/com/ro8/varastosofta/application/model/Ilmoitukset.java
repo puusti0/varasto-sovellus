@@ -1,9 +1,7 @@
 package com.ro8.varastosofta.application.model;
 
 import java.util.Optional;
-
 import com.ro8.varastosofta.application.Kaannokset;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -18,6 +16,9 @@ public class Ilmoitukset {
 	
 	private Kaannokset kaannokset;
 	
+	/**
+	 * Ilmoitukset konstruktori.
+	 */
 	public Ilmoitukset() {
 		this.kaannokset = Kaannokset.getInstance();
 	}

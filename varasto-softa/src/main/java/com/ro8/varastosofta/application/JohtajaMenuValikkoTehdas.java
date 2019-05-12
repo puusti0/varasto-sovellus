@@ -1,6 +1,5 @@
 package com.ro8.varastosofta.application;
 
-import java.util.ResourceBundle;
 import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.model.JohtajaViewValikko;
 import com.ro8.varastosofta.interfaces.IMenuValikkoTehdas;
