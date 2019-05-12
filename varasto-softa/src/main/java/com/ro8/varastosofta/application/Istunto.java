@@ -1,14 +1,14 @@
 package com.ro8.varastosofta.application;
 
+import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.controller.KirjauduController;
 import com.ro8.varastosofta.application.controller.MainViewController;
-import com.ro8.varastosofta.interfaces.INakymaController;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * Istunnon hallinta.
@@ -18,88 +18,65 @@ import javafx.scene.Scene;
  */
 public class Istunto {
 	
-	private Scene scene;
-	private INakymaController kontrolleri;
+	private Stage stage;
+	private Controller kontrolleri;
 	private String istuntoID;
-	private Locale kieli;
+	private Kaannokset kaannokset;
 	
 	/**
 	 * Istunnon kontrolleri.
 	 * @param scene istunnon näyttämö
 	 */
-	public Istunto(Scene scene) {
-		this.scene = scene;
-		this.istuntoID = "";
-		this.kieli = new Locale("en","GB");
-	}	
-	
-	/**
-	 * Palautetaan kielivalinta.
-	 * @return kielivalinta
-	 */
-	public Locale getKieli() {
-		return kieli;
-	}
-
-	/**
-	 * Asetetaan kielivalinta.
-	 * @param kieli kielivalinta
-	 */
-	public void setKieli(Locale kieli) {
-		this.kieli = kieli;
+	public Istunto(Stage stage, String ID) {
+		this.kaannokset = Kaannokset.getInstance();
+		this.stage = stage;
+		this.istuntoID = ID;
+		valitseNakyma();
 	}
 	
 	/**
-	 * Palautetaan istunnon ID.
-	 * @return istunnon ID
+	 * Palautetaan istunnon tunnus.
+	 * @return istunnon yksilöivä tunnus
 	 */
-	public String getSessionID() {
-		return this.istuntoID;
+	public String getIstuntoID() {
+		return istuntoID;
 	}
 
 	/**
-	 * Asetetaan istunnon iD.
-	 * @param istuntoID istunnon IDs
-	 */
-	public void setSessionID(String istuntoID) {
-		this.istuntoID = istuntoID;
-	}
-
-	/**
-	 * Kirjautuneen käyttäjän näkymä.
-	 * @param sessionID yksilöity session id
+	 * Määritetään kirjautuneen käyttäjän menu.
 	 */
 	public void valitseNakyma() {
-		String[] session = this.getSessionID().split("-");
-		String rooli = session[0];
+		String[] istunto = this.getIstuntoID().split("-");
+		String rooli = istunto[0];
 		switch(rooli) {
 			case "Varastotyöntekijä":
-				this.kontrolleri = new MainViewController(new VarastotyontekijaMenuValikkoTehdas());
-				naytaNakyma(this.getSessionID(), "MainView.fxml");
+				this.kontrolleri = new MainViewController(this, new VarastotyontekijaMenuValikkoTehdas() );
+				naytaNakyma("MainView.fxml");
 				break;
 			case "Johtaja":
-				this.kontrolleri = new MainViewController(new JohtajaMenuValikkoTehdas());
-				naytaNakyma(this.getSessionID(), "MainView.fxml");
+				this.kontrolleri = new MainViewController(this, new JohtajaMenuValikkoTehdas() );
+				naytaNakyma("MainView.fxml");
 				break;
 			default:
-				this.kontrolleri = new KirjauduController(this);
-				naytaNakyma("0", "Kirjaudu.fxml");
+				this.kontrolleri = new KirjauduController(this.stage);
+				naytaNakyma("Kirjaudu.fxml");
 		}
 	}
 	
 	/**
 	 * Valitaan sovelluksessa käytettävä kieli.
+	 * @param kielivalinta valittu kieli
 	 */
 	public void valitseKieli(String kielivalinta) {
 		switch(kielivalinta) {
 			case "Suomi":
-				this.setKieli(new Locale("fi", "FI"));
+				this.kaannokset.setKieli((new Locale("fi", "FI")));
 				break;
 			case "Malaysia":
-				this.setKieli(new Locale("zsm", "MY"));
+				this.kaannokset.setKieli((new Locale("zsm", "MY")));
 				break;
 			default:
-				this.setKieli(new Locale("en","GB"));
+				this.kaannokset.setKieli((new Locale("en","GB")));
 		}
 		this.valitseNakyma();
 	}
@@ -118,21 +95,26 @@ public class Istunto {
 	public void lopeta() {
 		Platform.exit();
 	}
-
+	
 	/**
 	 * Näkymän näyttämiseen tarvittavat toimenpiteet.
-	 * @param istuntoID istunnon yksilöivä tunnus
 	 * @param näkymän nimi
 	 */
-	public void naytaNakyma(String istuntoID, String nimi) {
+	public void naytaNakyma(String nimi) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setController(this.kontrolleri);
-			loader.setResources(ResourceBundle.getBundle("MessagesBundle", this.kieli, new UTF8Control()));
+			loader.setResources(this.kaannokset.haeKielitiedosto());
 			loader.setLocation(Paaohjelma.class.getResource("view/" + nimi));
-			Parent nakyma = (Parent)loader.load();
-			this.kontrolleri.initSession(this, istuntoID);
-			this.scene.setRoot(nakyma);
+			Parent nakyma = (Parent) loader.load();
+			Scene scene = stage.getScene();
+			if (scene == null) {
+				scene = new Scene(nakyma);
+				this.stage.setScene(scene);
+			} else {
+				this.stage.getScene().setRoot(nakyma);
+			}
+			this.stage.sizeToScene();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}			

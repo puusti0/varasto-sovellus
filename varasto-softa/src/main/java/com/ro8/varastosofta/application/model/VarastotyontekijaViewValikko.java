@@ -2,10 +2,10 @@ package com.ro8.varastosofta.application.model;
 
 import java.util.ResourceBundle;
 
+import com.ro8.varastosofta.application.Kaannokset;
+import com.ro8.varastosofta.application.controller.Controller;
 import com.ro8.varastosofta.application.controller.MainViewController;
-import com.ro8.varastosofta.interfaces.INakymaController;
 import com.ro8.varastosofta.interfaces.IViewValikko;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -21,18 +21,18 @@ public class VarastotyontekijaViewValikko implements IViewValikko {
 	
 	private Menu valikko;
 	private MainViewController kontrolleri;
-	private ResourceBundle kaannokset;
+	private Kaannokset kaannokset;
 	
 	/**
 	 * Varastotyöntekijän kontrolleri.
 	 * @param kontrolleri
 	 */
-	public VarastotyontekijaViewValikko(INakymaController kontrolleri, ResourceBundle kaannokset) {
+	public VarastotyontekijaViewValikko(Controller kontrolleri) {
 		this.kontrolleri = (MainViewController)kontrolleri;
-		this.kaannokset = kaannokset;
-		MenuItem tuote = new MenuItem(this.kaannokset.getString("navigation.addProduct"));
+		this.kaannokset = Kaannokset.getInstance();
+		MenuItem tuote = new MenuItem(this.kaannokset.kaanna("navigation.addProduct"));
 		tuote.setOnAction(tuoteLisays);
-		MenuItem tuotteet = new MenuItem(this.kaannokset.getString("navigation.productList"));  
+		MenuItem tuotteet = new MenuItem(this.kaannokset.kaanna("navigation.productList"));  
 		tuotteet.setOnAction(tuotelistaus);
 		this.valikko = new Menu();
 		this.valikko.getItems().add(tuote);

@@ -1,5 +1,8 @@
 package com.ro8.varastosofta.application.model;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Luokka syötteiden validointia varten.
  * @author Riina Antikainen
@@ -39,17 +42,6 @@ public class Validaattori {
 	}
 	
 	/**
-	 * Testaa onko parametri muunnettavissa numeroksi. Palauttaa true jos on
-	 * muuten false.
-	 * @param strNum numero String muodossa-
-	 * @return true jos on numero ja false muuten.
-	 */
-	public boolean onkoNumero(String numero) {
-		String regex = "[0-9]+";
-		return numero.matches(regex);
-	}
-	
-	/**
 	 * Testaa onko annettu tuoteryhmä validi.
 	 * @param tuoteryhma, annettu tuoteryhmä String muodossa.
 	 * @return, false jos tuoteryhmä ei validi, true muuten.
@@ -73,6 +65,26 @@ public class Validaattori {
 		return !salasana.contains(";");
 	}
 	
+	/**
+	 * Tarkistetaan, onko parametri muunnettavissa numeroksi.
+	 * @param numero luku String muodossa
+	 * @return true jos on numero ja false muuten.
+	 */
+	public boolean onkoNumero(String numero) {
+		String regex = "[0-9]+";
+		return numero.matches(regex);
+	}
+	
+	/**
+	 * Tarkistetaan, sisältääkö teksti ainoastaan sallittuja merkkejä.
+	 * Sallitut merkit: pikkuaakkoset, isotaakkoset ja numerot.
+	 * @param teksti tarkistettava teksti
+	 * @return true jos on sallittu ja false muuten.
+	 */
+	public boolean onkoSallittu(String teksti) {
+		String regex = "^[a-zA-Z0-9]+$";
+		return teksti.matches(regex);
+	}
 }
 
 

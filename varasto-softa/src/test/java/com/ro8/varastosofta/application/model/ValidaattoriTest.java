@@ -43,16 +43,6 @@ class ValidaattoriTest {
 		assertFalse(validaattori.onkoPoistettavaIdValidi("ei numero"), "Ei ole numero");
 		assertTrue(validaattori.onkoPoistettavaIdValidi("12"), "On numero");
 	}
-
-	/**
-	 * Testataan onko syöte numero.
-	 */
-	@Test
-	void testOnkoNumero() {
-		Validaattori validaattori = new Validaattori();
-		assertFalse(validaattori.onkoNumero("ei numero"), "Ei ole numero");
-		assertTrue(validaattori.onkoNumero("12"), "On numero");
-	}
 	
 	/**
 	 * Testataan onko lisättävä tuoteryhmä sallittu.
@@ -78,5 +68,33 @@ class ValidaattoriTest {
 	void testaaOnkoLisattavaKayttajaValidi(String tunnus, String salasana, boolean tulos) {
 		Validaattori validaattori = new Validaattori();
 		assertEquals(validaattori.onkoLisattavaKayttajaValidi(tunnus, salasana), tulos);
+	}
+	
+
+	/**
+	 * Testataan, onko syöte numero.
+	 */
+	@Test
+	void testOnkoNumero() {
+		Validaattori validaattori = new Validaattori();
+		assertFalse(validaattori.onkoNumero("ei numero"), "Ei ole numero");
+		assertTrue(validaattori.onkoNumero("12"), "On numero");
+	}
+	
+	/**
+	 * Testataan, sisältääkö syöte ainoastaan sallittuja merkkejä.
+	 * Sallitut merkit: pikkuaakkoset, isotaakkoset ja numerot.
+	 */
+	@ParameterizedTest
+	@CsvSource({"'', false",
+				"Ab10+, false",
+				"Ab10, true",
+				"abscdefghijklmnopqrstuvxyz, true",
+				"ABCDEFGHIJLKMNOPQRSTUVXY, true",
+				"0123456789, true",
+				"aaaaa, true",})
+	void testOnkoSallittu(String teksti, boolean tulos) {
+		Validaattori validaattori = new Validaattori();
+		assertEquals(validaattori.onkoSallittu(teksti), tulos);
 	}
 }
