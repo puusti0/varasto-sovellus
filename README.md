@@ -1,4 +1,12 @@
-# Kirjastot
+# Varasto-sovellus
+
+Tehty osana ohjelmistotuotanto projekti 1 ja 2 kursseja. Alkuperäinen versionhallinta on ollut gitlabissa,\
+josta projekti on kloonattu tänne talteen.\
+\
+Alla myös alkuperäisen Readme-tiedoston sisältö.
+
+
+## Kirjastot
 
 * junit-jupiter-engine 5.3.1
 			
@@ -10,17 +18,17 @@
 
 
 
-# Palvelin
+## Palvelin
 
-* __IP__: 10.114.34.75
-* __Jenkins__: https://inno-jenkinsnew.educloud.metropolia.fi/ 
+* __IP__: (palvelinta ei ole enää)
+* __Jenkins__: (eikä jenkinsiä)
 
 Komento 		   | Selitys
 ------------------ | -------------
 cd / 			   | root directory
 
 
-# MariaDB
+## MariaDB
 
 Huom. Omilla tunnuksilla kirjaudutaan koneelle, mutta ensimmaisella kerralla tietokannan kayttajana root (demouser)
 
@@ -28,7 +36,7 @@ Huom. Omilla tunnuksilla kirjaudutaan koneelle, mutta ensimmaisella kerralla tie
 
 Huom. Salasana kysytaan komennon suoritamisen jalkeen
 
-### Luo ensimmaisella kerralla itselle kayttaja
+#### Luo ensimmaisella kerralla itselle kayttaja
 1. __CREATE USER 'demouser'@'localhost' IDENTIFIED BY 'demopassword';__ 		Lisaa uusi kayttaja
 2. __GRANT ALL PRIVILEGES ON &ast;.&ast; TO demouser@localhost;__  Lisaa kaikki kayttajaoikeudet
 
@@ -68,7 +76,7 @@ __FLUSH PRIVILEGES;__
 **sudo systemctl enable maria.service**		Uudelleen kaynnistamisen yhteydessa kaynnistaa automaattisesti MariaDB
 
 
-# Lahteet
+## Lahteet
 
 MariaDB - https://support.rackspace.com/how-to/installing-mariadb-server-on-centos/
 
